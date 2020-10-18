@@ -1,13 +1,13 @@
 {
-  "name": "@vue-storefront/theme-default",
-  "version": "1.12.0",
-  "description": "Default theme for Vue Storefront",
+  "name": "@vue-storefront/theme-red",
+  "version": "0.1.0",
+  "description": "Red theme for Vue Storefront",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd ../../../ && node core/scripts/server"
   },
-  "author": "pkarw <pkarwatka@divante.pl> and contributors",
+  "author": "nay min htwe <konayminhtwe@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bodybuilder": "2.2.21",
@@ -16,7 +16,9 @@
     "vue-no-ssr": "^0.2.2",
     "vue-progressbar": "^0.7.5",
     "vuelidate": "^0.7.5",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "bootstrap-vue": "^0.23.1",
+    "vue-owl-carousel": "^2.0.3"
   },
   "publishConfig": {
     "access": "public"

@@ -1,13 +1,14 @@
 <template>
-  <button
-    type="button"
-    :aria-label="$t('Open search panel')"
-    class="bg-cl-transparent brdr-none inline-flex"
-    @click="toggleSearchpanel"
-    data-testid="openSearchPanel"
-  >
-    <i class="material-icons">search</i>
-  </button>
+  <li class="search">
+    <a class="popup-with-form" href="#"
+       @click.prevent="toggleSearchpanel"
+       data-testid="openSearchPanel"
+       :aria-label="$t('Open search panel')"
+    >
+      <span class="icon" />
+      <span class="icon-text">Search</span>
+    </a>
+  </li>
 </template>
 
 <script>

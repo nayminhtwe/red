@@ -154,6 +154,7 @@ import ButtonFull from 'theme/components/theme/ButtonFull'
 import EditMode from './EditMode'
 
 export default {
+  name: 'Product',
   data () {
     return {
       maxQuantity: 0,

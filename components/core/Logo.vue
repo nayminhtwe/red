@@ -3,7 +3,7 @@
     <img
       :width="width"
       :height="height"
-      src="/assets/logo.svg"
+      src="/assets/logo.png"
       :alt="$t(defaultTitle)"
     >
   </router-link>

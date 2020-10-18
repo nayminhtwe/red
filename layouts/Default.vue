@@ -2,7 +2,7 @@
   <div class="default-layout">
     <overlay v-if="overlayActive" />
     <loader />
-    <div id="viewport" class="w-100 relative">
+    <div id="viewport">
       <main-header />
       <async-sidebar
         :async-component="SearchPanel"
@@ -33,7 +33,7 @@
       <offline-badge />
       <order-confirmation :orders-data="ordersData" v-if="loadOrderConfirmation" />
     </div>
-    <vue-progress-bar />
+    <!-- <vue-progress-bar /> -->
   </div>
 </template>
 
@@ -127,5 +127,9 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" src="theme/css/main.scss"></style>
+<style src="theme/css/bootstrap.css"></style>
+<style src="theme/css/jquery-ui.css"></style>
+<style src="theme/css/font-awesome.min.css"></style>
+<style src="theme/css/magnific-popup.css"></style>
+<style src="theme/css/custom.css"></style>
+<style src="theme/css/responsive.css"></style>

@@ -1,21 +1,14 @@
 <template>
-  <button
-    type="button"
-    class="relative bg-cl-transparent brdr-none inline-flex"
-    @click="openMicrocart"
-    data-testid="openMicrocart"
-    :aria-label="$t('Open microcart')"
-  >
-    <i class="material-icons">shopping_cart</i>
-    <span
-      class="minicart-count absolute flex center-xs middle-xs border-box py0 px2 h6 lh16 weight-700 cl-white bg-cl-silver"
-      v-cloak
-      v-show="totalQuantity"
-      data-testid="minicartCount"
+  <li class="cart-icon">
+    <a class="popup-with-form" href="#"
+       @click.prevent="openMicrocart"
+       data-testid="openMicrocart"
+       :aria-label="$t('Open microcart')"
     >
-      {{ totalQuantity }}
-    </span>
-  </button>
+      <span class="icon" />
+      <span class="icon-text">Cart</span>
+    </a>
+  </li>
 </template>
 
 <script>
@@ -42,13 +35,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .minicart-count {
-    top: 7px;
-    left: 50%;
-    min-width: 16px;
-    min-height: 16px;
-    border-radius: 10px;
-  }
-</style>

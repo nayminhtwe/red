@@ -1,36 +1,9 @@
 <template>
   <div id="home">
     <head-image />
-
-    <promoted-offers />
-
-    <section class="new-collection container px15">
-      <div>
-        <header class="col-md-12">
-          <h2 class="align-center cl-accent">
-            {{ $t('Everything new') }}
-          </h2>
-        </header>
-      </div>
-      <div class="row center-xs">
-        <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
-          <product-listing columns="4" :products="getEverythingNewCollection" />
-        </lazy-hydrate>
-        <product-listing v-else columns="4" :products="getEverythingNewCollection" />
-      </div>
-    </section>
-
-    <section v-if="isOnline" class="container pb60 px15">
-      <div class="row center-xs">
-        <header class="col-md-12" :class="{ pt40: getEverythingNewCollection && getEverythingNewCollection.length }">
-          <h2 class="align-center cl-accent">
-            {{ $t('Get inspired') }}
-          </h2>
-        </header>
-      </div>
-      <tile-links />
-    </section>
-    <Onboard />
+    <featured-blocks />
+    <featured-categories />
+    <featured-brands />
   </div>
 </template>
 
@@ -42,6 +15,9 @@ import LazyHydrate from 'vue-lazy-hydration'
 // Theme core components
 import ProductListing from 'theme/components/core/ProductListing'
 import HeadImage from 'theme/components/core/blocks/MainSlider/HeadImage'
+import FeaturedCategories from 'theme/components/core/blocks/Featured/FeaturedCategories'
+import FeaturedBlocks from 'theme/components/core/blocks/Featured/FeaturedBlocks'
+import FeaturedBrands from 'theme/components/core/blocks/Featured/FeaturedBrands'
 // Theme local components
 import Onboard from 'theme/components/theme/blocks/Home/Onboard'
 import PromotedOffers from 'theme/components/theme/blocks/PromotedOffers/PromotedOffers'
@@ -64,7 +40,10 @@ export default {
     ProductListing,
     PromotedOffers,
     TileLinks,
-    LazyHydrate
+    LazyHydrate,
+    FeaturedCategories,
+    FeaturedBlocks,
+    FeaturedBrands
   },
   computed: {
     ...mapGetters('user', ['isLoggedIn']),
@@ -132,11 +111,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .new-collection {
-    @media (max-width: 767px) {
-      padding-top: 0;
-    }
-  }
-</style>

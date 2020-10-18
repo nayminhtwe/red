@@ -1,12 +1,12 @@
 export default {
   title: 'Default Theme',
-  titleTemplate: '%s - Vue Storefront',
+  titleTemplate: '%s - 21 Marts',
   htmlAttrs: {
     lang: 'en'
   },
   meta: [
     { charset: 'utf-8' },
-    { vmid: 'description', name: 'description', content: 'Vue Storefront is a standalone PWA storefront for your eCommerce, possible to connect with any eCommerce backend (eg. Magento, Prestashop or Shopware) through the API.' },
+    { vmid: 'description', name: 'description', content: '21 Marts Ecommerce Platform' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1, minimal-ui' },
     { name: 'robots', content: 'index, follow' },
     { name: 'mobile-web-app-capable', content: 'yes' },
@@ -34,6 +34,12 @@ export default {
       async: true,
       integrity: 'sha384-GOaSLecPIMCJksN83HLuYf9FToOiQ2Df0+0ntv7ey8zjUHESXhthwvq9hXAZTifA',
       crossorigin: 'anonymous'
+    },
+    {
+      src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js'
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'
     }
   ],
   noscript: [

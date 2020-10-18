@@ -12,6 +12,7 @@ import { homepageStore } from 'theme/store/homepage'
 import { uiStore } from 'theme/store/ui'
 import { promotedStore } from 'theme/store/promoted-offers'
 import { StorageManager } from '@vue-storefront/core/lib/storage-manager'
+import $ from 'jquery'
 
 once('__VUE_EXTEND_DROPPOINT_VPB__', () => {
   Vue.use(VueProgressBar)

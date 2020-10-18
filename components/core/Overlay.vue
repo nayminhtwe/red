@@ -1,5 +1,6 @@
 <template>
-  <div class="overlay fixed w-100" @click="close" v-if="isVisible" />
+  <!-- <div class="overlay fixed w-100" @click="close" v-if="isVisible" /> -->
+  <div class="mfp-bg mfp-ready" v-if="isVisible" @click="close" />
 </template>
 
 <script>
