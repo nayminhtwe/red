@@ -2558,7 +2558,7 @@ _______________________________________________________*/
 .banner .owl-prev, .banner .owl-next,
 .client-main  .owl-prev, .client-main  .owl-next, 
 .sub-menu-slider .owl-prev, .sub-menu-slider .owl-next, 
-.pro_cat .owl-prev, .pro_cat .owl-next,
+.pro_cat .owl-prev, .pro_cat .owl-next, 
 #top-cat-pro .owl-prev, #top-cat-pro .owl-next {
 	background: #f5f5f5 !important;
 	position: absolute;

@@ -3,6 +3,7 @@
     <head-image />
     <featured-blocks />
     <featured-categories />
+    <featured-products />
     <featured-brands />
   </div>
 </template>
@@ -18,6 +19,7 @@ import HeadImage from 'theme/components/core/blocks/MainSlider/HeadImage'
 import FeaturedCategories from 'theme/components/core/blocks/Featured/FeaturedCategories'
 import FeaturedBlocks from 'theme/components/core/blocks/Featured/FeaturedBlocks'
 import FeaturedBrands from 'theme/components/core/blocks/Featured/FeaturedBrands'
+import FeaturedProducts from 'theme/components/core/blocks/Featured/FeaturedProducts'
 // Theme local components
 import Onboard from 'theme/components/theme/blocks/Home/Onboard'
 import PromotedOffers from 'theme/components/theme/blocks/PromotedOffers/PromotedOffers'
@@ -43,7 +45,8 @@ export default {
     LazyHydrate,
     FeaturedCategories,
     FeaturedBlocks,
-    FeaturedBrands
+    FeaturedBrands,
+    FeaturedProducts
   },
   computed: {
     ...mapGetters('user', ['isLoggedIn']),

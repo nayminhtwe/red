@@ -14,218 +14,211 @@
           </div>
           <div class="pro_cat">
             <div class="row">
-              <div id="top-cat-pro" class="sell-pro align-center">
-                <carousel :items="7" :loop="true" :responsive-class="true"
-                          :autoplay="false" :dots="false"
-                          :nav="false" :responsive="{0:{items:2},480:{items:3},768:{items:4},1200:{items:5},1500:{items:7}}"
-                >
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie3" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Western</span></a>
+              <div class="col-12">
+                <div id="top-cat-pro" class="sell-pro align-center">
+                  <carousel :items="7" :loop="true" :responsive-class="true"
+                            :autoplay="false" :dots="false"
+                            :nav="true" :responsive="{0:{items:2},480:{items:3},768:{items:4},1200:{items:5},1500:{items:7}}"
+                  >
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie3" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Western</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie4" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Lingerie</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie4" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Lingerie</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie5" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Watche</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie5" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Watche</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie6" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Handbag</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie6" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Handbag</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie7" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Shoes</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie7" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Shoes</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie8" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>sunglasses</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie8" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>sunglasses</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie9" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Accessories</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie9" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Accessories</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie1" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Women’s</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie1" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Women’s</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie2" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>men’s</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie2" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>men’s</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie3" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Western</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie3" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Western</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie4" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Lingerie</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie4" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Lingerie</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie5" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Watche</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie6" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Handbag</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie6" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Handbag</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie7" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Shoes</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie7" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Shoes</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie8" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>sunglasses</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie8" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>sunglasses</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie9" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Accessories</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie9" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Accessories</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie1" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Women’s</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie1" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Women’s</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie2" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>men’s</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie2" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>men’s</span></a>
+                    <div class="item">
+                      <div class="categorie-box">
+                        <div class="item-inner">
+                          <div class="categorie-icon categorie3" />
+                          <div class="cate-detail">
+                            <a href="shop.html"><span>Western</span></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie3" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Western</span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie4" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Lingerie</span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie5" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Watche</span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie6" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Handbag</span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="categorie-box">
-                    <div class="item-inner">
-                      <div class="categorie-icon categorie7" />
-                      <div class="cate-detail">
-                        <a href="shop.html"><span>Shoes</span></a>
-                      </div>
-                    </div>
-                  </div>
-                </carousel>
+                  </carousel>
+                </div>
               </div>
             </div>
           </div>

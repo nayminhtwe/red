@@ -1,38 +1,37 @@
 <template>
-  <div class="default-layout">
+  <div class="main">
     <overlay v-if="overlayActive" />
     <loader />
-    <div id="viewport">
-      <main-header />
-      <async-sidebar
-        :async-component="SearchPanel"
-        :is-open="isSearchPanelOpen"
-        @close="$store.commit('ui/setSearchpanel')"
-      />
-      <async-sidebar
-        :async-component="Microcart"
-        :is-open="isMicrocartOpen"
-        @close="$store.commit('ui/setMicrocart')"
-      />
-      <async-sidebar
-        :async-component="SidebarMenu"
-        :is-open="isSidebarOpen"
-        @close="$store.commit('ui/setSidebar')"
-        direction="left"
-      />
-      <async-sidebar
-        :async-component="Wishlist"
-        :is-open="isWishlistOpen"
-        @close="$store.commit('ui/setWishlist')"
-      />
-      <slot />
-      <main-footer />
-      <notification />
-      <sign-up />
-      <cookie-notification />
-      <offline-badge />
-      <order-confirmation :orders-data="ordersData" v-if="loadOrderConfirmation" />
-    </div>
+    <main-header />
+    <async-sidebar
+      :async-component="SearchPanel"
+      :is-open="isSearchPanelOpen"
+      @close="$store.commit('ui/setSearchpanel')"
+    />
+    <async-sidebar
+      :async-component="Microcart"
+      :is-open="isMicrocartOpen"
+      @close="$store.commit('ui/setMicrocart')"
+    />
+    <async-sidebar
+      :async-component="SidebarMenu"
+      :is-open="isSidebarOpen"
+      @close="$store.commit('ui/setSidebar')"
+      direction="left"
+    />
+    <async-sidebar
+      :async-component="Wishlist"
+      :is-open="isWishlistOpen"
+      @close="$store.commit('ui/setWishlist')"
+    />
+    <slot />
+    <main-footer />
+    <notification />
+    <sign-up />
+    <cookie-notification />
+    <offline-badge />
+    <order-confirmation :orders-data="ordersData" v-if="loadOrderConfirmation" />
+
     <!-- <vue-progress-bar /> -->
   </div>
 </template>
@@ -127,9 +126,9 @@ export default {
   }
 }
 </script>
+<style src="theme/css/font-awesome.min.css"></style>
 <style src="theme/css/bootstrap.css"></style>
 <style src="theme/css/jquery-ui.css"></style>
-<style src="theme/css/font-awesome.min.css"></style>
 <style src="theme/css/magnific-popup.css"></style>
 <style src="theme/css/custom.css"></style>
 <style src="theme/css/responsive.css"></style>

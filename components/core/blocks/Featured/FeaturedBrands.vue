@@ -14,49 +14,34 @@
         <div class="row brand">
           <div class="col-md-12">
             <div id="brand-logo" class="align_center">
-              <carousel :items="6" :loop="true" :responsive-class="true"
+              <carousel :items="6" :loop="true" :responsiveClass="true"
                         :autoplay="false" :dots="false"
-                        :nav="false" :responsive="{0:{items:1},480:{items:2},768:{items:3},1200:{items:4},1500:{items:6}}"
+                        :nav="true" :responsive="{0:{items:1},480:{items:2},768:{items:3},1200:{items:4},1500:{items:6}}"
               >
-                <a href="#"><img src="/assets/images/brand3.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand4.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand5.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand6.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand7.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand8.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand1.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand2.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand3.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand4.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand5.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand6.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand7.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand8.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand1.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand2.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand3.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand4.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand5.png" alt="Stylexpo"></a>
-
-                <a href="#"><img src="/assets/images/brand6.png" alt="Stylexpo"></a>
+                <div class="item">
+                  <a href="#"><img src="/assets/images/brand1.png" alt="Stylexpo"></a>
+                </div>
+                <div class="item">
+                  <a href="#"><img src="/assets/images/brand2.png" alt="Stylexpo"></a>
+                </div>
+                <div class="item">
+                  <a href="#"><img src="/assets/images/brand3.png" alt="Stylexpo"></a>
+                </div>
+                <div class="item">
+                  <a href="#"><img src="/assets/images/brand4.png" alt="Stylexpo"></a>
+                </div>
+                <div class="item">
+                  <a href="#"><img src="/assets/images/brand5.png" alt="Stylexpo"></a>
+                </div>
+                <div class="item">
+                  <a href="#"><img src="/assets/images/brand6.png" alt="Stylexpo"></a>
+                </div>
+                <div class="item">
+                  <a href="#"><img src="/assets/images/brand7.png" alt="Stylexpo"></a>
+                </div>
+                <div class="item">
+                  <a href="#"><img src="/assets/images/brand8.png" alt="Stylexpo"></a>
+                </div>
               </carousel>
             </div>
           </div>
@@ -88,3 +73,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .owl-carousel .owl-item img {
+    width: auto;
+    display: inline-block;
+}
+</style>
