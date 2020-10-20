@@ -1,33 +1,9 @@
 <template>
-  <div class="product align-center w-100 pb20" v-observe-visibility="visibilityChanged">
-    <div class="product__icons">
-      <AddToWishlist :product="product">
-        <div
-          class="product__icon"
-          :class="{'product__icon--active': isOnWishlist }"
-          :title="isOnWishlist ? $t('Remove') : $t('Add to favorite') "
-        >
-          <i class="material-icons">{{ favoriteIcon }}</i>
-        </div>
-      </AddToWishlist>
-      <AddToCompare :product="product">
-        <div
-          class="product__icon"
-          :class="{'product__icon--active':isOnCompare } "
-          :title="isOnCompare ? $t('Remove from compare') : $t('Add to compare')"
-        >
-          <i class="material-icons">compare</i>
-        </div>
-      </AddToCompare>
-    </div>
-    <router-link
-      class="block no-underline product-link"
-      :to="productLink"
-      data-testid="productLink"
-    >
-      <div
-        class="product-cover bg-cl-secondary"
-        :class="[{ sale: labelsActive && isOnSale }, { new: labelsActive && isNew }]"
+  <div class="product-item" v-observe-visibility="visibilityChanged">
+    <div class="product-image">
+      <router-link
+        :to="productLink"
+        data-testid="productLink"
       >
         <product-image
           class="product-cover__thumb"
@@ -36,27 +12,37 @@
           :calc-ratio="false"
           data-testid="productImage"
         />
+      </router-link>
+      <div class="product-detail-inner">
+        <div class="detail-inner-left align-center">
+          <ul>
+            <li class="pro-cart-icon">
+              <add-to-cart
+                :product="product"
+                :disabled="isAddToCartDisabled"
+              />
+            </li>
+            <li class="pro-wishlist-icon active">
+              <a href="wishlist.html" title="Wishlist" />
+            </li>
+            <li class="pro-compare-icon">
+              <a href="compare.html" title="Compare" />
+            </li>
+          </ul>
+        </div>
       </div>
-
-      <p class="mb0 cl-accent mt10" v-if="!onlyImage">
-        {{ product.name | htmlDecode }}
-      </p>
-
-      <span
-        class="price-original mr5 lh30 cl-secondary"
-        v-if="product.special_price && parseFloat(product.original_price_incl_tax) > 0 && !onlyImage"
-      >{{ product.original_price_incl_tax | price(storeView) }}</span>
-
-      <span
-        class="price-special lh30 cl-accent weight-700"
-        v-if="product.special_price && parseFloat(product.special_price) > 0 && !onlyImage"
-      >{{ product.price_incl_tax | price(storeView) }}</span>
-
-      <span
-        class="lh30 cl-secondary"
-        v-if="!product.special_price && parseFloat(product.price_incl_tax) > 0 && !onlyImage"
-      >{{ product.price_incl_tax | price(storeView) }}</span>
-    </router-link>
+    </div>
+    <div class="product-item-details">
+      <div class="product-item-name" v-if="!onlyImage">
+        <a href="product-page.html">{{ product.name | htmlDecode }}</a>
+      </div>
+      <div class="price-box" v-if="product.special_price && parseFloat(product.original_price_incl_tax) > 0 && !onlyImage">
+        <span class="price">{{ product.price_incl_tax | price(storeView) }}</span><del class="price old-price">{{ product.original_price_incl_tax | price(storeView) }}</del>
+      </div>
+      <div class="price-box" v-if="!product.special_price && parseFloat(product.price_incl_tax) > 0 && !onlyImage">
+        <span class="price">{{ product.price_incl_tax | price(storeView) }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -70,13 +56,16 @@ import AddToCompare from 'theme/components/core/blocks/Compare/AddToCompare'
 import { IsOnWishlist } from '@vue-storefront/core/modules/wishlist/components/IsOnWishlist'
 import { IsOnCompare } from '@vue-storefront/core/modules/compare/components/IsOnCompare'
 import { currentStoreView } from '@vue-storefront/core/lib/multistore'
+import AddToCart from 'theme/components/core/AddToCart'
 
 export default {
+  name: 'ProductTile',
   mixins: [ProductTile, IsOnWishlist, IsOnCompare],
   components: {
     ProductImage,
     AddToWishlist,
-    AddToCompare
+    AddToCompare,
+    AddToCart
   },
   props: {
     labelsActive: {

@@ -1,7 +1,9 @@
 <template>
-  <button-full @click.native="addToCart(product)" :disabled="isProductDisabled" data-testid="addToCart">
-    {{ $t('Add to cart') }}
-  </button-full>
+  <form>
+    <button title="Add to Cart" @click.prevent="addToCart(product)" :disabled="isProductDisabled" data-testid="addToCart">
+      <span />{{ $t('Add to cart') }}
+    </button>
+  </form>
 </template>
 
 <script>

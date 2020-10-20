@@ -3,7 +3,9 @@
     <head-image />
     <featured-blocks />
     <featured-categories />
-    <featured-products />
+    <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
+      <featured-products :products="getEverythingNewCollection" />
+    </lazy-hydrate>
     <featured-brands />
   </div>
 </template>

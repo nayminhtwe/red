@@ -122,7 +122,6 @@
               <add-to-cart
                 :product="getCurrentProduct"
                 :disabled="isAddToCartDisabled"
-                class="col-xs-12 col-sm-4 col-md-6"
               />
             </div>
             <div class="row py40 add-to-buttons">
