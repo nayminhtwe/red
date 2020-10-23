@@ -1,6 +1,20 @@
 <template>
   <form>
-    <button title="Add to Cart" @click.prevent="addToCart(product)" :disabled="isProductDisabled" data-testid="addToCart">
+    <button title="Add to Cart"
+            @click.prevent="addToCart(product)"
+            :disabled="isProductDisabled"
+            data-testid="addToCart"
+            class="btn-color"
+            v-if="color"
+    >
+      <span />{{ $t('Add to cart') }}
+    </button>
+    <button title="Add to Cart"
+            @click.prevent="addToCart(product)"
+            :disabled="isProductDisabled"
+            data-testid="addToCart"
+            v-else
+    >
       <span />{{ $t('Add to cart') }}
     </button>
   </form>
@@ -22,6 +36,10 @@ export default {
       type: Object
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    color: {
       type: Boolean,
       default: false
     }

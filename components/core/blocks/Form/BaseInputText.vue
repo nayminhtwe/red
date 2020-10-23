@@ -1,24 +1,21 @@
 <template>
-  <div class="base-input-number">
-    <label class="base-input-number__label cl-primary flex" :for="getInputId">{{ name }}</label>
-    <input
-      :id="getInputId"
-      type="number"
-      :min="min"
-      :max="max"
-      :disabled="disabled"
-      :focus="autofocus"
-      v-model="inputValue"
-      @blur="$emit('blur', $event.target.value)"
-    >
-    <ValidationMessages v-if="validations" :validations="validations" />
-  </div>
+  <input
+    :id="getInputId"
+    type="text"
+    :min="min"
+    :max="max"
+    :disabled="disabled"
+    :focus="autofocus"
+    v-model="inputValue"
+    :readonly="readonly"
+    @blur="$emit('blur', $event.target.value)"
+  >
 </template>
 
 <script>
 import ValidationMessages from './ValidationMessages.vue'
 export default {
-  name: 'BaseInput',
+  name: 'BaseInputText',
   components: {
     ValidationMessages
   },
@@ -55,6 +52,10 @@ export default {
     onlyPositive: {
       type: Boolean,
       default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -67,6 +68,7 @@ export default {
       },
       set (value) {
         if (!this.onlyPositive) {
+          this.inputValue = 1;
           this.$emit('input', value)
         } else {
           const targetValue = parseInt(value, 10)
@@ -79,30 +81,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-
-.base-input-number {
-  &__input {
-    border-style: solid;
-    border-width: 0 0 1px 0;
-    width: 50px;
-    height: 1.4rem;
-    line-height: 1.7rem;
-    @media (min-width: 768px) {
-      height: 1.7rem;
-    }
-  }
-
-  &__label {
-    font-size: 0.8rem;
-    line-height: 1.2rem;
-    @media (min-width: 768px) {
-      font-size: 1rem;
-      line-height: 1.4rem;
-    }
-  }
-}
-</style>

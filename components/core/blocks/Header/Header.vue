@@ -193,54 +193,32 @@
               <ul>
                 <li class="cart-icon">
                   <a href="#">
-                    <span> <small class="cart-notification">2</small> </span>
+                    <span> <small class="cart-notification">{{ totalQuantity }}</small> </span>
                     <div class="cart-text">
                       <div class="my-cart">Shopping Cart</div>
-                      <div class="total-price">$650.00</div>
+                      <div class="total-price" v-for="(segment, index) in totals"
+                           :key="index" v-if="segment.code === 'grand_total'"
+                      >
+                        {{ segment.value | price(storeView) }}
+                      </div>
                     </div>
                   </a>
                   <div class="cart-dropdown header-link-dropdown">
                     <ul class="cart-list link-dropdown-list">
-                      <li>
-                        <a class="close-cart"><i class="fa fa-times-circle" /></a>
-                        <div class="media">
-                          <a class="pull-left"> <img alt="Stylexpo" src="/assets/images/1.jpg"></a>
-                          <div class="media-body">
-                            <span><a href="#">Black African Print Skirt</a></span>
-                            <p class="cart-price">
-                              $14.99
-                            </p>
-                            <div class="product-qty">
-                              <label>Qty:</label>
-                              <div class="custom-qty">
-                                <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <a class="close-cart"><i class="fa fa-times-circle" /></a>
-                        <div class="media">
-                          <a class="pull-left"> <img alt="Stylexpo" src="/assets/images/2.jpg"></a>
-                          <div class="media-body">
-                            <span><a href="#">Black African Print Skirt</a></span>
-                            <p class="cart-price">
-                              $14.99
-                            </p>
-                            <div class="product-qty">
-                              <label>Qty:</label>
-                              <div class="custom-qty">
-                                <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
+                      <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" component="header" />
                     </ul>
-                    <p class="cart-sub-totle">
-                      <span class="pull-left">Cart Subtotal</span> <span class="pull-right"><strong class="price-box">$29.98</strong></span>
-                    </p>
+                    <div v-for="(segment, index) in totals" :key="index" v-if="segment.code === 'grand_total'">
+                      <p class="cart-sub-totle">
+                        <span class="pull-left">
+                          {{ segment.title }}
+                        </span>
+                        <span class="pull-right">
+                          <strong class="price-box">
+                            {{ segment.value | price(storeView) }}
+                          </strong>
+                        </span>
+                      </p>
+                    </div>
                     <div class="clearfix" />
                     <div class="mt-20">
                       <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a>
@@ -823,7 +801,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import CurrentPage from 'theme/mixins/currentPage'
 import AccountIcon from 'theme/components/core/blocks/Header/AccountIcon'
 import CompareIcon from 'theme/components/core/blocks/Header/CompareIcon'
@@ -832,6 +810,8 @@ import Logo from 'theme/components/core/Logo'
 import MicrocartIcon from 'theme/components/core/blocks/Header/MicrocartIcon'
 import SearchIcon from 'theme/components/core/blocks/Header/SearchIcon'
 import WishlistIcon from 'theme/components/core/blocks/Header/WishlistIcon'
+import Product from 'theme/components/core/blocks/Microcart/Product'
+import { syncCartWhenLocalStorageChange } from '@vue-storefront/core/modules/cart/helpers'
 
 export default {
   name: 'Header',
@@ -842,7 +822,8 @@ export default {
     Logo,
     MicrocartIcon,
     SearchIcon,
-    WishlistIcon
+    WishlistIcon,
+    Product
   },
   mixins: [CurrentPage],
   data () {
@@ -858,6 +839,11 @@ export default {
     ...mapState({
       isOpenLogin: state => state.ui.signUp,
       currentUser: state => state.user.current
+    }),
+    ...mapGetters({
+      productsInCart: 'cart/getCartItems',
+      totals: 'cart/getTotals',
+      totalQuantity: 'cart/getItemsTotalQuantity'
     }),
     isThankYouPage () {
       return this.$store.state.checkout.isThankYouPage
@@ -880,6 +866,12 @@ export default {
         this.isScrolling = false
       }
     }, 250)
+  },
+  mounted () {
+    syncCartWhenLocalStorageChange.addEventListener()
+    this.$once('hook:beforeDestroy', () => {
+      syncCartWhenLocalStorageChange.removeEventListener()
+    })
   },
   methods: {
     gotoAccount () {

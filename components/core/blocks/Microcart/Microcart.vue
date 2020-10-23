@@ -5,54 +5,32 @@
         <span>cart</span>
       </h2>
     </div>
-    <div class="popup-detail">
+    <div class="popup-detail" v-if="productsInCart.length">
       <div class="cart-dropdown ">
         <ul class="cart-list link-dropdown-list">
-          <li>
-            <a class="close-cart"><i class="fa fa-times-circle" /></a>
-            <div class="media">
-              <a class="pull-left"> <img alt="Stylexpo" src="/assets/images/1.jpg"></a>
-              <div class="media-body">
-                <span><a href="#">Black African Print Skirt</a></span>
-                <p class="cart-price">
-                  $14.99
-                </p>
-                <div class="product-qty">
-                  <label>Qty:</label>
-                  <div class="custom-qty">
-                    <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <a class="close-cart"><i class="fa fa-times-circle" /></a>
-            <div class="media">
-              <a class="pull-left"> <img alt="Stylexpo" src="/assets/images/2.jpg"></a>
-              <div class="media-body">
-                <span><a href="#">Black African Print Skirt</a></span>
-                <p class="cart-price">
-                  $14.99
-                </p>
-                <div class="product-qty">
-                  <label>Qty:</label>
-                  <div class="custom-qty">
-                    <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
+          <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" component="microcart" />
         </ul>
-        <p class="cart-sub-totle">
-          <span class="pull-left">Cart Subtotal</span> <span class="pull-right"><strong class="price-box">$29.98</strong></span>
-        </p>
+
+        <div v-for="(segment, index) in totals" :key="index" v-if="segment.code === 'grand_total'">
+          <p class="cart-sub-totle">
+            <span class="pull-left">
+              {{ segment.title }}
+            </span>
+            <span class="pull-right">
+              <strong class="price-box">
+                {{ segment.value | price(storeView) }}
+              </strong>
+            </span>
+          </p>
+        </div>
         <div class="clearfix" />
         <div class="mt-20">
           <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a>
         </div>
       </div>
+    </div>
+    <div class="popup-detail" v-else>
+      <h3>No products in cart</h3>
     </div>
     <button title="Close (Esc)" type="button" class="mfp-close" @click="closeMicrocartExtend">
       ×

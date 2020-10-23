@@ -1,39 +1,49 @@
 <template>
-  <div class="product-quantity">
-    <base-input-number
-      :name="name"
-      :value="value"
-      :min="1"
-      :max="max"
-      :disabled="disabled"
-      @input="$emit('input', $event)"
-      @blur="$v.$touch()"
-      only-positive
-      :validations="[
-        {
-          condition: !$v.value.numeric || !$v.value.minValue || !$v.value.required,
-          text: $t(`Quantity must be positive integer`)
-        },
-        {
-          condition: maxQuantity && value && !$v.value.maxValue,
-          text: $t('Quantity must be below {quantity}', { quantity: maxQuantity })
-        }
-      ]"
-    />
-    <spinner v-if="loading" />
-  </div>
+  <!-- <div class="product-qty">
+    <label for="qty">Qty:</label>
+    <div class="custom-qty">
+      <button @click="value > 1 ? value-- : 1" class="reduced items" type="button">
+        <i class="fa fa-minus" />
+      </button> -->
+  <base-input-text
+    class="input-text qty"
+    :name="name"
+    :value="value"
+    :min="1"
+    :max="max"
+    :disabled="disabled"
+    @input="$emit('input', $event)"
+    @blur="$v.$touch()"
+    only-positive
+    :readonly="readonly"
+    :validations="[
+      {
+        condition: !$v.value.numeric || !$v.value.minValue || !$v.value.required,
+        text: $t(`Quantity must be positive integer`)
+      },
+      {
+        condition: maxQuantity && value && !$v.value.maxValue,
+        text: $t('Quantity must be below {quantity}', { quantity: maxQuantity })
+      }
+    ]"
+  />
+  <!-- <button @click="value < maxQuantity ? value++ : maxQuantity" class="increase items" type="button">
+        <i class="fa fa-plus" />
+      </button>
+    </div>
+  </div> -->
 </template>
 
 <script>
 import { minValue, maxValue, numeric, required } from 'vuelidate/lib/validators'
 import { onlineHelper } from '@vue-storefront/core/helpers'
-import BaseInputNumber from 'theme/components/core/blocks/Form/BaseInputNumber'
+import BaseInputText from 'theme/components/core/blocks/Form/BaseInputText'
 import Spinner from 'theme/components/core/Spinner'
 
 export default {
   components: {
     Spinner,
-    BaseInputNumber
+    BaseInputText
   },
   props: {
     value: {
@@ -57,6 +67,10 @@ export default {
       default: false
     },
     isSimpleOrConfigurable: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }
@@ -99,19 +113,12 @@ export default {
     '$v.$invalid' (error) {
       this.$emit('error', error)
     }
+  },
+  methods: {
+    input (value) {
+      console.log(value);
+      this.$emit('input', value)
+    }
   }
 }
 </script>
-<style lang="scss" scoped>
-.product-quantity {
-  position: relative;
-  /deep/ .spinner {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-  }
-}
-</style>

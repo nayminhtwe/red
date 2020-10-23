@@ -1,8 +1,25 @@
 <template>
-  <button @click="$emit('click')" class="brdr-none bg-cl-transparent p0 middle-xs inline-flex cl-secondary">
-    <span class="hidden-xs h6">
-      {{ $t('Remove') }}
-    </span>
-    <i class="material-icons h4 p5 pr0">remove_shopping_cart</i>
-  </button>
+  <div>
+    <a class="close-cart" style="position: absoulte"
+       @click.prevent="$emit('click')" v-if="component == 'header'"
+    >
+      <i class="fa fa-times-circle" />
+    </a>
+    <a class="close-cart"
+       @click.prevent="$emit('click')" v-if="component == 'microcart'"
+    >
+      <i class="fa fa-times-circle" />
+    </a>
+  </div>
 </template>
+
+<script>
+export default {
+  props: {
+    component: {
+      type: String,
+      required: true
+    }
+  }
+}
+</script>

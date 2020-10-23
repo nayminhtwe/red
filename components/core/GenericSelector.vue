@@ -1,12 +1,10 @@
 <template>
-  <button
-    :class="{'active': isActive}"
-    class="bg-cl-primary brdr-1 brdr-cl-primary brdr-square h5 cl-tertiary generic-selector"
-    @click="$emit('change', variant)"
-    :aria-label="$t('Select ' + variant.label)"
+  <option :selected="isActive"
+          :aria-label="$t('Select ' + variant.label)"
+          :value="variant"
   >
     {{ variant.label }}
-  </button>
+  </option>
 </template>
 
 <script>

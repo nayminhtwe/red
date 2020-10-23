@@ -1,184 +1,661 @@
 <template>
   <div id="product">
-    <section class="bg-cl-secondary px20 product-top-section">
-      <div class="container">
-        <section class="row m0 between-xs">
-          <div class="col-xs-12 col-md-6 center-xs middle-xs image">
-            <product-gallery
-              :offline="getOfflineImage"
-              :gallery="getProductGallery"
-              :configuration="getCurrentProductConfiguration"
-              :product="getCurrentProduct"
-            />
-          </div>
-          <div class="col-xs-12 col-md-5 data">
-            <breadcrumbs
-              class="pt40 pb20 hidden-xs"
-            />
-            <h1
-              class="mb20 mt0 cl-mine-shaft product-name"
-              data-testid="productName"
-            >
-              {{ getCurrentProduct.name | htmlDecode }}
-              <web-share
-                :title="getCurrentProduct.name | htmlDecode"
-                text="Check this product!"
-                class="web-share"
-              />
-            </h1>
-            <div
-              class="mb20 uppercase cl-secondary"
-              :content="getCurrentProduct.sku"
-            >
-              {{ $t('SKU: {sku}', { sku: getCurrentProduct.sku }) }}
-            </div>
-            <div>
-              <product-price
-                class="mb40"
-                v-if="getCurrentProduct.type_id !== 'grouped'"
-                :product="getCurrentProduct"
-                :custom-options="getCurrentCustomOptions"
-              />
-              <div class="cl-primary variants" v-if="getCurrentProduct.type_id =='configurable'">
-                <div
-                  class="error"
-                  v-if="getCurrentProduct.errors && Object.keys(getCurrentProduct.errors).length > 0"
-                >
-                  {{ getCurrentProduct.errors | formatProductMessages }}
-                </div>
-                <div class="h5" v-for="option in getProductOptions" :key="option.id">
-                  <div class="variants-label" data-testid="variantsLabel">
-                    {{ option.label }}
-                    <span
-                      class="weight-700"
-                    >{{ getOptionLabel(option) }}</span>
-                  </div>
-                  <div class="row top-xs m0 pt15 pb40 variants-wrapper">
-                    <div v-if="option.label == 'Color'">
-                      <color-selector
-                        v-for="filter in getAvailableFilters[option.attribute_code]"
-                        :key="filter.id"
-                        :variant="filter"
-                        :selected-filters="getSelectedFilters"
-                        @change="changeFilter"
-                      />
-                    </div>
-                    <div class="sizes" v-else-if="option.label == 'Size'">
-                      <size-selector
-                        class="mr10 mb10"
-                        v-for="filter in getAvailableFilters[option.attribute_code]"
-                        :key="filter.id"
-                        :variant="filter"
-                        :selected-filters="getSelectedFilters"
-                        @change="changeFilter"
-                      />
-                    </div>
-                    <div :class="option.attribute_code" v-else>
-                      <generic-selector
-                        class="mr10 mb10"
-                        v-for="filter in getAvailableFilters[option.attribute_code]"
-                        :key="filter.id"
-                        :variant="filter"
-                        :selected-filters="getSelectedFilters"
-                        @change="changeFilter"
-                      />
-                    </div>
-                    <span
-                      v-if="option.label == 'Size'"
-                      @click="openSizeGuide"
-                      class="p0 ml30 inline-flex middle-xs no-underline h5 action size-guide pointer cl-secondary"
-                    >
-                      <i class="pr5 material-icons">accessibility</i>
-                      <span>{{ $t('Size guide') }}</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <product-links
-              v-if="getCurrentProduct.type_id =='grouped'"
-              :products="getCurrentProduct.product_links"
-            />
-            <product-bundle-options
-              v-if="getCurrentProduct.bundle_options && getCurrentProduct.bundle_options.length > 0"
-              :product="getCurrentProduct"
-            />
-            <product-custom-options
-              v-else-if="getCurrentProduct.custom_options && getCurrentProduct.custom_options.length > 0"
-              :product="getCurrentProduct"
-            />
-            <product-quantity
-              class="row m0 mb35"
-              v-if="getCurrentProduct.type_id !== 'grouped' && getCurrentProduct.type_id !== 'bundle'"
-              v-model="getCurrentProduct.qty"
-              :max-quantity="maxQuantity"
-              :loading="isStockInfoLoading"
-              :is-simple-or-configurable="isSimpleOrConfigurable"
-              :show-quantity="manageQuantity"
-              :check-max-quantity="manageQuantity"
-              @error="handleQuantityError"
-            />
-            <div class="row m0">
-              <add-to-cart
-                :product="getCurrentProduct"
-                :disabled="isAddToCartDisabled"
-              />
-            </div>
-            <div class="row py40 add-to-buttons">
-              <div class="col-xs-6 col-sm-3 col-md-6">
-                <AddToWishlist :product="getCurrentProduct" />
-              </div>
-              <div class="col-xs-6 col-sm-3 col-md-6">
-                <AddToCompare :product="getCurrentProduct" />
-              </div>
-            </div>
+    <!-- Bread Crumb STRAT -->
+    <div class="container mt-sm-15">
+      <div class="banner inner-banner1 ">
+        <section class="banner-detail center-xs">
+          <h1 class="banner-title">
+            Women
+          </h1>
+          <div class="bread-crumb right-side float-none-xs">
+            <ul>
+              <li><a href="index.html">Home</a>/</li>
+              <li><span>Women</span></li>
+            </ul>
           </div>
         </section>
       </div>
-    </section>
-    <section class="container px15 pt50 pb35 cl-accent details">
-      <h2 class="h3 m0 mb10 serif lh20 details-title">
-        {{ $t('Product details') }}
-      </h2>
-      <div class="h4 details-wrapper" :class="{'details-wrapper--open': detailsOpen}">
-        <div class="row between-md m0">
-          <div class="col-xs-12 col-sm-6">
-            <div class="lh30 h5" v-html="getCurrentProduct.description" />
+    </div>
+    <!-- Bread Crumb END -->
+
+    <!-- CONTAIN START -->
+    <section class="pt-70">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="row">
+              <div class="col-lg-5 col-md-5 mb-xs-30">
+                <!-- <div class="fotorama" data-nav="thumbs" data-allowfullscreen="native">
+                  <a href="#"><img src="/assets/images/1.jpg" alt="Stylexpo"></a> <a href="#"><img src="/assets/images/2.jpg" alt="Stylexpo"></a> <a href="#"><img src="/assets/images/3.jpg" alt="Stylexpo"></a> <a href="#"><img src="/assets/images/4.jpg" alt="Stylexpo"></a> <a href="#"><img src="/assets/images/5.jpg" alt="Stylexpo"></a> <a href="#"><img src="/assets/images/6.jpg" alt="Stylexpo"></a> <a href="#"><img src="/assets/images/4.jpg" alt="Stylexpo"></a> <a href="#"><img src="/assets/images/5.jpg" alt="Stylexpo"></a> <a href="#"><img src="/assets/images/6.jpg" alt="Stylexpo"></a>
+                </div> -->
+                <product-gallery
+                  :offline="getOfflineImage"
+                  :gallery="getProductGallery"
+                  :configuration="getCurrentProductConfiguration"
+                  :product="getCurrentProduct"
+                />
+              </div>
+              <div class="col-lg-7 col-md-7">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="product-detail-main">
+                      <div class="product-item-details">
+                        <h1 class="product-item-name">
+                          {{ getCurrentProduct.name | htmlDecode }}
+                        </h1>
+                        <div class="rating-summary-block">
+                          <div title="53%" class="rating-result">
+                            <span style="width:53%" />
+                          </div>
+                        </div>
+                        <!-- <div class="price-box">
+                          <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                        </div> -->
+                        <div class="price-box" v-if="getCurrentProduct.special_price && parseFloat(getCurrentProduct.original_price_incl_tax) > 0 && !onlyImage">
+                          <span class="price">{{ getCurrentProduct.price_incl_tax | price(storeView) }}</span><del class="price old-price">{{ getCurrentProduct.original_price_incl_tax | price(storeView) }}</del>
+                        </div>
+                        <div class="price-box" v-if="!getCurrentProduct.special_price && parseFloat(getCurrentProduct.price_incl_tax) > 0 && !onlyImage">
+                          <span class="price">{{ getCurrentProduct.price_incl_tax | price(storeView) }}</span>
+                        </div>
+                        <div class="product-info-stock-sku">
+                          <div>
+                            <label>Availability: </label>
+                            <span class="info-deta">In stock ({{ maxQuantity }})</span>
+                          </div>
+                          <div>
+                            <label>SKU: </label>
+                            <span class="info-deta">{{ $t('SKU: {sku}', { sku: getCurrentProduct.sku }) }}</span>
+                          </div>
+                        </div>
+                        <p>Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada </p>
+                        <div v-for="option in getProductOptions" :key="option.id">
+                          <div class="product-size select-arrow input-box select-dropdown mb-20 mt-30">
+                            <label>{{ option.label }}</label>
+                            <fieldset>
+                              <select v-model="selected[option.attribute_code]" @change="changeFilter(selected[option.attribute_code])" class="selectpicker form-control option-drop" id="select-by-size">
+                                <generic-selector
+                                  v-for="filter in getAvailableFilters[option.attribute_code]"
+                                  :key="filter.id"
+                                  :variant="filter"
+                                  :selected-filters="getSelectedFilters"
+                                />
+                              </select>
+                            </fieldset>
+                          </div>
+                        </div>
+                        <div class="mb-20">
+                          <div class="product-qty">
+                            <label for="qty">Qty:</label>
+                            <div class="custom-qty">
+                              <button @click="getCurrentProduct.qty > 1 ? getCurrentProduct.qty-- : 1" class="reduced items" type="button">
+                                <i class="fa fa-minus" />
+                              </button>
+                              <product-quantity
+                                v-if="getCurrentProduct.type_id !== 'grouped' && getCurrentProduct.type_id !== 'bundle'"
+                                v-model="getCurrentProduct.qty"
+                                :max-quantity="maxQuantity"
+                                :loading="isStockInfoLoading"
+                                :is-simple-or-configurable="isSimpleOrConfigurable"
+                                :show-quantity="manageQuantity"
+                                :check-max-quantity="manageQuantity"
+                                @error="handleQuantityError"
+                                @input="inputQty"
+                                :readonly="readonly"
+                              />
+                              <!-- <input type="text" class="input-text qty" title="Qty" value="1" maxlength="8" id="qty" name="qty"> -->
+                              <button @click="getCurrentProduct.qty < maxQuantity ? getCurrentProduct.qty++ : maxQuantity" class="increase items" type="button">
+                                <i class="fa fa-plus" />
+                              </button>
+                            </div>
+                          </div>
+                          <div class="bottom-detail cart-button">
+                            <ul>
+                              <li class="pro-cart-icon">
+                                <add-to-cart
+                                  :product="getCurrentProduct"
+                                  color="true"
+                                  :disabled="isAddToCartDisabled"
+                                />
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="bottom-detail">
+                          <ul>
+                            <li class="pro-wishlist-icon">
+                              <a href="wishlist.html"><span />Wishlist</a>
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html"><span />Compare</a>
+                            </li>
+                            <li class="pro-email-icon">
+                              <a href="#"><span />Email to Friends</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="share-link">
+                          <label>Share This : </label>
+                          <div class="social-link">
+                            <ul class="social-icon">
+                              <li><a class="facebook" title="Facebook" href="#"><i class="fa fa-facebook" /></a></li>
+                              <li><a class="twitter" title="Twitter" href="#"><i class="fa fa-twitter" /></a></li>
+                              <li><a class="linkedin" title="Linkedin" href="#"><i class="fa fa-linkedin" /></a></li>
+                              <li><a class="rss" title="RSS" href="#"><i class="fa fa-rss" /></a></li>
+                              <li><a class="pinterest" title="Pinterest" href="#"><i class="fa fa-pinterest" /></a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-xs-12 col-sm-5">
-            <ul class="attributes p0 pt5 m0">
-              <product-attribute
-                :key="attr.attribute_code"
-                v-for="attr in getCustomAttributes"
-                :product="getCurrentProduct"
-                :attribute="attr"
-                empty-placeholder="N/A"
-              />
-            </ul>
+          <div class="col-lg-3">
+            <div class="brand-logo-pro align-center mb-30">
+              <img src="/assets/images/brand5.png" alt="Stylexpo">
+            </div>
+            <div class="sub-banner-block align-center">
+              <img src="/assets/images/pro-banner.jpg" alt="Stylexpo">
+            </div>
           </div>
-          <div class="details-overlay" @click="showDetails" />
         </div>
       </div>
     </section>
-    <lazy-hydrate when-idle>
-      <reviews
-        :product-name="getCurrentProduct.name"
-        :product-id="getCurrentProduct.id"
-        v-show="isOnline"
-        :product="getCurrentProduct"
-      />
-    </lazy-hydrate>
-    <lazy-hydrate when-idle>
-      <related-products type="upsell" :heading="$t('We found other products you might like')" />
-    </lazy-hydrate>
-    <lazy-hydrate when-idle>
-      <promoted-offers single-banner />
-    </lazy-hydrate>
-    <lazy-hydrate when-idle>
-      <related-products type="related" />
-    </lazy-hydrate>
-    <SizeGuide />
-    <script v-html="getJsonLd" type="application/ld+json" />
+
+    <section class="ptb-70">
+      <div class="container">
+        <div class="product-detail-tab">
+          <div class="row">
+            <div class="col-lg-12">
+              <div id="tabs">
+                <ul class="nav nav-tabs">
+                  <li><a class="tab-Description selected" title="Description">Description</a></li>
+                  <li><a class="tab-Product-Tags" title="Product-Tags">Product-Tags</a></li>
+                  <li><a class="tab-Reviews" title="Reviews">Reviews</a></li>
+                </ul>
+              </div>
+              <div id="items">
+                <div class="tab_content">
+                  <ul>
+                    <li>
+                      <div class="items-Description selected ">
+                        <div class="Description" v-html="getCurrentProduct.description" />
+                      </div>
+                    </li>
+                    <li>
+                      <div class="items-Product-Tags">
+                        <strong>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</strong><br>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
+                      </div>
+                    </li>
+                    <li>
+                      <div class="items-Reviews">
+                        <div class="comments-area">
+                          <h4>Comments<span>(2)</span></h4>
+                          <ul class="comment-list mt-30">
+                            <li>
+                              <div class="comment-user">
+                                <img src="/assets/images/comment-user.jpg" alt="Stylexpo">
+                              </div>
+                              <div class="comment-detail">
+                                <div class="user-name">
+                                  John Doe
+                                </div>
+                                <div class="post-info">
+                                  <ul>
+                                    <li>Fab 11, 2016</li>
+                                    <li><a href="#"><i class="fa fa-reply" />Reply</a></li>
+                                  </ul>
+                                </div>
+                                <p>Consectetur adipiscing elit integer sit amet augue laoreet maximus nuncac.</p>
+                              </div>
+                              <ul class="comment-list child-comment">
+                                <li>
+                                  <div class="comment-user">
+                                    <img src="/assets/images/comment-user.jpg" alt="Stylexpo">
+                                  </div>
+                                  <div class="comment-detail">
+                                    <div class="user-name">
+                                      John Doe
+                                    </div>
+                                    <div class="post-info">
+                                      <ul>
+                                        <li>Fab 11, 2016</li>
+                                        <li><a href="#"><i class="fa fa-reply" />Reply</a></li>
+                                      </ul>
+                                    </div>
+                                    <p>Consectetur adipiscing elit integer sit amet augue laoreet maximus nuncac.</p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <div class="comment-user">
+                                    <img src="/assets/images/comment-user.jpg" alt="Stylexpo">
+                                  </div>
+                                  <div class="comment-detail">
+                                    <div class="user-name">
+                                      John Doe
+                                    </div>
+                                    <div class="post-info">
+                                      <ul>
+                                        <li>Fab 11, 2016</li>
+                                        <li><a href="#"><i class="fa fa-reply" />Reply</a></li>
+                                      </ul>
+                                    </div>
+                                    <p>Consectetur adipiscing elit integer sit amet augue laoreet maximus nuncac.</p>
+                                  </div>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <div class="comment-user">
+                                <img src="/assets/images/comment-user.jpg" alt="Stylexpo">
+                              </div>
+                              <div class="comment-detail">
+                                <div class="user-name">
+                                  John Doe
+                                </div>
+                                <div class="post-info">
+                                  <ul>
+                                    <li>Fab 11, 2016</li>
+                                    <li><a href="#"><i class="fa fa-reply" />Reply</a></li>
+                                  </ul>
+                                </div>
+                                <p>Consectetur adipiscing elit integer sit amet augue laoreet maximus nuncac.</p>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="main-form mt-30">
+                          <h4>Leave a comments</h4>
+                          <form>
+                            <div class="row mt-30">
+                              <div class="col-md-4 mb-30">
+                                <input type="text" placeholder="Name" required>
+                              </div>
+                              <div class="col-md-4 mb-30">
+                                <input type="email" placeholder="Email" required>
+                              </div>
+                              <div class="col-md-4 mb-30">
+                                <input type="text" placeholder="Website" required>
+                              </div>
+                              <div class="col-12 mb-30">
+                                <textarea cols="30" rows="3" placeholder="Message" required />
+                              </div>
+                              <div class="col-12 mb-30">
+                                <button class="btn btn-color" name="submit" type="submit">
+                                  Submit
+                                </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-70">
+      <div class="container">
+        <div class="product-listing">
+          <div class="row">
+            <div class="col-12">
+              <div class="heading-part mb-40">
+                <h2 class="main_title heading">
+                  <span>Related Products</span>
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="pro_cat">
+            <div class="row">
+              <div class="owl-carousel pro-cat-slider">
+                <div class="item">
+                  <div class="product-item">
+                    <div class="main-label new-label">
+                      <span>New</span>
+                    </div>
+                    <div class="product-image">
+                      <a href="product-page.html"> <img src="/assets/images/10.jpg" alt="Stylexpo"> </a>
+                      <div class="product-detail-inner">
+                        <div class="detail-inner-left align-center">
+                          <ul>
+                            <li class="pro-cart-icon">
+                              <form>
+                                <button title="Add to Cart">
+                                  <span />Add to Cart
+                                </button>
+                              </form>
+                            </li>
+                            <li class="pro-wishlist-icon ">
+                              <a href="wishlist.html" title="Wishlist" />
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html" title="Compare" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-item-details">
+                      <div class="product-item-name">
+                        <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                      </div>
+                      <div class="price-box">
+                        <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="product-item">
+                    <div class="main-label sale-label">
+                      <span>Sale</span>
+                    </div>
+                    <div class="product-image">
+                      <a href="product-page.html"> <img src="/assets/images/13.jpg" alt="Stylexpo"> </a>
+                      <div class="product-detail-inner">
+                        <div class="detail-inner-left align-center">
+                          <ul>
+                            <li class="pro-cart-icon">
+                              <form>
+                                <button title="Add to Cart">
+                                  <span />Add to Cart
+                                </button>
+                              </form>
+                            </li>
+                            <li class="pro-wishlist-icon ">
+                              <a href="wishlist.html" title="Wishlist" />
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html" title="Compare" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-item-details">
+                      <div class="product-item-name">
+                        <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                      </div>
+                      <div class="price-box">
+                        <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="product-item">
+                    <div class="main-label new-label">
+                      <span>New</span>
+                    </div>
+                    <div class="main-label sale-label">
+                      <span>Sale</span>
+                    </div>
+                    <div class="product-image">
+                      <a href="product-page.html"> <img src="/assets/images/4.jpg" alt="Stylexpo"> </a>
+                      <div class="product-detail-inner">
+                        <div class="detail-inner-left align-center">
+                          <ul>
+                            <li class="pro-cart-icon">
+                              <form>
+                                <button title="Add to Cart">
+                                  <span />Add to Cart
+                                </button>
+                              </form>
+                            </li>
+                            <li class="pro-wishlist-icon ">
+                              <a href="wishlist.html" title="Wishlist" />
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html" title="Compare" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-item-details">
+                      <div class="product-item-name">
+                        <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                      </div>
+                      <div class="price-box">
+                        <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="product-item">
+                    <div class="product-image">
+                      <a href="product-page.html"> <img src="/assets/images/5.jpg" alt="Stylexpo"> </a>
+                      <div class="product-detail-inner">
+                        <div class="detail-inner-left align-center">
+                          <ul>
+                            <li class="pro-cart-icon">
+                              <form>
+                                <button title="Add to Cart">
+                                  <span />Add to Cart
+                                </button>
+                              </form>
+                            </li>
+                            <li class="pro-wishlist-icon ">
+                              <a href="wishlist.html" title="Wishlist" />
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html" title="Compare" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-item-details">
+                      <div class="product-item-name">
+                        <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                      </div>
+                      <div class="price-box">
+                        <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="product-item">
+                    <div class="main-label sale-label">
+                      <span>Sale</span>
+                    </div>
+                    <div class="product-image">
+                      <a href="product-page.html"> <img src="/assets/images/6.jpg" alt="Stylexpo"> </a>
+                      <div class="product-detail-inner">
+                        <div class="detail-inner-left align-center">
+                          <ul>
+                            <li class="pro-cart-icon">
+                              <form>
+                                <button title="Add to Cart">
+                                  <span />Add to Cart
+                                </button>
+                              </form>
+                            </li>
+                            <li class="pro-wishlist-icon ">
+                              <a href="wishlist.html" title="Wishlist" />
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html" title="Compare" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-item-details">
+                      <div class="product-item-name">
+                        <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                      </div>
+                      <div class="price-box">
+                        <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="product-item">
+                    <div class="product-image">
+                      <a href="product-page.html"> <img src="/assets/images/8.jpg" alt="Stylexpo"> </a>
+                      <div class="product-detail-inner">
+                        <div class="detail-inner-left align-center">
+                          <ul>
+                            <li class="pro-cart-icon">
+                              <form>
+                                <button title="Add to Cart">
+                                  <span />Add to Cart
+                                </button>
+                              </form>
+                            </li>
+                            <li class="pro-wishlist-icon ">
+                              <a href="wishlist.html" title="Wishlist" />
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html" title="Compare" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-item-details">
+                      <div class="product-item-name">
+                        <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                      </div>
+                      <div class="price-box">
+                        <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="product-item">
+                    <div class="main-label new-label">
+                      <span>New</span>
+                    </div>
+                    <div class="product-image">
+                      <a href="product-page.html"> <img src="/assets/images/9.jpg" alt="Stylexpo"> </a>
+                      <div class="product-detail-inner">
+                        <div class="detail-inner-left align-center">
+                          <ul>
+                            <li class="pro-cart-icon">
+                              <form>
+                                <button title="Add to Cart">
+                                  <span />Add to Cart
+                                </button>
+                              </form>
+                            </li>
+                            <li class="pro-wishlist-icon ">
+                              <a href="wishlist.html" title="Wishlist" />
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html" title="Compare" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-item-details">
+                      <div class="product-item-name">
+                        <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                      </div>
+                      <div class="price-box">
+                        <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="product-item">
+                    <div class="main-label sale-label">
+                      <span>Sale</span>
+                    </div>
+                    <div class="product-image">
+                      <a href="product-page.html"> <img src="/assets/images/11.jpg" alt="Stylexpo"> </a>
+                      <div class="product-detail-inner">
+                        <div class="detail-inner-left align-center">
+                          <ul>
+                            <li class="pro-cart-icon">
+                              <form>
+                                <button title="Add to Cart">
+                                  <span />Add to Cart
+                                </button>
+                              </form>
+                            </li>
+                            <li class="pro-wishlist-icon ">
+                              <a href="wishlist.html" title="Wishlist" />
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html" title="Compare" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-item-details">
+                      <div class="product-item-name">
+                        <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                      </div>
+                      <div class="price-box">
+                        <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="product-item">
+                    <div class="main-label new-label">
+                      <span>New</span>
+                    </div>
+                    <div class="main-label sale-label">
+                      <span>Sale</span>
+                    </div>
+                    <div class="product-image">
+                      <a href="product-page.html"> <img src="/assets/images/2.jpg" alt="Stylexpo"> </a>
+                      <div class="product-detail-inner">
+                        <div class="detail-inner-left align-center">
+                          <ul>
+                            <li class="pro-cart-icon">
+                              <form>
+                                <button title="Add to Cart">
+                                  <span />Add to Cart
+                                </button>
+                              </form>
+                            </li>
+                            <li class="pro-wishlist-icon ">
+                              <a href="wishlist.html" title="Wishlist" />
+                            </li>
+                            <li class="pro-compare-icon">
+                              <a href="compare.html" title="Compare" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-item-details">
+                      <div class="product-item-name">
+                        <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                      </div>
+                      <div class="price-box">
+                        <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -259,7 +736,9 @@ export default {
       quantityError: false,
       isStockInfoLoading: false,
       hasAttributesLoaded: false,
-      manageQuantity: true
+      manageQuantity: true,
+      selected: {},
+      readonly: false
     }
   },
   computed: {
@@ -328,6 +807,7 @@ export default {
     }
   },
   async mounted () {
+    this.selected = this.getSelectedFilters;
     await this.$store.dispatch('recently-viewed/addItem', this.getCurrentProduct)
   },
   async asyncData ({ store, route, context }) {
@@ -411,6 +891,16 @@ export default {
     },
     handleQuantityError (error) {
       this.quantityError = error
+    },
+    inputQty (qty) {
+      if (qty > this.maxQuantity) {
+        this.getCurrentProduct.qty = this.maxQuantity
+        this.readonly = true;
+      } else if (qty < 1) {
+        this.getCurrentProduct.qty = 1;
+      } else {
+        this.getCurrentProduct.qty = qty;
+      }
     }
   },
   metaInfo () {
