@@ -1,24 +1,6 @@
 <template>
   <div id="product">
-    <!-- Bread Crumb STRAT -->
-    <div class="container mt-sm-15">
-      <div class="banner inner-banner1 ">
-        <section class="banner-detail center-xs">
-          <h1 class="banner-title">
-            Women
-          </h1>
-          <div class="bread-crumb right-side float-none-xs">
-            <ul>
-              <li><a href="index.html">Home</a>/</li>
-              <li><span>Women</span></li>
-            </ul>
-          </div>
-        </section>
-      </div>
-    </div>
-    <!-- Bread Crumb END -->
-
-    <!-- CONTAIN START -->
+    <breadcrumbs :category="category" />
     <section class="pt-70">
       <div class="container">
         <div class="row">
@@ -744,6 +726,7 @@ export default {
   computed: {
     ...mapGetters({
       getCurrentCategory: 'category-next/getCurrentCategory',
+      getCategoryByParams: 'category-next/getCategoryByParams',
       getCurrentProduct: 'product/getCurrentProduct',
       getProductGallery: 'product/getProductGallery',
       getCurrentProductConfiguration: 'product/getCurrentProductConfiguration',
@@ -804,6 +787,10 @@ export default {
     },
     getJsonLd () {
       return productJsonLd(this.getCurrentProduct, this.getCurrentProductConfiguration.color && this.getCurrentProductConfiguration.color.label, this.$store.state.storeView.i18n.currencyCode, this.getCustomAttributes)
+    },
+    category () {
+      let last_cat_id = this.getCurrentProduct.category[this.getCurrentProduct.category.length - 1].category_id;
+      return this.getCategoryByParams({ id: last_cat_id });
     }
   },
   async mounted () {
