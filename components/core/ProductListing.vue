@@ -1,12 +1,14 @@
 <template>
-  <div class="product-listing row m0 center-xs start-md">
-    <div
-      v-for="(product, key) in products"
-      :key="product.id"
-      class="col-sm-6 flex"
-      :class="['col-md-' + (12/columns)%10, wide(product.sale, product.new, key)]"
-    >
-      <product-tile :product="product" />
+  <div class="product-listing">
+    <div class="inner-listing">
+      <div class="row">
+        <div class="col-md-4 col-6 item-width mb-30"
+             v-for="product in products"
+             :key="product.id"
+        >
+          <product-tile :product="product" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
