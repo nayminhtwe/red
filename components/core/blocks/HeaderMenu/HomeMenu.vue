@@ -126,7 +126,7 @@
               v-for="category in visibleCategories" :key="category.slug"
               :class="category.children_count > 0 ? 'sub-megamenu': '' "
           >
-            <span class="opener plus" v-if="category.children_count > 0" />
+            <span class="opener plus" v-if="category.children_count > 0" @click="toggleCategory(category.name)" />
             <router-link
               :to="'/'+category.url_path"
               data-testid="category.url_path"
@@ -134,7 +134,7 @@
             >
               <i class="fa fa-female" />{{ category.name }}
             </router-link>
-            <div class="megamenu mobile-sub-menu " style="215px" v-if="category.children_count > 0 ">
+            <div class="megamenu mobile-sub-menu " style="215px" v-if="category.children_count > 0" :ref="category.name">
               <div class="megamenu-inner-top">
                 <sub-category
                   :category-links="category.children_data"
@@ -246,6 +246,13 @@ export default {
     },
     categoryLink (category) {
       return formatCategoryLink(category)
+    },
+    toggleCategory (cat_name) {
+      if (this.$refs[cat_name][0].style.display === 'none' || this.$refs[cat_name][0].style.display === '') {
+        this.$refs[cat_name][0].style.display = 'block';
+      } else {
+        this.$refs[cat_name][0].style.display = 'none';
+      }
     }
   }
 }
