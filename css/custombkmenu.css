@@ -1326,7 +1326,6 @@ header#header {
 .megamenu .sub-menu-level1 li.level2 {
 	float: left;
 	min-width: 200px;
-	padding-top: 5px;
 }
 .megamenu .level2 > a {
 	display: inline-block;

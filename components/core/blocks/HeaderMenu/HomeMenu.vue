@@ -35,8 +35,14 @@
               :class="category.children_count > 0 ? 'sub-megamenu': '' "
           >
             <span class="opener plus" />
-            <a href="shop.html" class="page-scroll"><i class="fa fa-female" />{{ category.name }}</a>
-            <div class="megamenu mobile-sub-menu " style="width:430px;" v-if="category.children_count > 0 ">
+            <router-link
+              :to="'/'+category.url_path"
+              data-testid="category.url_path"
+              class="page-scroll"
+            >
+              <i class="fa fa-female" />{{ category.name }}
+            </router-link>
+            <div class="megamenu mobile-sub-menu " style="215px" v-if="category.children_count > 0 ">
               <div class="megamenu-inner-top">
                 <sub-category
                   :category-links="category.children_data"

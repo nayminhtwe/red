@@ -1,5 +1,5 @@
 <template>
-  <ul class="sub-menu-level2">
+  <!-- <ul class="sub-menu-level2">
     <li class="level3">
       <a href="shop.html"><span>■</span>Dresses</a>
     </li>
@@ -17,6 +17,25 @@
     </li>
     <li class="level3">
       <a href="shop.html"><span>■</span>Jeans</a>
+    </li>
+  </ul> -->
+  <ul data-v-7eb379fa="" class="sub-menu-level2">
+    <li data-v-7eb379fa="" class="level3">
+      <a data-v-7eb379fa="" href="shop.html"><span data-v-7eb379fa="">■</span>Core i3</a> <div data-v-7eb379fa="">
+        <!-- <ul data-v-7eb379fa="" class="sub-menu-level3">
+          <li data-v-7eb379fa="" class="level4">
+            <a data-v-7eb379fa="" href="shop.html"><span data-v-7eb379fa="">Acer</span></a> <div data-v-7eb379fa="" />
+          </li>
+        </ul><ul data-v-7eb379fa="" class="sub-menu-level3">
+          <li data-v-7eb379fa="" class="level4">
+            <a data-v-7eb379fa="" href="shop.html"><span data-v-7eb379fa="">HP</span></a> <div data-v-7eb379fa="" />
+          </li>
+        </ul><ul data-v-7eb379fa="" class="sub-menu-level3">
+          <li data-v-7eb379fa="" class="level4">
+            <a data-v-7eb379fa="" href="shop.html"><span data-v-7eb379fa="">Dell</span></a> <div data-v-7eb379fa="" />
+          </li>
+        </ul> -->
+      </div>
     </li>
   </ul>
 </template>

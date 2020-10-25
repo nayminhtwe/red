@@ -1,21 +1,18 @@
 <template>
   <div>
-    <ul class="sub-menu-level1" :key="link.slug"
+    <ul :class="'sub-menu-level'+(link.level-2)" :key="link.slug"
         v-for="link in children"
     >
-      <!-- <li class="level2" v-if="children.children_count > 0"> -->
-      <li class="level2">
-        <a href="shop.html"><span>{{ link.name }}</span></a>
-        <sub-sub-category
+      <li :class="'level'+(link.level-1)">
+        <a :href="'/'+link.url_path" v-if="link.level === 4"><span>■</span>{{ link.name }}</a>
+        <a :href="'/'+link.url_path" v-else><span>{{ link.name }}</span></a>
+        <sub-category
           :category-links="link.children_data"
           :id="link.id"
           :parent-slug="link.slug"
           :parent-path="link.url_path"
         />
       </li>
-      <!-- <li v-else>
-        <a href="shop.html"><span>{{ link.name }}</span></a>
-      </li> -->
     </ul>
   </div>
 </template>
