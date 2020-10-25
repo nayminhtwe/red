@@ -196,50 +196,29 @@
                 </li>
                 <li class="cart-icon">
                   <a href="#"> <span />
-                    <div class="my-cart">2 items<br>$99.00</div>
+                    <div class="my-cart"
+                         v-for="(segment, index) in totals"
+                         :key="index" v-if="segment.code === 'grand_total'"
+                    >
+                      {{ totalQuantity }} items<br>{{ segment.value | price(storeView) }}
+                    </div>
                   </a>
                   <div class="cart-dropdown header-link-dropdown">
                     <ul class="cart-list link-dropdown-list">
-                      <li>
-                        <a class="close-cart"><i class="fa fa-times-circle" /></a>
-                        <div class="media">
-                          <a class="pull-left"> <img alt="Stylexpo" src="/assets/images/1.jpg"></a>
-                          <div class="media-body">
-                            <span><a href="#">Black African Print Skirt</a></span>
-                            <p class="cart-price">
-                              $14.99
-                            </p>
-                            <div class="product-qty">
-                              <label>Qty:</label>
-                              <div class="custom-qty">
-                                <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <a class="close-cart"><i class="fa fa-times-circle" /></a>
-                        <div class="media">
-                          <a class="pull-left"> <img alt="Stylexpo" src="/assets/images/2.jpg"></a>
-                          <div class="media-body">
-                            <span><a href="#">Black African Print Skirt</a></span>
-                            <p class="cart-price">
-                              $14.99
-                            </p>
-                            <div class="product-qty">
-                              <label>Qty:</label>
-                              <div class="custom-qty">
-                                <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
+                      <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" component="header" />
                     </ul>
-                    <p class="cart-sub-totle">
-                      <span class="pull-left">Cart Subtotal</span> <span class="pull-right"><strong class="price-box">$29.98</strong></span>
-                    </p>
+                    <div v-for="(segment, index) in totals" :key="index" v-if="segment.code === 'grand_total'">
+                      <p class="cart-sub-totle">
+                        <span class="pull-left">
+                          {{ segment.title }}
+                        </span>
+                        <span class="pull-right">
+                          <strong class="price-box">
+                            {{ segment.value | price(storeView) }}
+                          </strong>
+                        </span>
+                      </p>
+                    </div>
                     <div class="clearfix" />
                     <div class="mt-20">
                       <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a>
@@ -261,492 +240,9 @@
       <div class="container">
         <div class="row position-r">
           <div class="col-xl-2 col-lg-3 col-xl-20per position-s">
-            <div class="sidebar-menu-dropdown home">
+            <div class="sidebar-menu-dropdown home" @click="openCatDrop = !openCatDrop">
               <a class="btn-sidebar-menu-dropdown"><span /> Categories </a>
-              <div id="cat" class="cat-dropdown">
-                <div class="sidebar-contant">
-                  <div id="menu" class="navbar-collapse collapse">
-                    <div class="top-right-link mobile right-side">
-                      <ul>
-                        <li class="login-icon content">
-                          <a class="content-link">
-                            <span class="content-icon" />
-                          </a>
-                          <a href="login.html" title="Login">Login</a> or
-                          <a href="register.html" title="Register">Register</a>
-                          <div class="content-dropdown">
-                            <ul>
-                              <li class="login-icon">
-                                <a href="login.html" title="Login"><i class="fa fa-user" /> Login</a>
-                              </li>
-                              <li class="register-icon">
-                                <a href="register.html" title="Register"><i class="fa fa-user-plus" /> Register</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                        <li class="track-icon">
-                          <a title="Track your order"><span /> Track your order</a>
-                        </li>
-                        <li class="gift-icon">
-                          <a href="" title="Gift card"><span /> Gift card</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <ul class="nav navbar-nav ">
-                      <li class="level sub-megamenu">
-                        <span class="opener plus" />
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-female" />Fashion</a>
-                        <div class="megamenu mobile-sub-menu " style="width:430px;">
-                          <div class="megamenu-inner-top">
-                            <ul class="sub-menu-level1">
-                              <li class="level2">
-                                <a href="shop.html"><span>Kids Fashion</span></a>
-                                <ul class="sub-menu-level2 ">
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Blazer & Coat</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Sport Shoes</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Trousers</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Purse</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Wallets</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Skirts</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Tops</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Sleepwear</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Jeans</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class="level2">
-                                <div class="sub-menu-slider d-none d-lg-block ">
-                                  <div class="row">
-                                    <div class="owl-carousel sub_menu_slider">
-                                      <div class="product-item">
-                                        <div class="product-image">
-                                          <a href="product-page.html">
-                                            <img src="/assets/images/2.jpg" alt="Stylexpo">
-                                          </a>
-                                          <div class="product-detail-inner">
-                                            <div class="detail-inner-left align-center">
-                                              <ul>
-                                                <li class="pro-cart-icon">
-                                                  <form>
-                                                    <button title="Add to Cart">
-                                                      <span />
-                                                    </button>
-                                                  </form>
-                                                </li>
-                                                <li class="pro-wishlist-icon">
-                                                  <a href="wishlist.html" title="Wishlist" />
-                                                </li>
-                                                <li class="pro-compare-icon">
-                                                  <a href="compare.html" title="Compare" />
-                                                </li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="product-item-details">
-                                          <div class="product-item-name">
-                                            <a href="product-page.html">Defyant Reversible Dot Shorts</a>
-                                          </div>
-                                          <div class="price-box">
-                                            <span class="price">$80.00</span>
-                                          </div>
-                                          <div class="rating-summary-block right-side">
-                                            <div title="53%" class="rating-result">
-                                              <span style="width:53%" />
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="product-item">
-                                        <div class="product-image">
-                                          <a href="product-page.html">
-                                            <img src="/assets/images/6.jpg" alt="Stylexpo">
-                                          </a>
-                                          <div class="product-detail-inner">
-                                            <div class="detail-inner-left align-center">
-                                              <ul>
-                                                <li class="pro-cart-icon">
-                                                  <form>
-                                                    <button title="Add to Cart">
-                                                      <span />
-                                                    </button>
-                                                  </form>
-                                                </li>
-                                                <li class="pro-wishlist-icon">
-                                                  <a href="wishlist.html" title="Wishlist" />
-                                                </li>
-                                                <li class="pro-compare-icon">
-                                                  <a href="compare.html" title="Compare" />
-                                                </li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="product-item-details">
-                                          <div class="product-item-name">
-                                            <a href="product-page.html">Defyant Reversible Dot Shorts</a>
-                                          </div>
-                                          <div class="price-box">
-                                            <span class="price">$80.00</span>
-                                          </div>
-                                          <div class="rating-summary-block right-side">
-                                            <div title="53%" class="rating-result">
-                                              <span style="width:53%" />
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="product-item">
-                                        <div class="product-image">
-                                          <a href="product-page.html">
-                                            <img src="/assets/images/8.jpg" alt="Stylexpo">
-                                          </a>
-                                          <div class="product-detail-inner">
-                                            <div class="detail-inner-left align-center">
-                                              <ul>
-                                                <li class="pro-cart-icon">
-                                                  <form>
-                                                    <button title="Add to Cart">
-                                                      <span />
-                                                    </button>
-                                                  </form>
-                                                </li>
-                                                <li class="pro-wishlist-icon">
-                                                  <a href="wishlist.html" title="Wishlist" />
-                                                </li>
-                                                <li class="pro-compare-icon">
-                                                  <a href="compare.html" title="Compare" />
-                                                </li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="product-item-details">
-                                          <div class="product-item-name">
-                                            <a href="product-page.html">Defyant Reversible Dot Shorts</a>
-                                          </div>
-                                          <div class="price-box">
-                                            <span class="price">$80.00</span>
-                                          </div>
-                                          <div class="rating-summary-block right-side">
-                                            <div title="53%" class="rating-result">
-                                              <span style="width:53%" />
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="product-item">
-                                        <div class="product-image">
-                                          <a href="product-page.html">
-                                            <img src="/assets/images/10.jpg" alt="Stylexpo">
-                                          </a>
-                                          <div class="product-detail-inner">
-                                            <div class="detail-inner-left align-center">
-                                              <ul>
-                                                <li class="pro-cart-icon">
-                                                  <form>
-                                                    <button title="Add to Cart">
-                                                      <span />
-                                                    </button>
-                                                  </form>
-                                                </li>
-                                                <li class="pro-wishlist-icon">
-                                                  <a href="wishlist.html" title="Wishlist" />
-                                                </li>
-                                                <li class="pro-compare-icon">
-                                                  <a href="compare.html" title="Compare" />
-                                                </li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="product-item-details">
-                                          <div class="product-item-name">
-                                            <a href="product-page.html">Defyant Reversible Dot Shorts</a>
-                                          </div>
-                                          <div class="price-box">
-                                            <span class="price">$80.00</span>
-                                          </div>
-                                          <div class="rating-summary-block right-side">
-                                            <div title="53%" class="rating-result">
-                                              <span style="width:53%" />
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="product-item">
-                                        <div class="product-image">
-                                          <a href="product-page.html">
-                                            <img src="/assets/images/16.jpg" alt="Stylexpo">
-                                          </a>
-                                          <div class="product-detail-inner">
-                                            <div class="detail-inner-left align-center">
-                                              <ul>
-                                                <li class="pro-cart-icon">
-                                                  <form>
-                                                    <button title="Add to Cart">
-                                                      <span />
-                                                    </button>
-                                                  </form>
-                                                </li>
-                                                <li class="pro-wishlist-icon">
-                                                  <a href="wishlist.html" title="Wishlist" />
-                                                </li>
-                                                <li class="pro-compare-icon">
-                                                  <a href="compare.html" title="Compare" />
-                                                </li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="product-item-details">
-                                          <div class="product-item-name">
-                                            <a href="product-page.html">Defyant Reversible Dot Shorts</a>
-                                          </div>
-                                          <div class="price-box">
-                                            <span class="price">$80.00</span>
-                                          </div>
-                                          <div class="rating-summary-block right-side">
-                                            <div title="53%" class="rating-result">
-                                              <span style="width:53%" />
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="level">
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-camera-retro" />Cameras</a>
-                      </li>
-                      <li class="level">
-                        <a href="shop.html" class="page-scroll">
-                          <i class="fa fa-desktop" />computers<div class="menu-label"><span class="hot-menu"> Hot </span></div>
-                        </a>
-                      </li>
-                      <li class="level sub-megamenu">
-                        <span class="opener plus" />
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-clock-o" />Wathches</a>
-                        <div class="megamenu mobile-sub-menu" style="width:775px;">
-                          <div class="megamenu-inner-top">
-                            <ul class="sub-menu-level1">
-                              <li class="level2">
-                                <a href="shop.html"><span>Men Fashion</span></a>
-                                <ul class="sub-menu-level2">
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Dresses</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Sport Jeans</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Skirts</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Tops</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Sleepwear</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Jeans</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class="level2">
-                                <a href="shop.html"><span>Women Fashion</span></a>
-                                <ul class="sub-menu-level2 ">
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Blazer & Coat</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Sport Shoes</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Phone Cases</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Trousers</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Purse</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Wallets</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class="level2 d-none d-lg-block">
-                                <a href="shop.html">
-                                  <img src="/assets/images/drop_banner.jpg" alt="Stylexpo">
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="level">
-                        <a href="shop.html" class="page-scroll">
-                          <i class="fa fa-shopping-bag" />Bags<div class="menu-label"><span class="new-menu"> New </span></div>
-                        </a>
-                      </li>
-                      <li class="level sub-megamenu ">
-                        <span class="opener plus" />
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-tablet" />Smartphones</a>
-                        <div class="megamenu mobile-sub-menu" style="width:630px;">
-                          <div class="megamenu-inner-top">
-                            <ul class="sub-menu-level1">
-                              <li class="level2">
-                                <a href="shop.html"><span>Women Clothings</span></a>
-                                <ul class="sub-menu-level2">
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Dresses</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Sport Jeans</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Skirts</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Tops</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Sleepwear</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Jeans</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class="level2">
-                                <a href="shop.html"><span>Men Clothings</span></a>
-                                <ul class="sub-menu-level2 ">
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Blazer & Coat</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Sport Shoes</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Phone Cases</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Trousers</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Purse</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Wallets</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class="level2">
-                                <a href="shop.html"><span>Juniors kid</span></a>
-                                <ul class="sub-menu-level2 ">
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Blazer & Coat</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Sport Shoes</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Phone Cases</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Trousers</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Purse</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="shop.html"><span>■</span>Wallets</a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="level">
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-bed" />Home & Furniture</a>
-                      </li>
-                      <li class="level ">
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-headphones" />Headphone</a>
-                      </li>
-                      <li class="level">
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-microphone" />Accessories</a>
-                      </li>
-                      <li class="level">
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-heartbeat" />Beauty & Health</a>
-                      </li>
-                      <li class="level">
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-bolt" />Printers & Ink</a>
-                      </li>
-                      <li class="level">
-                        <a href="shop.html" class="page-scroll"><i class="fa fa-plus-square" />More Categories</a>
-                      </li>
-                    </ul>
-                    <div class="header-top mobile">
-                      <div class="">
-                        <div class="row">
-                          <div class="col-12">
-                            <div class="top-link top-link-left select-dropdown ">
-                              <fieldset>
-                                <select name="speed" class="country option-drop">
-                                  <option selected="selected">
-                                    English
-                                  </option>
-                                  <option>Frence</option>
-                                  <option>German</option>
-                                </select>
-                                <select name="speed" class="currency option-drop">
-                                  <option selected="selected">
-                                    USD
-                                  </option>
-                                  <option>EURO</option>
-                                  <option>POUND</option>
-                                </select>
-                              </fieldset>
-                            </div>
-                          </div>
-                          <div class="col-12">
-                            <div class="top-link right-side">
-                              <div class="help-num">
-                                Need Help? : 03 233 455 55
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <home-menu :show="openCatDrop" />
             </div>
           </div>
           <div class="col-xl-6 col-lg-6 col-xl-60per">
@@ -831,12 +327,8 @@
     <div class="popup-links ">
       <div class="popup-links-inner">
         <ul>
-          <li class="categories">
-            <a class="popup-with-form" href="#categories_popup"><span class="icon" /><span class="icon-text">Categories</span></a>
-          </li>
-          <li class="cart-icon">
-            <a class="popup-with-form" href="#cart_popup"><span class="icon" /><span class="icon-text">Cart</span></a>
-          </li>
+          <hamburger-icon />
+          <microcart-icon />
           <li class="account">
             <a class="popup-with-form" href="#account_popup"><span class="icon" /><span class="icon-text">Account</span></a>
           </li>
@@ -1175,6 +667,7 @@ import CurrentPage from 'theme/mixins/currentPage'
 import AccountIcon from 'theme/components/core/blocks/Header/AccountIcon'
 import CompareIcon from 'theme/components/core/blocks/Header/CompareIcon'
 import HamburgerIcon from 'theme/components/core/blocks/Header/HamburgerIcon'
+import HomeMenu from 'theme/components/core/blocks/HeaderMenu/HomeMenu'
 import Logo from 'theme/components/core/Logo'
 import MicrocartIcon from 'theme/components/core/blocks/Header/MicrocartIcon'
 import SearchIcon from 'theme/components/core/blocks/Header/SearchIcon'
@@ -1192,7 +685,8 @@ export default {
     MicrocartIcon,
     SearchIcon,
     WishlistIcon,
-    Product
+    Product,
+    HomeMenu
   },
   mixins: [CurrentPage],
   data () {
@@ -1201,7 +695,8 @@ export default {
       isScrolling: false,
       scrollTop: 0,
       lastScrollTop: 0,
-      navbarHeight: 64
+      navbarHeight: 64,
+      openCatDrop: false
     }
   },
   computed: {

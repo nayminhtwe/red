@@ -1305,12 +1305,11 @@ header#header {
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 	color: #a4a4a4;
 	display: none; 
-	padding: 5px 30px;
+	padding: 20px 30px;
 	position: absolute;
 	top: 100%;
 	z-index: 2;
 	left: 0;
-	line-height: 15px;
 }
 .megamenu.full {
 	left: 0;
@@ -1326,8 +1325,8 @@ header#header {
 }
 .megamenu .sub-menu-level1 li.level2 {
 	float: left;
-	padding-top: 8px;
 	min-width: 200px;
+	padding-top: 5px;
 }
 .megamenu .level2 > a {
 	display: inline-block;
