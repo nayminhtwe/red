@@ -1,34 +1,29 @@
 <template>
-  <transition :name="transitionName">
-    <div
-      class="modal"
-      v-if="isVisible"
-      ref="modal"
-    >
-      <!--      <div class="modal-wrapper">-->
-      <!--        <div class="modal-center">-->
-      <div class="modal-backdrop" @click="close" />
-      <div class="modal-container bg-cl-primary" ref="modal-content" :style="style">
-        <header class="modal-header py25 px65 h1 serif weight-700 bg-cl-secondary" v-if="$slots.header">
-          <slot name="header" />
-          <i
-            slot="close"
-            class="modal-close material-icons cl-bg-tertiary"
-            @click="close"
-            data-testid="closeModalButton"
+  <div class="mfp-wrap mfp-close-btn-in mfp-auto-cursor mfp-ready"
+       tabindex="-1" style="overflow: hidden auto;"
+       data-testid="sidebar"
+       v-if="isVisible"
+       ref="modal"
+  >
+    <div class="mfp-container mfp-s-ready mfp-inline-holder">
+      <div class="mfp-content" :style="style">
+        <div id="account_popup" class="white-popup-block popup-position">
+          <div class="popup-title" v-if="$slots.header">
+            <slot name="header" />
+          </div>
+          <div class="popup-detail" v-if="$slots.content">
+            <slot name="content" />
+          </div>
+          <button title="Close (Esc)" type="button" class="mfp-close" @click="close"
+                  data-testid="closeModalButton" slot="close"
           >
-            close
-          </i>
-        </header>
-        <div class="modal-content bg-cl-primary pt30 pb60 px65" v-if="$slots.content">
-          <slot name="content" />
+            ×
+          </button>
+          <slot />
         </div>
-        <slot />
       </div>
     </div>
-    <!--      </div>-->
-    <!--    </div>-->
-  </transition>
+  </div>
 </template>
 
 <script>
@@ -96,92 +91,8 @@ export default {
     name: {
       required: true,
       type: String
-    },
-    delay: {
-      required: false,
-      type: Number,
-      default: 300
-    },
-    width: {
-      type: Number,
-      default: 0
-    },
-    transitionName: {
-      type: String,
-      default: 'fade-in-down'
     }
   },
-  computed: {
-    style () {
-      return this.width ? `width: ${this.width}px` : false
-    }
-  }
+
 }
 </script>
-
-<style lang="scss" scoped>
-@import '~theme/css/base/global_vars';
-$z-index-modal: map-get($z-index, modal);
-
-.modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: auto;
-  z-index: $z-index-modal;
-
-  .modal-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 945px;
-    margin: 0 auto;
-    max-width: 100%;
-    max-height: 100%;
-    z-index: $z-index-modal+1;
-
-    @media (max-width: 600px) {
-      min-height: 100%;
-      min-width: 100%;
-      margin: 0;
-    }
-  }
-
-  .modal-header {
-    position: relative;
-
-    > * {
-        margin: 0;
-    }
-
-    @media (max-width: 600px) {
-      padding: 25px 20px;
-    }
-  }
-
-  .modal-content {
-    @media (max-width: 600px) {
-      padding: 30px 20px;
-    }
-  }
-
-  .modal-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .modal-close{
-    cursor: pointer;
-  }
-  .modal-backdrop{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 100%;
-  }
-}
-</style>

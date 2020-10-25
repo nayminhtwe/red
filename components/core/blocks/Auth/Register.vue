@@ -1,146 +1,108 @@
 <template>
-  <div>
-    <header class="modal-header py25 px65 h1 serif weight-700 bg-cl-secondary">
-      {{ $t('Register') }}
-      <i
-        slot="close"
-        class="modal-close material-icons cl-bg-tertiary"
-        @click="close"
-      >
-        close
-      </i>
-    </header>
-
-    <div class="modal-content bg-cl-primary pt30 pb60 px65 cl-secondary">
-      <form @submit.prevent="register" novalidate>
-        <base-input
-          class="mb10"
-          type="email"
-          name="email"
-          autocomplete="email"
-          v-model="email"
-          @blur="$v.email.$touch()"
-          focus
-          :placeholder="$t('E-mail address *')"
-          :validations="[
-            {
-              condition: !$v.email.required && $v.email.$error,
-              text: $t('Field is required.')
-            },
-            {
-              condition: !$v.email.email && $v.email.$error,
-              text: $t('Please provide valid e-mail address.')
-            }
-          ]"
-        />
-        <div class="row mb10">
-          <base-input
-            class="col-xs-6"
-            type="text"
-            name="first-name"
-            autocomplete="given-name"
-            v-model="firstName"
-            @blur="$v.firstName.$touch()"
-            :placeholder="$t('First name *')"
-            :validations="[
-              {
-                condition: !$v.firstName.required && $v.firstName.$error,
-                text: $t('Field is required.')
-              },
-              {
-                condition: !$v.firstName.minLength,
-                text: $t('Name must have at least 2 letters.')
-              },
-              {
-                condition: !$v.firstName.alpha && $v.firstName.$error,
-                text: $t('Accepts only alphabet characters.')
-              }
-            ]"
-          />
-          <base-input
-            class="col-xs-6"
-            type="text"
-            name="last-name"
-            autocomplete="last-name"
-            v-model="lastName"
-            @blur="$v.lastName.$touch()"
-            :placeholder="$t('Last name *')"
-            :validations="[
-              {
-                condition: !$v.lastName.required && $v.lastName.$error,
-                text: $t('Field is required.')
-              },
-              {
-                condition: !$v.lastName.alpha && $v.lastName.$error,
-                text: $t('Accepts only alphabet characters.')
-              }
-            ]"
-          />
+  <div id="account_popup" class="white-popup-block popup-position">
+    <div class="popup-title">
+      <h2 class="main_title heading">
+        <span>{{ $t('Register') }}</span>
+      </h2>
+    </div>
+    <div class="popup-detail">
+      <div class="row">
+        <div class="col-12">
+          <div class="row justify-content-center">
+            <div class="col-xl-12 col-lg-8 col-md-8 ">
+              <form @submit.prevent="register" class="main-form full">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="input-box">
+                      <label for="f-name">First Name</label>
+                      <input type="text" id="f-name"
+                             autocomplete="given-name"
+                             v-model="firstName"
+                             @blur="$v.firstName.$touch()"
+                             :placeholder="$t('First name *')"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-box">
+                      <label for="l-name">Last Name</label>
+                      <input type="text" id="l-name"
+                             autocomplete="last-name"
+                             v-model="lastName"
+                             @blur="$v.lastName.$touch()"
+                             :placeholder="$t('Last name *')"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-box">
+                      <label for="login-email">Email address</label>
+                      <input id="login-email" type="email"
+                             autocomplete="email"
+                             v-model="email"
+                             @blur="$v.email.$touch()"
+                             focus
+                             :placeholder="$t('E-mail address *')"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-box">
+                      <label for="login-pass">Password</label>
+                      <input id="login-pass" type="password"
+                             ref="password"
+                             autocomplete="new-password"
+                             v-model="password"
+                             @blur="$v.password.$touch()"
+                             :placeholder="$t('Password *')"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-box">
+                      <label for="re-enter-pass">Re-enter Password</label>
+                      <input id="re-enter-pass" type="password"
+                             autocomplete="new-password"
+                             v-model="rPassword"
+                             @blur="$v.rPassword.$touch()"
+                             :placeholder="$t('Repeat password *')"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="check-box left-side mb-20">
+                      <span>
+                        <input type="checkbox" name="remember_me" id="remember_me"
+                               class="checkbox"
+                               v-model="conditions"
+                               @blur="$v.conditions.$reset()"
+                               @change="$v.conditions.$touch()"
+                        >
+                        <label for="remember_me">{{ $t('I accept terms and conditions') }} *</label>
+                      </span>
+                    </div>
+                    <button name="submit" type="submit" class="btn-color right-side">
+                      {{ $t('Register an account') }}
+                    </button>
+                  </div>
+                  <div class="col-12">
+                    <hr>
+                    <div class="new-account align-center mt-20">
+                      <span>Or</span>
+                      <a href="#" @click.prevent="switchElem">
+                        {{ $t('login to your account') }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <base-input
-          class="mb10"
-          type="password"
-          name="password"
-          ref="password"
-          autocomplete="new-password"
-          v-model="password"
-          @blur="$v.password.$touch()"
-          :placeholder="$t('Password *')"
-          :validations="[
-            {
-              condition: !$v.password.required && $v.password.$error,
-              text: $t('Field is required.')
-            },
-            {
-              condition: !$v.password.minLength && $v.password.$error,
-              text: $t('Password must have at least 8 letters.')
-            }
-          ]"
-        />
-        <base-input
-          class="mb10"
-          type="password"
-          name="password-confirm"
-          autocomplete="new-password"
-          v-model="rPassword"
-          @blur="$v.rPassword.$touch()"
-          :placeholder="$t('Repeat password *')"
-          :validations="[
-            {
-              condition: !$v.rPassword.required && $v.rPassword.$error,
-              text: $t('Field is required.')
-            },
-            {
-              condition: !$v.rPassword.sameAsPassword && $v.rPassword.$error,
-              text: $t('Passwords must be identical.')
-            }
-          ]"
-        />
-        <base-checkbox
-          class="mb10"
-          id="terms"
-          v-model="conditions"
-          @blur="$v.conditions.$reset()"
-          @change="$v.conditions.$touch()"
-          :validations="[{
-            condition: !$v.conditions.sameAs && $v.conditions.$error,
-            text: $t('You must accept the terms and conditions.')
-          }]"
-        >
-          {{ $t('I accept terms and conditions') }} *
-        </base-checkbox>
-        <button-full :disabled="$v.$invalid" class="mb20" type="submit">
-          {{ $t('Register an account') }}
-        </button-full>
-        <div class="center-xs">
-          <span>
-            {{ $t('or') }}
-            <a href="#" @click.prevent="switchElem">
-              {{ $t('login to your account') }}
-            </a>
-          </span>
-        </div>
-      </form>
+      </div>
+      <button title="Close (Esc)" type="button" class="mfp-close" @click="close">
+        ×
+      </button>
     </div>
   </div>
 </template>

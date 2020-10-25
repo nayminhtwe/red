@@ -1,77 +1,70 @@
 <template>
-  <div>
-    <header class="modal-header py25 px65 h1 serif weight-700 bg-cl-secondary">
-      {{ $t('Log in') }}
-      <i
-        slot="close"
-        class="modal-close material-icons cl-bg-tertiary"
-        @click="close"
-      >
-        close
-      </i>
-    </header>
-    <div v-if="hasRedirect" class="pt10 pb10 px65 redirect-error">
-      <p class="h5 mb0 mt0">
-        {{ $t('You need to be logged in to see this page') }}
-      </p>
+  <div id="account_popup" class="white-popup-block popup-position">
+    <div class="popup-title">
+      <h2 class="main_title heading">
+        <span>{{ $t('Log in') }}</span>
+      </h2>
     </div>
-    <div class="modal-content bg-cl-primary pt30 pb60 px65 cl-secondary">
-      <form @submit.prevent="login" novalidate>
-        <base-input
-          class="mb10"
-          type="email"
-          name="email"
-          focus
-          v-model="email"
-          @blur="$v.email.$touch()"
-          :placeholder="$t('E-mail address *')"
-          :validations="[
-            {
-              condition: !$v.email.required && $v.email.$error,
-              text: $t('Field is required.')
-            },
-            {
-              condition: !$v.email.email && $v.email.$error,
-              text: $t('Please provide valid e-mail address.')
-            }
-          ]"
-        />
-        <base-input
-          class="mb10"
-          type="password"
-          name="password"
-          v-model="password"
-          @blur="$v.password.$touch()"
-          :placeholder="$t('Password *')"
-          :validations="[{
-            condition: !$v.password.required && $v.password.$error,
-            text: $t('Field is required.')
-          }]"
-        />
-        <div class="row">
-          <base-checkbox
-            class="col-xs-7 col-sm-6 mb20"
-            id="remember"
-            v-model="remember"
-          >
-            {{ $t('Remember me') }}
-          </base-checkbox>
-          <div class="col-xs-5 col-sm-6 mb35 flex end-xs middle-xs">
-            <a href="#" @click.prevent="remindPassword">
-              {{ $t('Forgot the password?') }}
-            </a>
+    <div class="popup-detail">
+      <div class="row">
+        <div class="col-12">
+          <div class="row justify-content-center">
+            <div class="col-xl-12 col-lg-8 col-md-8 ">
+              <form class="main-form full" @submit.prevent="login">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="input-box">
+                      <label for="login-email">Email address</label>
+                      <input id="login-email" type="email" required
+                             :placeholder="$t('E-mail address *')" v-model="email"
+                             @blur="$v.email.$touch()"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-box">
+                      <label for="login-pass">Password</label>
+                      <input id="login-pass" type="password" required :placeholder="$t('Password *')"
+                             v-model="password" @blur="$v.password.$touch()"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="check-box left-side">
+                      <span>
+                        <input type="checkbox" name="remember_me" id="remember_me" class="checkbox" v-model="remember">
+                        <label for="remember_me">Remember Me</label>
+                      </span>
+                    </div>
+                    <button name="submit" type="submit" class="btn-color right-side">
+                      Log In
+                    </button>
+                  </div>
+                  <div class="col-12">
+                    <a title="Forgot Password" class="forgot-password mtb-20"
+                       href="#" @click.prevent="remindPassword"
+                    >
+                      {{ $t('Forgot the password?') }}
+                    </a>
+                    <hr>
+                  </div>
+                  <div class="col-12">
+                    <div class="new-account align-center mt-20">
+                      <span>New to 21 Marts?</span>
+                      <a class="link" @click.prevent="switchElem" data-testid="registerLink">
+                        {{ $t('register an account') }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-        <button-full class="mb20" type="submit" data-testid="loginSubmit">
-          {{ $t('Log in to your account') }}
-        </button-full>
-        <div class="center-xs">
-          {{ $t('or') }}
-          <a href="#" @click.prevent="switchElem" data-testid="registerLink">
-            {{ $t('register an account') }}
-          </a>
-        </div>
-      </form>
+      </div>
+      <button title="Close (Esc)" type="button" class="mfp-close" @click="close">
+        ×
+      </button>
     </div>
   </div>
 </template>
@@ -150,28 +143,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-$color-error: color(error);
-$white: color(white);
-  .modal-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .modal-close{
-    cursor: pointer;
-  }
-  .modal-content {
-    @media (max-width: 400px) {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
-  .redirect-error {
-    background-color: $color-error;
-    color: $white;
-  }
-</style>

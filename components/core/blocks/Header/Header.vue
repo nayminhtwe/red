@@ -329,9 +329,7 @@
         <ul>
           <hamburger-icon />
           <microcart-icon />
-          <li class="account">
-            <a class="popup-with-form" href="#account_popup"><span class="icon" /><span class="icon-text">Account</span></a>
-          </li>
+          <account-icon />
           <li class="search">
             <a class="popup-with-form" href="#search_popup"><span class="icon" /><span class="icon-text">Search</span></a>
           </li>

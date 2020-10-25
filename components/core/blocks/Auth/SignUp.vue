@@ -1,5 +1,5 @@
 <template>
-  <modal name="modal-signup" :width="620">
+  <modal name="modal-signup">
     <login v-if="activeElem === 'login'" />
     <register v-if="activeElem === 'register'" />
     <forgot-pass v-if="activeElem === 'forgot-pass'" />
@@ -28,9 +28,10 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .modal {
-    font-size: 18px;
-  }
+<style>
+#remember_me{
+    margin: 5px 0 0;
+    min-height: 1px;
+    display: none;
+}
 </style>
