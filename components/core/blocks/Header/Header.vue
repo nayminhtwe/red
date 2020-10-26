@@ -197,10 +197,11 @@
                 <li class="cart-icon">
                   <a href="#"> <span />
                     <div class="my-cart"
+                         productsInCart
                          v-for="(segment, index) in totals"
                          :key="index" v-if="segment.code === 'grand_total'"
                     >
-                      {{ totalQuantity }} items<br>{{ segment.value | price(storeView) }}
+                      <div v-if="productsInCart.length">{{ totalQuantity }} items<br>{{ segment.value | price(storeView) }}</div>
                     </div>
                   </a>
                   <div class="cart-dropdown header-link-dropdown">
@@ -208,7 +209,7 @@
                       <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" component="header" />
                     </ul>
                     <div v-for="(segment, index) in totals" :key="index" v-if="segment.code === 'grand_total'">
-                      <p class="cart-sub-totle">
+                      <p class="cart-sub-totle" v-if="productsInCart.length">
                         <span class="pull-left">
                           {{ segment.title }}
                         </span>
