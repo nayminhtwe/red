@@ -226,7 +226,7 @@
                   </div>
                 </li>
                 <li class="side-toggle">
-                  <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                  <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button" @click="openCatDrop = !openCatDrop">
                     <i class="fa fa-bars" />
                   </button>
                 </li>

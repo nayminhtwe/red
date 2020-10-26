@@ -91,7 +91,7 @@
       </div>
     </div>
   </div> -->
-  <div id="cat" class="cat-dropdown">
+  <div id="cat" class="cat-dropdown" v-if="show">
     <div class="sidebar-contant">
       <div id="menu" class="navbar-collapse collapse menu-open">
         <div class="top-right-link mobile right-side">
