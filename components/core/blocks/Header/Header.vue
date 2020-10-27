@@ -195,7 +195,7 @@
                   </a>
                 </li>
                 <li class="cart-icon">
-                  <a href="#"> <span />
+                  <a> <span />
                     <div class="my-cart"
                          productsInCart
                          v-for="(segment, index) in totals"

@@ -25,12 +25,15 @@
         </div>
         <div class="clearfix" />
         <div class="mt-20">
-          <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a>
+          <a href="cart.html" class="btn-color btn">Cart</a>
+          <router-link :to="{ name: 'checkout' }" class="btn-color btn right-side">
+            Checkout
+          </router-link>
         </div>
       </div>
     </div>
     <div class="popup-detail" v-else>
-      <h3>No products in cart</h3>
+      <h3>{{ $t('Your shopping cart is empty.') }}</h3>
     </div>
     <button title="Close (Esc)" type="button" class="mfp-close" @click="closeMicrocartExtend">
       ×

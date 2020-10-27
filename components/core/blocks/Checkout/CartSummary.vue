@@ -70,6 +70,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '~theme/css/main';
   .summary-title {
     @media (max-width: 767px) {
       margin-left: 0;

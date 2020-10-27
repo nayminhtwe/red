@@ -263,6 +263,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '~theme/css/main';
 .link {
   text-decoration: underline;
 }

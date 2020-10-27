@@ -93,3 +93,7 @@ export default {
   flex: 0 0 121px;
 }
 </style>
+
+<style lang="scss" scoped>
+  @import '~theme/css/main';
+</style>
