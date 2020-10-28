@@ -10,6 +10,10 @@
     >
       <i class="fa fa-times-circle" />
     </a>
+    <i title="Remove Item From Cart" data-id="100"
+       class="fa fa-trash cart-remove-item" v-if="component == 'cart'"
+       @click.prevent="$emit('click')"
+    />
   </div>
 </template>
 
