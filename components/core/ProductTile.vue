@@ -23,7 +23,7 @@
               />
             </li>
             <li class="pro-wishlist-icon active">
-              <a href="wishlist.html" title="Wishlist" />
+              <AddToWishlist :product="product" />
             </li>
             <li class="pro-compare-icon">
               <a href="compare.html" title="Compare" />

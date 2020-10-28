@@ -1,15 +1,5 @@
 <template>
-  <button @click="isOnWishlist ? removeProductFromWhishList(product) : addProductToWhishlist(product)" class="p0 inline-flex middle-xs bg-cl-transparent brdr-none action h5 pointer cl-secondary" type="button" data-testid="addToWishlist">
-    <slot>
-      <i class="pr5 material-icons">{{ favoriteIcon }}</i>
-      <template v-if="!isOnWishlist">
-        {{ $t('Add to favorite') }}
-      </template>
-      <template v-else>
-        {{ $t('Remove') }}
-      </template>
-    </slot>
-  </button>
+  <a @click="isOnWishlist ? removeProductFromWhishList(product) : addProductToWhishlist(product)"  type="button" data-testid="addToWishlist" />
 </template>
 
 <script>

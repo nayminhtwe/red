@@ -97,9 +97,12 @@
                   </a>
                 </li>
                 <li class="wishlist-icon">
-                  <a href="wishlist.html">
+                  <router-link :to="localizedRoute('/wishlist')">
                     <span />
-                  </a>
+                  </router-link>
+                  <!-- <a href="wishlist.html">
+                    <span />
+                  </a> -->
                 </li>
                 <li class="cart-icon">
                   <a> <span />

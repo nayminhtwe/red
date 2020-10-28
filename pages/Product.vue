@@ -105,7 +105,7 @@
                         <div class="bottom-detail">
                           <ul>
                             <li class="pro-wishlist-icon">
-                              <a href="wishlist.html"><span />Wishlist</a>
+                              <AddToWishlist :product="getCurrentProduct" />
                             </li>
                             <li class="pro-compare-icon">
                               <a href="compare.html"><span />Compare</a>

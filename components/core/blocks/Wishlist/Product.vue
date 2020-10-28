@@ -1,50 +1,63 @@
 <template>
-  <li class="row pr55 py20">
-    <div class="blend bg-cl-secondary" @click="closeWishlist">
+  <tr>
+    <td>
       <router-link :to="productLink">
         <product-image :image="image" />
       </router-link>
-    </div>
-    <div class="col-xs between-xs flex pl40 py15">
-      <div @click="closeWishlist">
+    </td>
+    <td>
+      <div class="product-title">
         <router-link :to="productLink">
           {{ product.name | htmlDecode }}
         </router-link>
-        <div class="h6 cl-bg-tertiary pt5 sku">
-          {{ product.sku }}
-        </div>
-        <div v-if="showAddToCart">
-          <add-to-cart
-            v-if="product.type_id === 'simple'"
-            :product="product"
-            class="wishlist-add-to-cart col-xs-12 col-sm-4 col-md-6"
-          />
-          <router-link
-            v-else
-            :to="productLink"
-            class="wishlist-add-to-cart no-outline button-full block brdr-none w-100 px10 py20 bg-cl-mine-shaft :bg-cl-th-secondary ripple weight-400 h4 cl-white sans-serif fs-medium col-xs-12 col-sm-4 col-md-6"
-          >
-            {{ $t('Configure') }}
-          </router-link>
+        <div class="size-text">
+          <span>{{ product.sku }}</span>
         </div>
       </div>
-    </div>
-    <div class="col-xs flex py15 align-right">
-      <div v-if="product.price_incl_tax">
-        <span class="price-special" v-if="product.special_price">{{ product.price_incl_tax | price(storeView) }}</span>&nbsp;
-        <span class="price-original" v-if="product.special_price">{{ product.original_price_incl_tax | price(storeView) }}</span>
+    </td>
+    <td>
+      <ul>
+        <li>
+          <div class="base-price price-box">
+            <span class="price">{{ product.price_incl_tax | price(storeView) }}</span>
+          </div>
+        </li>
+      </ul>
+    </td>
+    <!-- <td>
+      <div class="input-box select-dropdown">
+        <fieldset>
+          <select data-id="100" class="quantity_cart option-drop" name="quantity_cart" id="ui-id-5" style="display: none;">
+            <option selected="" value="1">
+              1
+            </option>
+            <option value="2">
+              2
+            </option>
+            <option value="3">
+              3
+            </option>
+            <option value="4">
+              4
+            </option>
+          </select><span class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all" tabindex="0" id="ui-id-5-button" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-owns="ui-id-5-menu" aria-haspopup="true" aria-activedescendant="ui-id-7" aria-labelledby="ui-id-7" aria-disabled="false" style="width: 100px;"><span class="ui-icon ui-icon-triangle-1-s" /><span class="ui-selectmenu-text">1</span></span>
+        </fieldset>
+      </div>
+    </td> -->
+    <td>
+      <div class="total-price price-box">
+        <span class="price">In Stock</span>
+      </div>
+    </td>
+    <td>
+      <add-to-cart
+        v-if="product.type_id === 'simple'"
+        :product="product"
+      />
 
-        <span v-if="!product.special_price">
-          {{ product.price_incl_tax | price(storeView) }}
-        </span>
-      </div>
-      <div>
-        <div class="mt5">
-          <span @click="removeProductFromWhishList(product)"><remove-button class="cl-accent" /></span>
-        </div>
-      </div>
-    </div>
-  </li>
+      <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item" @click="removeProductFromWhishList(product)" />
+    </td>
+  </tr>
 </template>
 
 <script>
@@ -56,7 +69,7 @@ import ProductImage from 'theme/components/core/ProductImage'
 import RemoveButton from './RemoveButton'
 import i18n from '@vue-storefront/i18n'
 import { htmlDecode } from '@vue-storefront/core/lib/store/filters'
-import AddToCart from 'theme/components/core/AddToCart'
+import AddToCart from './AddToCart'
 
 export default {
   components: {
