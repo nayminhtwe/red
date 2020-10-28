@@ -6,19 +6,27 @@
           <div class="col-6">
             <div class="top-link top-link-left select-dropdown">
               <fieldset>
-                <select name="speed" class="countr option-drop">
+                <select name="speed" class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all" style="width: 82px;padding: 10px 5px;">
                   <option selected="selected">
-                    English
+                    <span class="ui-selectmenu-text">English</span>
                   </option>
-                  <option>Frence</option>
-                  <option>German</option>
+                  <option>
+                    <span class="ui-selectmenu-text">Frence</span>
+                  </option>
+                  <option>
+                    <span class="ui-selectmenu-text">German</span>
+                  </option>
                 </select>
-                <select name="speed" class="currenc option-drop">
-                  <option selected="selected">
-                    USD
+                <select name="speed" class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all" style="width: 82px;padding: 10px 5px;">
+                  <option selected="selected" class="ui-selectmenu-text">
+                    <span class="ui-selectmenu-text">USD</span>
                   </option>
-                  <option>EURO</option>
-                  <option>POUND</option>
+                  <option class="ui-selectmenu-text">
+                    <span class="ui-selectmenu-text">EURO</span>
+                  </option>
+                  <option class="ui-selectmenu-text">
+                    <span class="ui-selectmenu-text">POUND</span>
+                  </option>
                 </select>
               </fieldset>
             </div>
@@ -46,9 +54,9 @@
                 <li class="track-icon">
                   <a href="" title="Track your order"><span /> Track your order</a>
                 </li>
-                <li class="gift-icon">
+                <!-- <li class="gift-icon">
                   <a href="" title="Gift card"><span /> Gift card</a>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -62,113 +70,12 @@
           <div class="col-xl-3 col-md-3 col-xl-20per">
             <div class="header-middle-left">
               <div class="navbar-header float-none-sm">
-                <a class="navbar-brand page-scroll" href="index.html">
-                  <img alt="Stylexpo" src="/assets/images/logo.png">
-                </a>
+                <logo />
               </div>
             </div>
           </div>
           <div class="col-xl-6 col-md-6 col-xl-60per">
             <div class="header-right-part">
-              <div class="category-dropdown select-dropdown">
-                <fieldset>
-                  <select id="search-category" class="option-drop" name="search-category">
-                    <option value="">
-                      All Categories
-                    </option>
-                    <option value="20">
-                      Electronics
-                    </option>
-                    <option value="26">
-                      ■ PC
-                    </option>
-                    <option value="43">
-                      &nbsp;&nbsp;&nbsp;- Dell Inspiron
-                    </option>
-                    <option value="44">
-                      &nbsp;&nbsp;&nbsp;- Hp Notebook
-                    </option>
-                    <option value="47">
-                      &nbsp;&nbsp;&nbsp;- Sony Vio
-                    </option>
-                    <option value="55">
-                      &nbsp;&nbsp;&nbsp;- Samsung Tablet
-                    </option>
-                    <option value="27">
-                      ■ Mac
-                    </option>
-                    <option value="48">
-                      &nbsp;&nbsp;&nbsp;- Desktop Mac
-                    </option>
-                    <option value="49">
-                      &nbsp;&nbsp;&nbsp;- Laptop Mac
-                    </option>
-                    <option value="50">
-                      &nbsp;&nbsp;&nbsp;- Samsung Mac
-                    </option>
-                    <option value="38">
-                      &nbsp;&nbsp;&nbsp;- Android tablets
-                    </option>
-                    <option value="51">
-                      ■ Laptops
-                    </option>
-                    <option value="52">
-                      &nbsp;&nbsp;&nbsp;- Accer laptop
-                    </option>
-                    <option value="56">
-                      &nbsp;&nbsp;&nbsp;- apple ipad
-                    </option>
-                    <option value="53">
-                      &nbsp;&nbsp;&nbsp;- HP Laptop
-                    </option>
-                    <option value="54">
-                      &nbsp;&nbsp;&nbsp;- DELL Laptop
-                    </option>
-                    <option value="18">
-                      jewellery
-                    </option>
-                    <option value="25">
-                      Components
-                    </option>
-                    <option value="29">
-                      ■ Mice and Trackballs
-                    </option>
-                    <option value="28">
-                      ■ Monitors
-                    </option>
-                    <option value="35">
-                      &nbsp;&nbsp;&nbsp;- Desktop
-                    </option>
-                    <option value="36">
-                      &nbsp;&nbsp;&nbsp;- LED
-                    </option>
-                    <option value="30">
-                      ■ Printers
-                    </option>
-                    <option value="31">
-                      ■ Scanners
-                    </option>
-                    <option value="32">
-                      ■ Web Cameras
-                    </option>
-                    <option value="57">
-                      Books
-                    </option>
-                    <option value="17">
-                      Interior
-                    </option>
-                    <option value="24">
-                      Fashion
-                    </option>
-                    <option value="33">
-                      House Hold
-                    </option>
-                    <option value="34">
-                      Accessories
-                    </option>
-                  </select>
-                </fieldset>
-              </div>
               <div class="main-search">
                 <div class="header_search_toggle desktop-view">
                   <form>
@@ -241,8 +148,8 @@
       <div class="container">
         <div class="row position-r">
           <div class="col-xl-2 col-lg-3 col-xl-20per position-s">
-            <div class="sidebar-menu-dropdown home" @click="openCatDrop = !openCatDrop">
-              <a class="btn-sidebar-menu-dropdown"><span /> Categories </a>
+            <div class="sidebar-menu-dropdown home">
+              <a class="btn-sidebar-menu-dropdown" @click.prevent="openCatDrop = !openCatDrop"><span /> Categories </a>
               <home-menu :show="openCatDrop" />
             </div>
           </div>
@@ -257,13 +164,14 @@
                   <div class="mobilemenu-content">
                     <ul class="nav navbar-nav" id="menu-main">
                       <li class="active">
-                        <a href="index.html"><span>Home</span></a>
+                        <router-link :to="localizedRoute('/')" :title="$t('Home Page')">
+                          <span>Home</span>
+                        </router-link>
                       </li>
                       <li>
-                        <a href="shop.html"><span>Shop</span></a>
-                      </li>
-                      <li>
-                        <a href="about.html"><span>About Us</span></a>
+                        <router-link :to="localizedRoute('/about-us')" :title="$t('About us')">
+                          <span>About Us</span>
+                        </router-link>
                       </li>
                       <li>
                         <a href="blog.html"><span>Blog</span></a>

@@ -1,11 +1,6 @@
 <template>
-  <router-link :to="localizedRoute('/')" :title="$t('Home Page')" class="no-underline inline-flex">
-    <img
-      :width="width"
-      :height="height"
-      src="/assets/logo.png"
-      :alt="$t(defaultTitle)"
-    >
+  <router-link :to="localizedRoute('/')" :title="$t('Home Page')" class="navbar-brand page-scroll">
+    <img :alt="$t(defaultTitle)" src="/assets/images/logo.png">
   </router-link>
 </template>
 

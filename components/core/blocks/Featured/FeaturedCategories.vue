@@ -21,14 +21,16 @@
                             :nav="true" :responsive="{0:{items:2},480:{items:3},768:{items:4},1200:{items:5},1500:{items:7}}"
                   >
                     <div class="item" v-for="category in visibleCategories" :key="category.id">
-                      <div class="categorie-box">
-                        <div class="item-inner">
-                          <div class="categorie-icon categorie3" />
-                          <div class="cate-detail">
-                            <a :href="category.url_path"><span>{{ category.name }}</span></a>
+                      <a :href="category.url_path">
+                        <div class="categorie-box">
+                          <div class="item-inner">
+                            <div class="categorie-icon categorie3" />
+                            <div class="cate-detail">
+                              <span>{{ category.name }}</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </a>
                     </div>
                   </carousel>
                 </div>
