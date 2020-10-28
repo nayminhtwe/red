@@ -9,7 +9,8 @@ const Compare = () => import(/* webpackChunkName: "vsf-compare" */ 'theme/pages/
 const MyAccount = () => import(/* webpackChunkName: "vsf-my-account" */ 'theme/pages/MyAccount.vue')
 const Static = () => import(/* webpackChunkName: "vsf-static" */ 'theme/pages/Static.vue')
 const ResetPassword = () => import(/* webpackChunkName: "vsf-reset-password" */ 'theme/pages/ResetPassword.vue')
-const WishList = () => import(/* webpackChunkName: "vsf-reset-password" */ 'theme/pages/WishList.vue');
+const WishList = () => import(/* webpackChunkName: "vsf-reset-password" */ 'theme/pages/WishList.vue')
+const Search = () => import(/* webpackChunkName: "vsf-static" */ 'theme/pages/Search.vue');
 
 let routes = [
   { name: 'home', path: '/', component: Home, alias: '/pwa.html' },
@@ -47,7 +48,8 @@ let routes = [
   { name: 'cms-page', path: '/i/:slug', component: CmsPage },
   { name: 'create-password', path: '/create-password', component: ResetPassword },
   { name: 'page-not-found', path: '*', component: PageNotFound },
-  { name: 'wishlist', path: '/wishlist', component: WishList }
+  { name: 'wishlist', path: '/wishlist', component: WishList },
+  { name: 'search', path: '/search/:keyword', component: Search }
 ]
 
 export default routes

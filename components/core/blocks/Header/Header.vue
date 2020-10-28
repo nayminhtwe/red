@@ -80,8 +80,8 @@
                 <div class="header_search_toggle desktop-view">
                   <form>
                     <div class="search-box">
-                      <input class="input-text" type="text" placeholder="Search entire store here...">
-                      <button class="search-btn" />
+                      <input class="input-text" type="text" placeholder="Search entire store here..." v-model="keyword">
+                      <button class="search-btn" @click.prevent="search" />
                     </div>
                   </form>
                 </div>
@@ -100,9 +100,6 @@
                   <router-link :to="localizedRoute('/wishlist')">
                     <span />
                   </router-link>
-                  <!-- <a href="wishlist.html">
-                    <span />
-                  </a> -->
                 </li>
                 <li class="cart-icon">
                   <a> <span />
@@ -289,7 +286,8 @@ export default {
       scrollTop: 0,
       lastScrollTop: 0,
       navbarHeight: 64,
-      openCatDrop: false
+      openCatDrop: false,
+      keyword: ''
     }
   },
   computed: {
@@ -345,6 +343,10 @@ export default {
         this.navVisible = true
       }
       this.lastScrollTop = this.scrollTop
+    },
+    search () {
+      console.log('search');
+      this.$router.push({ name: 'search', params: { keyword: this.keyword } });
     }
   }
 }
