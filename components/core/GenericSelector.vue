@@ -16,6 +16,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '~theme/css/main';
   @import '~theme/css/variables/colors';
   @import '~theme/css/helpers/functions/color';
   $color-active: color(secondary);

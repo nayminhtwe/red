@@ -1,5 +1,5 @@
 <template>
-  <div class="sort-by">
+  <!-- <div class="sort-by">
     <select
       name="sortby"
       class="cl-secondary"
@@ -13,6 +13,20 @@
         {{ $t(variant.label) }}
       </option>
     </select>
+  </div> -->
+  <div class="select-item select-dropdown">
+    <fieldset>
+      <select name="speed" id="sort-price" class="option-drop" v-model="sortby"
+              @change="changeOrder"
+      >
+        <option selected="selected" disabled value="" v-if="!hasLabel">
+          {{ $t('Sort By') }}
+        </option>
+        <option v-for="variant in sortingVariants" :value="variant" :key="variant.id">
+          {{ $t(variant.label) }}
+        </option>
+      </select>
+    </fieldset>
   </div>
 </template>
 

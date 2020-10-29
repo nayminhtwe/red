@@ -22,54 +22,9 @@
                   </ul>
                 </div>
               </div>
-              <div class="sidebar-box mb-40">
-                <span class="opener plus" />
-                <div class="sidebar-title">
-                  <h3><span>Shop by</span></h3>
-                </div>
-                <div class="sidebar-contant">
-                  <div class="price-range mb-30">
-                    <div class="inner-title">
-                      Price range
-                    </div>
-                    <input class="price-txt" type="text" id="amount">
-                    <div id="slider-range" />
-                  </div>
-                  <div class="size mb-20">
-                    <div class="inner-title">
-                      Size
-                    </div>
-                    <ul>
-                      <li><a href="#">S (10)</a></li>
-                      <li><a href="#">M (05)</a></li>
-                      <li><a href="#">L (10)</a></li>
-                      <li><a href="#">XL (08)</a></li>
-                      <li><a href="#">XXL (05)</a></li>
-                    </ul>
-                  </div>
-                  <div class="mb-20">
-                    <div class="inner-title">
-                      Color
-                    </div>
-                    <ul>
-                      <li><a href="#">Black <span>(0)</span></a></li>
-                      <li><a href="#">Blue <span>(05)</span></a></li>
-                      <li><a href="#">Brown <span>(10)</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="mb-20">
-                    <div class="inner-title">
-                      Manufacture
-                    </div>
-                    <ul>
-                      <li><a href="#">Augue congue <span>(0)</span></a></li>
-                      <li><a href="#">Eu magna <span>(05)</span></a></li>
-                      <li><a href="#">Ipsum sit <span>(10)</span></a></li>
-                    </ul>
-                  </div>
-                  <a href="#" class="btn btn-color">Refine</a>
-                </div>
-              </div>
+
+              <sidebar :filters="getAvailableFilters" @changeFilter="changeFilter" />
+
               <div class="sidebar-box mb-40 d-none d-lg-block">
                 <a href="#">
                   <img src="/assets/images/left-banner.jpg" alt="Stylexpo">
@@ -174,30 +129,10 @@
                   </div>
                   <div class="short-by float-right-sm">
                     <span>Sort By :</span>
-                    <div class="select-item select-dropdown">
-                      <fieldset>
-                        <select name="speed" id="sort-price" class="option-drop">
-                          <option value="" selected="selected">
-                            Name (A to Z)
-                          </option>
-                          <option value="">
-                            Name(Z - A)
-                          </option>
-                          <option value="">
-                            price(low&gt;high)
-                          </option>
-                          <option value="">
-                            price(high &gt; low)
-                          </option>
-                          <option value="">
-                            rating(highest)
-                          </option>
-                          <option value="">
-                            rating(lowest)
-                          </option>
-                        </select>
-                      </fieldset>
-                    </div>
+                    <sort-by
+                      @change="changeFilter"
+                      :value="getCurrentSearchQuery.sort"
+                    />
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -226,11 +161,16 @@
                 </div>
               </div>
             </div>
-            <product-listing :products="getCategoryProducts" />
+            <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
+              <product-listing :products="getCategoryProducts" />
+            </lazy-hydrate>
+            <product-listing v-else :products="getCategoryProducts" />
           </div>
         </div>
       </div>
     </section>
+  </div>
+  </section>
   </div>
 </template>
 
