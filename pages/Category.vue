@@ -7,11 +7,11 @@
           <div class="col-xl-2 col-lg-3 mb-sm-30 col-lgmd-20per">
             <div class="sidebar-block">
               <div class="sidebar-box listing-box mb-40">
-                <span class="opener plus" />
+                <span class="opener plus" @click="toggleBlock('blockOne')" />
                 <div class="sidebar-title">
                   <h3><span>Categories</span></h3>
                 </div>
-                <div class="sidebar-contant">
+                <div class="sidebar-contant" ref="blockOne">
                   <ul>
                     <li><a href="#">Clothing <span>(21)</span></a></li>
                     <li><a href="#">Shoes <span>(05)</span></a></li>
@@ -31,11 +31,11 @@
                 </a>
               </div>
               <div class="sidebar-box sidebar-item">
-                <span class="opener plus" />
+                <span class="opener plus" @click="toggleBlock('blockTwo')" />
                 <div class="sidebar-title">
                   <h3><span>Best Selle</span>r</h3>
                 </div>
-                <div class="sidebar-contant">
+                <div class="sidebar-contant" ref="blockTwo">
                   <ul>
                     <li>
                       <div class="pro-media">
@@ -170,8 +170,6 @@
       </div>
     </section>
   </div>
-  </section>
-  </div>
 </template>
 
 <script>
@@ -288,6 +286,13 @@ export default {
         Logger.error('Problem with fetching more products', 'category', e)()
       } finally {
         this.loadingProducts = false
+      }
+    },
+    toggleBlock (cat_name) {
+      if (this.$refs[cat_name].style.display === 'none' || this.$refs[cat_name].style.display === '') {
+        this.$refs[cat_name].style.display = 'block';
+      } else {
+        this.$refs[cat_name].style.display = 'none';
       }
     }
   },

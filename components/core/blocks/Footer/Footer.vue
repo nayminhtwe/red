@@ -164,7 +164,6 @@ export default {
       return localizedRoute(getPathForStaticPage(path))
     },
     toggleFooter (cat_name) {
-      console.log(cat_name);
       if (this.$refs[cat_name].style.display === 'none' || this.$refs[cat_name].style.display === '') {
         this.$refs[cat_name].style.display = 'block';
       } else {

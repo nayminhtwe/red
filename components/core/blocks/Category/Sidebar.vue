@@ -1,10 +1,10 @@
 <template>
   <div class="sidebar-box mb-40">
-    <span class="opener plus" />
+    <span class="opener plus" @click="toggleBlock('filter')" />
     <div class="sidebar-title">
       <h3><span>{{ $t('Filter') }}</span></h3>
     </div>
-    <div class="sidebar-contant">
+    <div class="sidebar-contant" ref="filter">
       <div class="size mb-20" v-for="(filter, filterIndex) in availableFilters"
            :key="filterIndex"
       >
@@ -105,6 +105,13 @@ export default {
     },
     sortById (filters) {
       return [...filters].sort((a, b) => { return a.id - b.id })
+    },
+    toggleBlock (cat_name) {
+      if (this.$refs[cat_name].style.display === 'none' || this.$refs[cat_name].style.display === '') {
+        this.$refs[cat_name].style.display = 'block';
+      } else {
+        this.$refs[cat_name].style.display = 'none';
+      }
     }
   }
 }
