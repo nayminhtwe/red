@@ -6,13 +6,13 @@
           <div class="row">
             <div class="col-xl-3 f-col">
               <div class="footer-static-block">
-                <span class="opener plus" />
+                <span class="opener plus" @click="toggleFooter('blockOne')" />
                 <div class="f-logo">
                   <a href="index.html" class="">
                     <img src="/assets/images/footer-logo.png" alt="Stylexpo">
                   </a>
                 </div>
-                <div class="footer-block-contant">
+                <div class="footer-block-contant" ref="blockOne">
                   <p>Lorem khaled ipsum is a major key to success. It’s on you how you want to live your life. Always remember in the jungle there’s a lot of they in.</p>
                   <p>It’s on you how you want to live your life. Everyone has a choice.</p>
                 </div>
@@ -20,11 +20,11 @@
             </div>
             <div class="col-xl-3 f-col">
               <div class="footer-static-block">
-                <span class="opener plus" />
+                <span class="opener plus" @click="toggleFooter('blockTwo')" />
                 <h3 class="title">
                   Help <span />
                 </h3>
-                <ul class="footer-block-contant link">
+                <ul class="footer-block-contant link" ref="blockTwo">
                   <li><a href="#">Gift Cards</a></li>
                   <li><a href="#">Order Status</a></li>
                   <li><a href="#">Free Shipping</a></li>
@@ -35,11 +35,11 @@
             </div>
             <div class="col-xl-3 f-col">
               <div class="footer-static-block">
-                <span class="opener plus" />
+                <span class="opener plus" @click="toggleFooter('blockThree')" />
                 <h3 class="title">
                   Guidance <span />
                 </h3>
-                <ul class="footer-block-contant link">
+                <ul class="footer-block-contant link" ref="blockThree">
                   <li><a href="#"> Delivery information</a></li>
                   <li><a href="#"> Privacy Policy</a></li>
                   <li><a href="#"> Terms & Conditions</a></li>
@@ -49,12 +49,12 @@
               </div>
             </div>
             <div class="col-xl-3 f-col">
-              <div class="footer-static-block">
+              <div class="footer-static-block" @click="toggleFooter('blockFour')">
                 <span class="opener plus" />
                 <h3 class="title">
                   address<span />
                 </h3>
-                <ul class="footer-block-contant address-footer">
+                <ul class="footer-block-contant address-footer" ref="blockFour">
                   <li class="item">
                     <i class="fa fa-map-marker" />
                     <p>150-A Appolo aprtment, opp. Hopewell Junction, <br>Allen st Road, new york-405001.</p>
@@ -162,7 +162,16 @@ export default {
     },
     getLinkFor (path) {
       return localizedRoute(getPathForStaticPage(path))
+    },
+    toggleFooter (cat_name) {
+      console.log(cat_name);
+      if (this.$refs[cat_name].style.display === 'none' || this.$refs[cat_name].style.display === '') {
+        this.$refs[cat_name].style.display = 'block';
+      } else {
+        this.$refs[cat_name].style.display = 'none';
+      }
     }
+
   },
   computed: {
     ...mapGetters({
