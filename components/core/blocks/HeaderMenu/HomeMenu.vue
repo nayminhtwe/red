@@ -95,7 +95,60 @@
     <div class="sidebar-contant">
       <div id="menu" class="navbar-collapse collapse menu-open">
         <div class="top-right-link mobile right-side">
-          <ul>
+          <ul v-if="!currentUser">
+            <li class="login-icon content">
+              <a class="content-link" @click.prevent="toggleMenu('signup')">
+                <span class="content-icon" />
+              </a>
+              <a href="#" title="Login" @click.prevent="gotoAccount('login')">Login</a> or
+              <a href="#" title="Register" @click.prevent="gotoAccount('register')">Register</a>
+              <div class="content-dropdown" ref="signup">
+                <ul>
+                  <li class="login-icon">
+                    <a href="#" title="Login" @click.prevent="gotoAccount('login')"><i class="fa fa-user" /> Login</a>
+                  </li>
+                  <li class="register-icon">
+                    <a href="#" title="Register" @click.prevent="gotoAccount('register')"><i class="fa fa-user-plus" /> Register</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="track-icon">
+              <a href="" title="Track your order"><span /> Track your order</a>
+            </li>
+            <li class="gift-icon">
+              <a href="" title="Gift card"><span /> Gift card</a>
+            </li>
+          </ul>
+          <ul v-else>
+            <li class="login-icon content">
+              <a class="content-link">
+                <span class="content-icon" @click.prevent="toggleMenu('account')" />
+              </a>
+              <a href="#" title="Log out" @click.prevent="logout">Log out</a>
+              <div class="content-dropdown" ref="account">
+                <ul>
+                  <li class="login-icon">
+                    <a href="#" title="Log out" @click.prevent="logout"><i class="fa fa-user" /> Log out</a>
+                  </li>
+                  <li class="login-icon">
+                    <router-link :to="localizedRoute('/my-account/orders')" :title="$t('My orders')">
+                      <i class="fa fa-user-plus" />Account
+                    </router-link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="track-icon">
+              <router-link :to="localizedRoute('/my-account/orders')" :title="$t('My orders')">
+                <span /> Track your order
+              </router-link>
+            </li>
+            <li class="gift-icon">
+              <a href="" title="Gift card"><span /> Gift card</a>
+            </li>
+          </ul>
+          <!-- <ul>
             <li class="login-icon content">
               <a class="content-link">
                 <span class="content-icon" />
@@ -119,7 +172,7 @@
             <li class="gift-icon">
               <a href="" title="Gift card"><span /> Gift card</a>
             </li>
-          </ul>
+          </ul> -->
         </div>
         <ul class="nav navbar-nav ">
           <li class="level"
@@ -253,6 +306,21 @@ export default {
       } else {
         this.$refs[cat_name][0].style.display = 'none';
       }
+    },
+    toggleMenu (cat_name) {
+      if (this.$refs[cat_name].style.display === 'none' || this.$refs[cat_name].style.display === '') {
+        this.$refs[cat_name].style.display = 'block';
+      } else {
+        this.$refs[cat_name].style.display = 'none';
+      }
+    },
+    gotoAccount (params) {
+      this.$store.commit('ui/setAuthElem', params)
+      this.$bus.$emit('modal-toggle', 'modal-signup')
+    },
+    logout () {
+      this.$bus.$emit('user-before-logout')
+      this.$router.push(this.localizedRoute('/'))
     }
   }
 }

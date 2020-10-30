@@ -33,30 +33,33 @@
           </div>
           <div class="col-6">
             <div class="top-right-link right-side">
-              <ul>
+              <ul v-if="!currentUser">
                 <li class="login-icon content">
                   <a class="content-link">
                     <span class="content-icon" />
                   </a>
-                  <a href="login.html" title="Login">Login</a> or
-                  <a href="register.html" title="Register">Register</a>
-                  <div class="content-dropdown">
-                    <ul>
-                      <li class="login-icon">
-                        <a href="login.html" title="Login"><i class="fa fa-user" /> Login</a>
-                      </li>
-                      <li class="register-icon">
-                        <a href="register.html" title="Register"><i class="fa fa-user-plus" /> Register</a>
-                      </li>
-                    </ul>
-                  </div>
+                  <a href="#" title="Login" @click.prevent="gotoAccount('login')">Login</a> or
+                  <a href="#" title="Register" @click.prevent="gotoAccount('register')">Register</a>
+                </li>
+                <!-- <li class="track-icon">
+                  <a href="" title="Track your order"><span /> Track your order</a>
+                </li> -->
+              </ul>
+              <ul v-else>
+                <li class="login-icon content">
+                  <a class="content-link">
+                    <span class="content-icon" />
+                  </a>
+                  <a href="#" title="Log out" @click.prevent="logout">Log out</a> or
+                  <router-link :to="localizedRoute('/my-account')" :title="$t('My orders')">
+                    My Account
+                  </router-link>
                 </li>
                 <li class="track-icon">
-                  <a href="" title="Track your order"><span /> Track your order</a>
+                  <router-link :to="localizedRoute('/my-account/orders')" :title="$t('My orders')">
+                    <span /> Track your order
+                  </router-link>
                 </li>
-                <!-- <li class="gift-icon">
-                  <a href="" title="Gift card"><span /> Gift card</a>
-                </li> -->
               </ul>
             </div>
           </div>
@@ -335,10 +338,15 @@ export default {
     })
   },
   methods: {
-    gotoAccount () {
+    gotoAccount (params) {
+      this.$store.commit('ui/setAuthElem', params)
       this.$bus.$emit('modal-toggle', 'modal-signup')
     },
-    hasScrolled () {
+    logout () {
+      this.$bus.$emit('user-before-logout')
+      this.$router.push(this.localizedRoute('/'))
+    },
+    Scrolled () {
       this.scrollTop = window.scrollY
       if (
         this.scrollTop > this.lastScrollTop &&
