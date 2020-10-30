@@ -25,7 +25,9 @@
         </div>
         <div class="clearfix" />
         <div class="mt-20">
-          <a href="cart.html" class="btn-color btn">Cart</a>
+          <router-link :to="{ name: 'cart' }" class="btn-color btn">
+            Cart
+          </router-link>
           <router-link :to="{ name: 'checkout' }" class="btn-color btn right-side">
             Checkout
           </router-link>

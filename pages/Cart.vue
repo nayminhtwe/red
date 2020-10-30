@@ -103,9 +103,12 @@
         <div class="row">
           <div class="col-12">
             <div class="right-side float-none-xs">
-              <a href="checkout.html" class="btn btn-color">Proceed to checkout
+              <router-link :to="{ name: 'checkout' }" class="btn btn-color">
+                Checkout <span><i class="fa fa-angle-right" /></span>
+              </router-link>
+              <!-- <a href="checkout.html" class="btn btn-color">Proceed to checkout
                 <span><i class="fa fa-angle-right" /></span>
-              </a>
+              </a> -->
             </div>
           </div>
         </div>
