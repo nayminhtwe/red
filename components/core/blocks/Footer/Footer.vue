@@ -9,7 +9,7 @@
                 <span class="opener plus" @click="toggleFooter('blockOne')" />
                 <div class="f-logo">
                   <a href="index.html" class="">
-                    <img src="/assets/images/footer-logo.png" alt="Stylexpo">
+                    <img src="/assets/images/logo.png" alt="Stylexpo">
                   </a>
                 </div>
                 <div class="footer-block-contant" ref="blockOne">
