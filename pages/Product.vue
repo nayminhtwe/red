@@ -49,7 +49,7 @@
                             <span class="info-deta">{{ $t('SKU: {sku}', { sku: getCurrentProduct.sku }) }}</span>
                           </div>
                         </div>
-                        <p>Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada </p>
+                        <p v-html="getCurrentProduct.description" />
                         <div v-for="option in getProductOptions" :key="option.id">
                           <div class="product-size select-arrow input-box select-dropdown mb-20 mt-30">
                             <label>{{ option.label }}</label>
@@ -153,27 +153,27 @@
             <div class="col-lg-12">
               <div id="tabs">
                 <ul class="nav nav-tabs">
-                  <li><a class="tab-Description selected" title="Description">Description</a></li>
-                  <li><a class="tab-Product-Tags" title="Product-Tags">Product-Tags</a></li>
-                  <li><a class="tab-Reviews" title="Reviews">Reviews</a></li>
+                  <li><a class="tab-Description selected" title="Description" @click="toggleBlock('description')">Description</a></li>
+                  <li><a class="tab-Product-Tags" title="Product-Tags" @click="toggleBlock('tags')">Product-Tags</a></li>
+                  <li><a class="tab-Reviews" title="Reviews" @click="toggleBlock('reviews')">Reviews</a></li>
                 </ul>
               </div>
               <div id="items">
                 <div class="tab_content">
                   <ul>
                     <li>
-                      <div class="items-Description selected ">
+                      <div class="items-Description selected " ref="description">
                         <div class="Description" v-html="getCurrentProduct.description" />
                       </div>
                     </li>
                     <li>
-                      <div class="items-Product-Tags">
+                      <div class="items-Product-Tags" ref="tags">
                         <strong>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</strong><br>
                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
                       </div>
                     </li>
                     <li>
-                      <div class="items-Reviews">
+                      <div class="items-Reviews" ref="reviews">
                         <div class="comments-area">
                           <h4>Comments<span>(2)</span></h4>
                           <ul class="comment-list mt-30">
@@ -888,6 +888,17 @@ export default {
       } else {
         this.getCurrentProduct.qty = qty;
       }
+    },
+    toggleBlock (cat_name) {
+      let blocks = ['description', 'tags', 'reviews'];
+      for (let block of blocks) {
+        block === cat_name ? this.$refs[block].style.display = 'block' : this.$refs[block].style.display = 'none';
+      }
+      // if (this.$refs[cat_name].style.display === 'none' || this.$refs[cat_name].style.display === '') {
+      //   this.$refs[cat_name].style.display = 'block';
+      // } else {
+      //   this.$refs[cat_name].style.display = 'none';
+      // }
     }
   },
   metaInfo () {

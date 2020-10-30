@@ -75,10 +75,6 @@ export default {
       default: false
     }
   },
-  mounted () {
-    console.log(!this.maxQuantity, this.checkMaxQuantity, this.isSimpleOrConfigurable);
-    console.log(!this.maxQuantity && this.checkMaxQuantity && this.isSimpleOrConfigurable);
-  },
   computed: {
     isOnline (value) {
       return onlineHelper.isOnline
