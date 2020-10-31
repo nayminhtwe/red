@@ -811,7 +811,8 @@ _______________________________________________________*/
 }
 
 .navbar-header {
-    float: none;
+	float: none;
+	padding-left: 50px;
 }
 
 .navbar-header .navbar-brand {
@@ -843,7 +844,7 @@ header#header {
 
 .header-right-part {
     margin: 26px 0;
-    padding: 0 0 0 250px;
+    padding: 0 150px 0 50px;
     position: relative;
 }
 

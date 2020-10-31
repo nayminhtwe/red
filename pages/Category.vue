@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-xl-2 col-lg-3 mb-sm-30 col-lgmd-20per">
             <div class="sidebar-block">
-              <div class="sidebar-box listing-box mb-40">
+              <!-- <div class="sidebar-box listing-box mb-40">
                 <span class="opener plus" @click="toggleBlock('blockOne')" />
                 <div class="sidebar-title">
                   <h3><span>Categories</span></h3>
@@ -21,7 +21,7 @@
                     <li><a href="#">Accessories <span>(70)</span></a></li>
                   </ul>
                 </div>
-              </div>
+              </div> -->
 
               <sidebar :filters="getAvailableFilters" @changeFilter="changeFilter" />
 
@@ -135,7 +135,7 @@
                     />
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <!-- <div class="col-lg-6">
                   <div class="show-item right-side float-left-sm">
                     <span>Show :</span>
                     <div class="select-item select-dropdown">
@@ -158,7 +158,7 @@
                       <a href="#" class="btn btn-color">Compare (0)</a>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">

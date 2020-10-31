@@ -94,11 +94,11 @@
           <div class="col-xl-3 col-md-3 col-xl-20per">
             <div class="right-side float-left-xs header-right-link">
               <ul>
-                <li class="compare-icon">
+                <!-- <li class="compare-icon">
                   <a href="compare.html">
                     <span />
                   </a>
-                </li>
+                </li> -->
                 <li class="wishlist-icon">
                   <router-link :to="localizedRoute('/wishlist')">
                     <span />
@@ -166,11 +166,11 @@
             <div class="bottom-inner">
               <div class="position-r">
                 <div class="nav_sec position-r">
-                  <div class="mobilemenu-title mobilemenu">
+                  <div class="mobilemenu-title mobilemenu" @click="toggleMenu('bottomMenu')">
                     <span>Menu</span>
                     <i class="fa fa-bars pull-right" />
                   </div>
-                  <div class="mobilemenu-content">
+                  <div class="mobilemenu-content" ref="bottomMenu">
                     <ul class="nav navbar-nav" id="menu-main">
                       <li class="active">
                         <router-link :to="localizedRoute('/')" :title="$t('Home Page')">
@@ -183,45 +183,14 @@
                         </router-link>
                       </li>
                       <li>
-                        <a href="blog.html"><span>Blog</span></a>
+                        <router-link :to="localizedRoute('/delivery')" :title="$t('Delivery')">
+                          <span>Delivery</span>
+                        </router-link>
                       </li>
                       <li>
-                        <a href="contact.html"><span>Contact</span></a>
-                      </li>
-                      <li class="level dropdown ">
-                        <span class="opener plus" />
-                        <a href="#" class="page-scroll"><span>Pages</span></a>
-                        <div class="megamenu mobile-sub-menu">
-                          <div class="megamenu-inner-top">
-                            <ul class="sub-menu-level1">
-                              <li class="level2">
-                                <ul class="sub-menu-level2 ">
-                                  <li class="level3">
-                                    <a href="account.html"><span>■</span>Account</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="checkout.html"><span>■</span>Checkout</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="compare.html"><span>■</span>Compare</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="wishlist.html"><span>■</span>Wishlist</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="404.html"><span>■</span>404 Error</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="single-blog.html"><span>■</span>Single Blog</a>
-                                  </li>
-                                  <li class="level3">
-                                    <a href="product-page.html"><span>■</span>Product Details</a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                        <router-link :to="localizedRoute('/contact')" :title="$t('Contact us')">
+                          <span>Contact us</span>
+                        </router-link>
                       </li>
                     </ul>
                   </div>
@@ -232,7 +201,7 @@
           <div class="col-xl-4 col-lg-3 col-xl-20per d-none d-lg-block">
             <div class="right-side float-left-xs header-right-link">
               <div class="offer-btn right-side">
-                <a href="shop.html" class="gift-offer">
+                <a href="#" class="gift-offer">
                   <i class="fa fa-gift" /> Offers
                 </a>
               </div>
@@ -359,8 +328,14 @@ export default {
       this.lastScrollTop = this.scrollTop
     },
     search () {
-      console.log('search');
       this.$router.push({ name: 'search', params: { keyword: this.keyword } });
+    },
+    toggleMenu (cat_name) {
+      if (this.$refs[cat_name].style.display === 'none' || this.$refs[cat_name].style.display === '') {
+        this.$refs[cat_name].style.display = 'block';
+      } else {
+        this.$refs[cat_name].style.display = 'none';
+      }
     }
   }
 }
