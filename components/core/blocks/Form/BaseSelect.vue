@@ -7,6 +7,7 @@
         'empty': !selected
       }"
       :autocomplete="autocomplete"
+      :disabled="disabled"
       @focus="$emit('focus')"
       @blur="$emit('blur')"
       @change="$emit('change', $event.target.value)"
@@ -70,6 +71,10 @@ export default {
     validations: {
       type: Array,
       default: () => []
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   }
 }

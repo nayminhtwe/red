@@ -124,22 +124,39 @@
             ]"
           />
 
-          <base-input
+          <!-- <base-input
             class="col-xs-12 col-sm-6 mb10"
             type="text"
             name="state"
             :placeholder="$t('State / Province')"
             v-model.trim="shipping.state"
             autocomplete="address-level1"
+          /> -->
+          <base-select
+            class="col-xs-12 col-sm-6 mb10"
+            name="state"
+            :options="stateOptions"
+            :selected="shipping.state"
+            :placeholder="$t('State / Province')"
+            :validations="[
+              {
+                condition: $v.shipping.state.$error && !$v.shipping.state.required,
+                text: $t('Field is required')
+              }
+            ]"
+            v-model="shipping.state"
+            autocomplete="address-level1"
+            @blur="$v.shipping.state.$touch()"
+            @change.native="$v.shipping.state.$touch(); changeCountry();"
           />
 
-          <base-input
+          <!-- <base-input
             class="col-xs-12 col-sm-6 mb10"
             type="text"
             name="zip-code"
             :placeholder="$t('Zip-code *')"
             v-model.trim="shipping.zipCode"
-            @blur="$v.shipping.zipCode.$touch()"
+            @blur="$v.shipping.zipCode.$touch(); changeCountry()"
             autocomplete="postal-code"
             :validations="[
               {
@@ -151,10 +168,56 @@
                 text: $t('Name must have at least 3 letters.')
               }
             ]"
+          /> -->
+          <!-- <base-select
+            class="col-xs-12 col-sm-6 mb10"
+            v-if="shipping.state === 'YGN'"
+            name="zip-code"
+            :options="townshipOptions"
+            :selected="shipping.zipCode"
+            :placeholder="$t('Zip-code *')"
+            :validations="[
+              {
+                condition: $v.shipping.zipCode.$error && !$v.shipping.zipCode.required,
+                text: $t('Field is required')
+              }
+            ]"
+            v-model="shipping.zipCode"
+            autocomplete="postal-code"
+            @blur="$v.shipping.zipCode.$touch()"
+            @change.native="$v.shipping.zipCode.$touch(); changeCountry();"
           />
 
           <base-select
             class="col-xs-12 col-sm-6 mb10"
+            v-else
+            disabled="true"
+            name="zip-code"
+            :placeholder="$t('Zip-code *')"
+            :options="AnyOptions"
+            :selected="AnyOptions"
+          /> -->
+          <base-select
+            class="col-xs-12 col-sm-6 mb10"
+            name="zip-code"
+            :options="townshipOptions"
+            :selected="shipping.zipCode"
+            :placeholder="$t('Zip-code *')"
+            :validations="[
+              {
+                condition: $v.shipping.zipCode.$error && !$v.shipping.zipCode.required,
+                text: $t('Field is required')
+              }
+            ]"
+            v-model="shipping.zipCode"
+            autocomplete="postal-code"
+            @blur="$v.shipping.zipCode.$touch()"
+            @change.native="$v.shipping.zipCode.$touch(); changeCountry();"
+          />
+
+          <base-select
+            class="col-xs-12 col-sm-6 mb10"
+            disabled="true"
             name="countries"
             :options="countryOptions"
             :selected="shipping.country"
@@ -268,6 +331,8 @@ import BaseInput from 'theme/components/core/blocks/Form/BaseInput'
 import BaseSelect from 'theme/components/core/blocks/Form/BaseSelect'
 import ButtonFull from 'theme/components/theme/ButtonFull'
 import Tooltip from 'theme/components/core/Tooltip'
+const Townships = require('@vue-storefront/i18n/resource/townships.json')
+const States = require('@vue-storefront/i18n/resource/states.json')
 
 export default {
   components: {
@@ -278,14 +343,49 @@ export default {
     BaseSelect
   },
   mixins: [Shipping],
+  data () {
+    return {
+      townships: Townships,
+      states: States
+    }
+  },
+  mounted () {
+    this.shipping.state = 'MDY';
+  },
   computed: {
     countryOptions () {
-      return this.countries.map((item) => {
+      // return this.countries.map((item) => {
+      //   return {
+      //     value: item.code,
+      //     label: item.name
+      //   }
+      // })
+      return [{
+        label: 'Myanmar',
+        value: 'MM'
+      }]
+    },
+    townshipOptions () {
+      return this.townships[this.shipping.state].map((item) => {
         return {
           value: item.code,
           label: item.name
         }
       })
+    },
+    stateOptions () {
+      return this.states.map((item) => {
+        return {
+          value: item.code,
+          label: item.name
+        }
+      })
+    },
+    AnyOptions () {
+      return [{
+        label: 'Any',
+        value: '00000'
+      }]
     },
     storeView () {
       return currentStoreView()
@@ -322,6 +422,10 @@ export default {
         unicodeAlphaNum
       },
       city: {
+        required,
+        unicodeAlpha
+      },
+      state: {
         required,
         unicodeAlpha
       }

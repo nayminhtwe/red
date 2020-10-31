@@ -13,6 +13,7 @@
         :value="value"
         :autofocus="autofocus"
         :ref="name"
+        :disabled="disabled"
         @input="$emit('input', $event.target.value)"
         @blur="$emit('blur')"
         @keyup.enter="$emit('keyup.enter', $event.target.value)"
@@ -89,6 +90,10 @@ export default {
     validations: {
       type: Array,
       default: () => []
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
