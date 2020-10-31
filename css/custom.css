@@ -4817,6 +4817,7 @@ label {
 _______________________________________________________*/
 .footer {
 	background: #fafafa;
+	border-top: 3px solid #ff3030;
 }
 .footer, .footer a, .footer p {
 	color: #878787;
