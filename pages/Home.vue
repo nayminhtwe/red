@@ -16,6 +16,12 @@
     <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
       <featured-products :products="getEverythingNewCollection" />
     </lazy-hydrate>
+    <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
+      <featured-products :products="getEverythingNewCollection" />
+    </lazy-hydrate>
+    <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
+      <featured-products :products="getEverythingNewCollection" />
+    </lazy-hydrate>
     <featured-brands />
   </div>
 </template>
