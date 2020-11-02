@@ -481,7 +481,7 @@
                                             <a href="wishlist.html" title="Wishlist" />
                                           </li>
                                           <li class="pro-compare-icon">
-                                            <a href="compare.html" title="Compare" />
+                                            <a href="#" title="Compare" />
                                           </li>
                                         </ul>
                                       </div>
@@ -518,7 +518,7 @@
                                             <a href="wishlist.html" title="Wishlist" />
                                           </li>
                                           <li class="pro-compare-icon">
-                                            <a href="compare.html" title="Compare" />
+                                            <a href="#" title="Compare" />
                                           </li>
                                         </ul>
                                       </div>
@@ -555,7 +555,7 @@
                                             <a href="wishlist.html" title="Wishlist" />
                                           </li>
                                           <li class="pro-compare-icon">
-                                            <a href="compare.html" title="Compare" />
+                                            <a href="#" title="Compare" />
                                           </li>
                                         </ul>
                                       </div>
@@ -592,7 +592,7 @@
                                             <a href="wishlist.html" title="Wishlist" />
                                           </li>
                                           <li class="pro-compare-icon">
-                                            <a href="compare.html" title="Compare" />
+                                            <a href="#" title="Compare" />
                                           </li>
                                         </ul>
                                       </div>
@@ -629,7 +629,7 @@
                                             <a href="wishlist.html" title="Wishlist" />
                                           </li>
                                           <li class="pro-compare-icon">
-                                            <a href="compare.html" title="Compare" />
+                                            <a href="#" title="Compare" />
                                           </li>
                                         </ul>
                                       </div>
@@ -720,7 +720,7 @@
                           <a href="checkout.html"><span>■</span>Checkout</a>
                         </li>
                         <li class="level3">
-                          <a href="compare.html"><span>■</span>Compare</a>
+                          <a href="#"><span>■</span>Compare</a>
                         </li>
                         <li class="level3">
                           <a href="wishlist.html"><span>■</span>Wishlist</a>

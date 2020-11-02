@@ -19,9 +19,7 @@
           <div class="col-xs-12 col-md-5 pr30">
             <div class="lh30 flex end-lg" v-if="isFilled && !isActive">
               <a href="#" class="cl-tertiary flex" @click.prevent="edit">
-                <span class="pr5">
-                  {{ $t('Edit shipping') }}
-                </span>
+                <span class="pr5">{{ $t('Edit shipping') }}</span>
                 <i class="material-icons cl-tertiary">edit</i>
               </a>
             </div>
@@ -131,7 +129,7 @@
             :placeholder="$t('State / Province')"
             v-model.trim="shipping.state"
             autocomplete="address-level1"
-          /> -->
+          />-->
           <base-select
             class="col-xs-12 col-sm-6 mb10"
             name="state"
@@ -168,7 +166,7 @@
                 text: $t('Name must have at least 3 letters.')
               }
             ]"
-          /> -->
+          />-->
           <!-- <base-select
             class="col-xs-12 col-sm-6 mb10"
             v-if="shipping.state === 'YGN'"
@@ -196,7 +194,7 @@
             :placeholder="$t('Zip-code *')"
             :options="AnyOptions"
             :selected="AnyOptions"
-          /> -->
+          />-->
           <base-select
             class="col-xs-12 col-sm-6 mb10"
             name="zip-code"
@@ -247,7 +245,8 @@
             {{ $t('Shipping method') }}
           </h4>
           <div v-for="(method, index) in shippingMethods" :key="index" class="col-md-6">
-            <label class="radioStyled"> {{ method.method_title }} | {{ method.amount | price(storeView) }}
+            <label class="radioStyled">
+              {{ method.method_title }} | {{ method.amount | price(storeView) }}
               <input
                 type="radio"
                 :value="method.method_code"
@@ -258,9 +257,10 @@
               <span class="checkmark" />
             </label>
           </div>
-          <span class="validation-error" v-if="$v.shipping.shippingMethod.$error && !$v.shipping.shippingMethod.required">
-            {{ $t('Field is required') }}
-          </span>
+          <span
+            class="validation-error"
+            v-if="$v.shipping.shippingMethod.$error && !$v.shipping.shippingMethod.required"
+          >{{ $t('Field is required') }}</span>
         </div>
       </div>
     </div>
@@ -285,17 +285,11 @@
       <div class="col-xs-12 col-sm-9 col-md-11">
         <div class="row fs16 mb35">
           <div class="col-xs-12 h4" data-testid="shippingAddressSummary">
+            <p>{{ shipping.firstName }} {{ shipping.lastName }}</p>
+            <p>{{ shipping.streetAddress }} {{ shipping.apartmentNumber }}</p>
+            <p>{{ shipping.city }} {{ shipping.zipCode }}</p>
             <p>
-              {{ shipping.firstName }} {{ shipping.lastName }}
-            </p>
-            <p>
-              {{ shipping.streetAddress }} {{ shipping.apartmentNumber }}
-            </p>
-            <p>
-              {{ shipping.city }} {{ shipping.zipCode }}
-            </p>
-            <p>
-              <span v-if="shipping.state">{{ shipping.state }}, </span>
+              <span v-if="shipping.state">{{ shipping.state }},</span>
               <span>{{ getCountryName() }}</span>
             </p>
             <div v-if="shipping.phoneNumber">
@@ -303,13 +297,18 @@
               <tooltip>{{ $t('Phone number may be needed by carrier') }}</tooltip>
             </div>
             <div class="col-xs-12">
-              <h4>
-                {{ $t('Shipping method') }}
-              </h4>
+              <h4>{{ $t('Shipping method') }}</h4>
             </div>
             <div class="col-md-6 mb15">
-              <label class="radioStyled"> {{ getShippingMethod().method_title }} | {{ getShippingMethod().amount | price(storeView) }}
-                <input type="radio" value="" checked disabled name="chosen-shipping-method">
+              <label class="radioStyled">
+                {{ getShippingMethod().method_title }} | {{ getShippingMethod().amount | price(storeView) }}
+                <input
+                  type="radio"
+                  value
+                  checked
+                  disabled
+                  name="chosen-shipping-method"
+                >
                 <span class="checkmark" />
               </label>
             </div>
@@ -321,18 +320,21 @@
 </template>
 
 <script>
-import { required, minLength } from 'vuelidate/lib/validators'
-import { unicodeAlpha, unicodeAlphaNum } from '@vue-storefront/core/helpers/validators'
-import { Shipping } from '@vue-storefront/core/modules/checkout/components/Shipping'
-import { currentStoreView } from '@vue-storefront/core/lib/multistore'
+import { required, minLength } from 'vuelidate/lib/validators';
+import {
+  unicodeAlpha,
+  unicodeAlphaNum
+} from '@vue-storefront/core/helpers/validators';
+import { Shipping } from '@vue-storefront/core/modules/checkout/components/Shipping';
+import { currentStoreView } from '@vue-storefront/core/lib/multistore';
 
-import BaseCheckbox from 'theme/components/core/blocks/Form/BaseCheckbox'
-import BaseInput from 'theme/components/core/blocks/Form/BaseInput'
-import BaseSelect from 'theme/components/core/blocks/Form/BaseSelect'
-import ButtonFull from 'theme/components/theme/ButtonFull'
-import Tooltip from 'theme/components/core/Tooltip'
-const Townships = require('@vue-storefront/i18n/resource/townships.json')
-const States = require('@vue-storefront/i18n/resource/states.json')
+import BaseCheckbox from 'theme/components/core/blocks/Form/BaseCheckbox';
+import BaseInput from 'theme/components/core/blocks/Form/BaseInput';
+import BaseSelect from 'theme/components/core/blocks/Form/BaseSelect';
+import ButtonFull from 'theme/components/theme/ButtonFull';
+import Tooltip from 'theme/components/core/Tooltip';
+const Townships = require('@vue-storefront/i18n/resource/townships.json');
+const States = require('@vue-storefront/i18n/resource/states.json');
 
 export default {
   components: {
@@ -347,10 +349,10 @@ export default {
     return {
       townships: Townships,
       states: States
-    }
+    };
   },
   mounted () {
-    this.shipping.state = 'MDY';
+    this.shipping.state = 'YGN';
   },
   computed: {
     countryOptions () {
@@ -360,35 +362,39 @@ export default {
       //     label: item.name
       //   }
       // })
-      return [{
-        label: 'Myanmar',
-        value: 'MM'
-      }]
+      return [
+        {
+          label: 'Myanmar',
+          value: 'MM'
+        }
+      ];
     },
     townshipOptions () {
-      return this.townships[this.shipping.state].map((item) => {
+      return this.townships[this.shipping.state].map(item => {
         return {
           value: item.code,
           label: item.name
-        }
-      })
+        };
+      });
     },
     stateOptions () {
-      return this.states.map((item) => {
+      return this.states.map(item => {
         return {
           value: item.code,
           label: item.name
-        }
-      })
+        };
+      });
     },
     AnyOptions () {
-      return [{
-        label: 'Any',
-        value: '00000'
-      }]
+      return [
+        {
+          label: 'Any',
+          value: '00000'
+        }
+      ];
     },
     storeView () {
-      return currentStoreView()
+      return currentStoreView();
     }
   },
   validations: {
@@ -431,9 +437,9 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  @import '~theme/css/main';
+@import "~theme/css/main";
 </style>

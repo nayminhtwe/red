@@ -107,9 +107,6 @@
                             <li class="pro-wishlist-icon">
                               <AddToWishlist :product="getCurrentProduct" />
                             </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html"><span />Compare</a>
-                            </li>
                             <li class="pro-email-icon">
                               <a href="#"><span />Email to Friends</a>
                             </li>
@@ -319,9 +316,6 @@
                             <li class="pro-wishlist-icon ">
                               <a href="wishlist.html" title="Wishlist" />
                             </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html" title="Compare" />
-                            </li>
                           </ul>
                         </div>
                       </div>
@@ -355,9 +349,6 @@
                             </li>
                             <li class="pro-wishlist-icon ">
                               <a href="wishlist.html" title="Wishlist" />
-                            </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html" title="Compare" />
                             </li>
                           </ul>
                         </div>
@@ -396,9 +387,6 @@
                             <li class="pro-wishlist-icon ">
                               <a href="wishlist.html" title="Wishlist" />
                             </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html" title="Compare" />
-                            </li>
                           </ul>
                         </div>
                       </div>
@@ -429,9 +417,6 @@
                             </li>
                             <li class="pro-wishlist-icon ">
                               <a href="wishlist.html" title="Wishlist" />
-                            </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html" title="Compare" />
                             </li>
                           </ul>
                         </div>
@@ -467,9 +452,6 @@
                             <li class="pro-wishlist-icon ">
                               <a href="wishlist.html" title="Wishlist" />
                             </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html" title="Compare" />
-                            </li>
                           </ul>
                         </div>
                       </div>
@@ -500,9 +482,6 @@
                             </li>
                             <li class="pro-wishlist-icon ">
                               <a href="wishlist.html" title="Wishlist" />
-                            </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html" title="Compare" />
                             </li>
                           </ul>
                         </div>
@@ -538,9 +517,6 @@
                             <li class="pro-wishlist-icon ">
                               <a href="wishlist.html" title="Wishlist" />
                             </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html" title="Compare" />
-                            </li>
                           </ul>
                         </div>
                       </div>
@@ -574,9 +550,6 @@
                             </li>
                             <li class="pro-wishlist-icon ">
                               <a href="wishlist.html" title="Wishlist" />
-                            </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html" title="Compare" />
                             </li>
                           </ul>
                         </div>
@@ -614,9 +587,6 @@
                             </li>
                             <li class="pro-wishlist-icon ">
                               <a href="wishlist.html" title="Wishlist" />
-                            </li>
-                            <li class="pro-compare-icon">
-                              <a href="compare.html" title="Compare" />
                             </li>
                           </ul>
                         </div>

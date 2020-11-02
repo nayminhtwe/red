@@ -83,7 +83,7 @@
             <div class="right-side float-left-xs header-right-link">
               <ul>
                 <!-- <li class="compare-icon">
-                  <a href="compare.html">
+                  <a href="#">
                     <span />
                   </a>
                 </li> -->

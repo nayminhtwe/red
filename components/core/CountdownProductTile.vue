@@ -49,9 +49,6 @@
               <li class="pro-wishlist-icon active">
                 <AddToWishlist :product="product" />
               </li>
-              <li class="pro-compare-icon">
-                <a href="compare.html" title="Compare" />
-              </li>
             </ul>
           </div>
         </div>
