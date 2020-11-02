@@ -421,7 +421,7 @@ select {
 
 .select-dropdown .ui-state-default {
     border: none; 
-    background: rgba(0,0,0,0) url(/assets/images/select-icon.png) no-repeat scroll right 50% !important;
+    background: rgba(0,0,0,0) !important;
     font-weight: 400;
 	font-size: 14px;
 	font-family: 'Poppins', sans-serif;
