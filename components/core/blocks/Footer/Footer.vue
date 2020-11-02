@@ -61,7 +61,7 @@
                   </li>
                   <li class="item">
                     <i class="fa fa-envelope" />
-                    <p> <a href="#">infoservices@stylexpo.com </a> </p>
+                    <p> <a href="#">infoservices@21marts.com </a> </p>
                   </li>
                   <li class="item">
                     <i class="fa fa-phone" />
@@ -77,7 +77,7 @@
           <div class="row mtb-30">
             <div class="col-lg-6 ">
               <div class="copy-right ">
-                © 2019 All Rights Reserved. Design By <a href="#">Aaryaweb</a>
+                © 2019 All Rights Reserved
               </div>
             </div>
             <div class="col-lg-6 ">
