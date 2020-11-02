@@ -5,13 +5,13 @@
     <welcome />
     <featured-categories />
     <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
-      <featured-products :products="getEverythingNewCollection" />
+      <featured-products name="BEST SELLER" :products="getEverythingNewCollection" />
     </lazy-hydrate>
     <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
-      <featured-products :products="getEverythingNewCollection" />
+      <featured-products name="WEEKLY SPECIAL" :products="getEverythingNewCollection" />
     </lazy-hydrate>
     <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
-      <featured-products :products="getEverythingNewCollection" />
+      <featured-products name="POPULAR" :products="getEverythingNewCollection" />
     </lazy-hydrate>
     <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
       <countdown-products :products="getEverythingNewCollection.slice(1, 4)" />

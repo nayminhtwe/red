@@ -6,7 +6,7 @@
           <div class="col-12">
             <div class="heading-part mb-30">
               <h2 class="main_title heading">
-                <span>Best seller</span>
+                <span>{{ name }}</span>
               </h2>
             </div>
           </div>
@@ -19,6 +19,9 @@
                           :autoplay="false" :dots="false"
                           :nav="true" :responsive="{0:{items:2},501:{items:2},768:{items:3},992:{items:4},1500:{items:5}}"
                 >
+                  <div class="item" v-for="product in products" :key="product.id">
+                    <product-tile :product="product" />
+                  </div>
                   <div class="item" v-for="product in products" :key="product.id">
                     <product-tile :product="product" />
                   </div>
@@ -45,6 +48,10 @@ export default {
   },
   props: {
     products: {
+      type: null,
+      required: true
+    },
+    name: {
       type: null,
       required: true
     }
