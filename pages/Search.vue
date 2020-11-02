@@ -9,7 +9,7 @@
               <div class="sidebar-title">
                 <h3><span>Shop by</span></h3>
               </div>
-              <div class="sidebar-contant">
+              <!-- <div class="sidebar-contant">
                 <div class="price-range mb-30">
                   <div class="inner-title">
                     Price range
@@ -50,7 +50,7 @@
                   </ul>
                 </div>
                 <a href="#" class="btn btn-color">Refine</a>
-              </div>
+              </div> -->
             </div>
             <div class="sidebar-box mb-40 d-none d-lg-block">
               <a href="#">
@@ -142,7 +142,7 @@
           <div class="shorting mb-30">
             <div class="row">
               <div class="col-lg-6">
-                <div class="view">
+                <!-- <div class="view">
                   <div class="list-types grid active ">
                     <a href="shop.html">
                       <div class="grid-icon list-types-icon" />
@@ -153,8 +153,8 @@
                       <div class="list-icon list-types-icon" />
                     </a>
                   </div>
-                </div>
-                <div class="short-by float-right-sm">
+                </div> -->
+                <!-- <div class="short-by float-right-sm">
                   <span>Sort By :</span>
                   <div class="select-item select-dropdown">
                     <fieldset>
@@ -180,10 +180,10 @@
                       </select>
                     </fieldset>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="col-lg-6">
-                <div class="show-item right-side float-left-sm">
+                <!-- <div class="show-item right-side float-left-sm">
                   <span>Show :</span>
                   <div class="select-item select-dropdown">
                     <fieldset>
@@ -204,7 +204,7 @@
                   <div class="compare float-right-sm">
                     <a href="#" class="btn btn-color">Compare (0)</a>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

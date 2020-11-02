@@ -115,7 +115,7 @@
             <div class="shorting mb-30">
               <div class="row">
                 <div class="col-lg-6">
-                  <div class="view">
+                  <!-- <div class="view">
                     <div class="list-types grid active ">
                       <a href="shop.html">
                         <div class="grid-icon list-types-icon" />
@@ -126,7 +126,7 @@
                         <div class="list-icon list-types-icon" />
                       </a>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="short-by float-right-sm">
                     <span>Sort By :</span>
                     <sort-by

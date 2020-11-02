@@ -202,7 +202,7 @@
     <div class="popup-links ">
       <div class="popup-links-inner">
         <ul>
-          <hamburger-icon />
+          <!-- <hamburger-icon /> -->
           <microcart-icon />
           <account-icon />
           <li class="search">

@@ -14,7 +14,7 @@
       <featured-products :products="getEverythingNewCollection" />
     </lazy-hydrate>
     <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
-      <countdown-products :products="getEverythingNewCollection" />
+      <countdown-products :products="getEverythingNewCollection.slice(1, 4)" />
     </lazy-hydrate>
     <featured-brands />
   </div>

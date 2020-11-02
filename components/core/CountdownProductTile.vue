@@ -7,15 +7,15 @@
             :to="productLink"
             data-testid="productLink"
           >
-            <product-image
+            <!-- <product-image
               class="product-cover__thumb"
               :image="thumbnailObj"
               :alt="product.name | htmlDecode"
               :calc-ratio="false"
               data-testid="productImage"
             />
-            <img src="/assets/images/2.jpg" alt="Stylexpo">
-            <!-- <img :src="thumbnailObj.src" alt="Stylexpo"> -->
+            <img src="/assets/images/2.jpg" alt="Stylexpo"> -->
+            <img :src="thumbnailObj.src" alt="Stylexpo">
           </router-link>
         </div>
       </div>
