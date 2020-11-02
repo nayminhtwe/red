@@ -2294,7 +2294,7 @@ h2.heading {
 }
 
 .top-link .ui-state-default, .top-link .ui-widget-content .ui-state-default, .top-link .ui-widget-header .ui-state-default {
-	background: rgba(0,0,0,0) url("/assets/images/select-icon.png") no-repeat scroll right 50% !important;
+	background: rgba(0,0,0,0) !important;
 	color: #ffffff;
 	border: 1px solid #3c2828;
 }
