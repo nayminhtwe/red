@@ -4,9 +4,9 @@
         v-for="link in children"
     >
       <li :class="'level'+(link.level-1)">
-        <a :href="'/'+link.url_path" v-if="link.level === 4"><span>■</span>{{ link.name }}</a>
-        <a :href="'/'+link.url_path" v-else-if="link.level === 5"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>{{ link.name }}</a>
-        <a :href="'/'+link.url_path" v-else><span>{{ link.name }}</span></a>
+        <a :href="'/'+link.url_path" v-if="link.level === 4"><span>■</span>{{ $t(link.name) }}</a>
+        <a :href="'/'+link.url_path" v-else-if="link.level === 5"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>{{ $t(link.name) }}</a>
+        <a :href="'/'+link.url_path" v-else><span>{{ $t(link.name) }}</span></a>
         <sub-category
           :category-links="link.children_data"
           :id="link.id"

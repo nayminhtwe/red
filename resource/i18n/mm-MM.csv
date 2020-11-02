@@ -4,7 +4,7 @@
 "Accepts only alphabet characters.","Accepts only alphabet characters."
 "Add a discount code","Add a discount code"
 "Add discount code","Apply"
-"Add to cart","Add to cart"
+"Add to cart","စျေးဝယ်ခြင်းထဲသို့ထည့်သည်"
 "Add to compare","Add to compare"
 "Add to favorite","Add to favorite"
 "Allow notification about the order","Allow notification about the order"
@@ -295,77 +295,77 @@
 "to find product you were looking for.","to find product you were looking for."
 "to find something beautiful for You!","to find something beautiful for You!"
 "{count} items","{count} items",
-Essential Food,Essential Food
-Rice,Rice
-Oil,Oil
-Dry goods,Dry goods
-"Meat, fish, All kinds of vegetables","Meat, fish, All kinds of vegetables"
-Snack,Snack
-Health Care,Health Care
-Essential Medicine (ayesay),Essential Medicine (ayesay)
-BKK Brand Store,BKK Brand Store
-Taiwan Brand Store,Taiwan Brand Store
-USA Brand Store,USA Brand Store
-Malaysia Brand Store,Malaysia Brand Store
-Beauty,Beauty
-Women,Women
-Skin Care,Skin Care
-Beauty Care,Beauty Care
-Body Care,Body Care
-Face Care,Face Care
-Men,Men
-Skin Care,Skin Care
-Beauty Care,Beauty Care
-Body Care,Body Care
-Face Care,Face Care
-Kids,Kids
-Body Care,Body Care
-Baby Products,Baby Products
-Toys and Hobbies,Toys and Hobbies
-Clothes,Clothes
-Women,Women
-Tops,Tops
-Skirts,Skirts
-Pants,Pants
-Longyi,Longyi
-Dresses,Dresses
-"Pad, PH Care….","Pad, PH Care…."
-Men,Men
-Tops,Tops
-Pants,Pants
-Longyi,Longyi
-Kids,Kids
-Tops,Tops
-Girls,Girls
-Boys,Boys
-Pants,Pants
-Girls,Girls
-Boys,Boys
-Fashion and Accessories,Fashion and Accessories
-Watches,Watches
-Shoes,Shoes
-Fragrance,Fragrance
-Eyewear,Eyewear
-Umbrella,Umbrella
-Bags,Bags
-Belts,Belts
-Ties & Accessoires,Ties & Accessoires
-Hats & Caps,Hats & Caps
-Sport Wear,Sport Wear
-Women,Women
-Men,Men
-Kids,Kids
-Consumer Electronics,Consumer Electronics
-Phone & Accessories,Phone & Accessories
-Computer & Accessories,Computer & Accessories
-Refrigerator,Refrigerator
-TV and Accessories,TV and Accessories
-Washing Machine,Washing Machine
-Office & School Accessories,Office & School Accessories
-Office & School Items,Office & School Items
-Home & Decoration,Home & Decoration
-Home and Decoration Items,Home and Decoration Items
-Security & Safety,Security & Safety
-Security and Safety Items,Security and Safety Items
-Vehicle & Accessories,Vehicle & Accessories
-Vehicle Items,Vehicle Items
+Essential Food,အစားအသောက်
+Rice,ဆန်
+Oil,ဆီ
+Dry goods,ကုန်ခြောက်
+"Meat, fish, All kinds of vegetables (Shine Kitchen)",သား၊ငါး၊ အရွက်စုံ (Shine Kitchen)
+Snack,သရေစာ 
+Health Care,ကျန်းမာရေးစောင့်ရှောက်မှု
+Essential Medicine (ayesay),အဓိကလိုအပ်သောဆေးဝါးများ (ayesay)
+BKK Brand Store,BKK အမှတ်တံဆိပ်စတိုး
+Taiwan Brand Store,ထိုင်ဝမ်အမှတ်တံဆိပ်စတိုး
+USA Brand Store,ယူအက်စ်အမှတ်တံဆိပ်စတိုး
+Malaysia Brand Store,မလေးရှားအမှတ်တံဆိပ်စတိုး
+Beauty,အလှအပ
+Women,မိန်းကလေး
+Skin Care,အရေပြားထိန်းသိမ်းမှု
+Beauty Care,အလှအပနှင့်ကျန်းမာရေး
+Body Care,ခန္ဓာကိုယ်စောင့်ရှောက်မှု
+Face Care,မျက်နှာစောင့်ရှောက်မှု
+Men,ယောကျာ်းလေး
+Skin Care,အရေပြားထိန်းသိမ်းမှု
+Beauty Care,အလှအပနှင့်ကျန်းမာရေး
+Body Care,ခန္ဓာကိုယ်စောင့်ရှောက်မှု
+Face Care,မျက်နှာစောင့်ရှောက်မှု
+Kids,ကလေး
+Body Care,ခန္ဓာကိုယ်စောင့်ရှောက်မှု
+Baby Products,ကလေးအသုံးအဆောင်ပစ္စည်းများ
+Toys and Hobbies,ကစားစရာများနှင့်ဝါသနာများ
+Clothes,အဝတ်အစား
+Women,မိန်းကလေး
+Tops,အကျီ
+Skirts,စကပ်
+Pants,ဘောင်းဘီ
+Longyi,ထမီ
+Dresses,ဂါဝန်
+"Pad, PH Care….",အမျိုးသမီးတစ်ကိုယ်ရည်သုံးပစ္စည်းများ
+Men,ယောကျာ်းလေး
+Tops,အကျီ
+Pants,ဘောင်းဘီ
+Longyi,ပုဆိုး
+Kids,ကလေး
+Tops,အကျီ
+Girls,မ
+Boys,ကျား
+Pants,ဘောင်းဘီ
+Girls,မ
+Boys,ကျား
+Fashion and Accessories,ဖက်ရှင်နှင့်အသုံးအဆောင်များ
+Watches,နာရီ
+Shoes,ဖိနပ်
+Fragrance,ရေမွှေး
+Eyewear,မျက်မှန်
+Umbrella,ထီး
+Bags,အိတ်
+Belts,ခါးပတ်
+Ties & Accessoires,ကြိုးနှင့်ဆက်စပ်ပစ္စည်းများ
+Hats & Caps,ဦး ထုပ်
+Sport Wear,အားကစားပစ္စည်းများ
+Women,မိန်းကလေး
+Men,ယောကျာ်းလေး
+Kids,ကလေး
+Consumer Electronics,အိမ်တွင်းသုံးလျှပ်စစ်ပစ္စည်းများ
+Phone & Accessories,ဖုန်းနှင့်ဆက်စပ်ပစ္စည်းများ
+Computer & Accessories,ကွန်ပျူတာနှင့်ဆက်စပ်ပစ္စည်းများ
+Refrigerator,ရေခဲသေတ္တာ
+TV and Accessories,တီဗီနှင့်ဆက်စပ်ပစ္စည်းများ
+Washing Machine,အဝတ်လျှော်စက်
+Office & School Accessories,ရုံးသုံး၊ ကျောင်းသုံး
+Office & School Items,ရုံးနှင့်ကျောင်းသုံးပစ္စည်းများ
+Home & Decoration,အိမ်တွင်းအလှဆင်
+Home and Decoration Items,အိမ်တွင်းအလှဆင်ပစ္စည်းများ 
+Security & Safety,လုံခြုံရေးသုံး
+Security and Safety Items,လုံခြုံရေးပစ္စည်းများ
+Vehicle & Accessories,ကားအပိုပစ္စည်းများ
+Vehicle Items,ယာဉ်ပစ္စည်းများ

@@ -185,7 +185,7 @@
               data-testid="category.url_path"
               class="page-scroll"
             >
-              <i class="fa fa-female" />{{ category.name }}
+              <i class="fa fa-female" />{{ $t(category.name) }}
             </router-link>
             <div class="megamenu mobile-sub-menu " style="215px" v-if="category.children_count > 0" :ref="category.name">
               <div class="megamenu-inner-top">
