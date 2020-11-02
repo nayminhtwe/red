@@ -273,13 +273,13 @@ export default {
     }
   },
   beforeMount () {
-    window.addEventListener(
-      'scroll',
-      () => {
-        this.isScrolling = true
-      },
-      { passive: true }
-    )
+    // window.addEventListener(
+    //   'scroll',
+    //   () => {
+    //     this.isScrolling = true
+    //   },
+    //   { passive: true }
+    // )
 
     setInterval(() => {
       if (this.isScrolling) {
