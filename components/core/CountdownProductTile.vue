@@ -56,9 +56,9 @@
           </div>
         </div>
         <div class="item-offer-clock">
-          <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">
+          <ul class="countdown-clock">
             <li>
-              <span class="days">486</span>
+              <span class="days">{{ days }}</span>
               <p class="days_ref">
                 days
               </p>
@@ -67,7 +67,7 @@
               :
             </li>
             <li>
-              <span class="hours">21</span>
+              <span class="hours">{{ hours }}</span>
               <p class="hours_ref">
                 hours
               </p>
@@ -76,7 +76,7 @@
               :
             </li>
             <li>
-              <span class="minutes">11</span>
+              <span class="minutes">{{ minutes }}</span>
               <p class="minutes_ref">
                 minutes
               </p>
@@ -85,7 +85,7 @@
               :
             </li>
             <li>
-              <span class="seconds">07</span>
+              <span class="seconds">{{ seconds }}</span>
               <p class="seconds_ref">
                 seconds
               </p>
@@ -111,20 +111,23 @@ import AddToCart from 'theme/components/core/AddToCart'
 
 export default {
   name: 'CountdownProductTile',
-  mixins: [ProductTile, IsOnWishlist, IsOnCompare],
   data () {
-    var now = new Date();
-    var newYear = new Date(now.getFullYear() + 1, 0, 1);
     return {
-      time: newYear - now
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0
 
-    }
+    };
   },
+  mixins: [ProductTile, IsOnWishlist, IsOnCompare],
   components: {
     ProductImage,
     AddToWishlist,
     AddToCompare,
     AddToCart
+    // VueCountdownTimer
+    // 'vue-countdown-timer': typeof window !== 'undefined' ? () => import('vuejs-countdown-timer') : ''
   },
   props: {
     labelsActive: {
@@ -176,10 +179,52 @@ export default {
           rootStore.dispatch('stock/list', { skus: skus }) // store it in the cache
         }
       }
+    },
+    countDown () {
+      if (this.seconds > 0) {
+        this.seconds--
+      } else if (this.seconds === 0) {
+        if (this.minutes > 0) {
+          this.minutes--;
+          this.seconds = 59;
+        } else if (this.minutes === 0) {
+          if (this.hours > 24) {
+            this.hours--;
+            this.minutes = 59;
+            this.seconds = 59;
+          } else if (this.hours === 0) {
+            this.days--;
+            this.hours = 23;
+            this.minutes = 59;
+            this.seconds = 59;
+          }
+        }
+      }
     }
   },
   beforeMount () {
     this.$bus.$on('product-after-priceupdate', this.onProductPriceUpdate)
+  },
+  created () {
+    let date_future = new Date(new Date().getFullYear() + 1, 0, 1);
+    let date_now = new Date();
+
+    let seconds = Math.floor((date_future - (date_now)) / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+    let days = Math.floor(hours / 24);
+
+    this.days = days;
+    this.seconds = Math.floor((((date_future - (date_now)) % 1000) * 60) / 1000);
+    this.minutes = Math.floor(seconds % 60);
+    this.hours = Math.floor(minutes % 60);
+  },
+  mounted () {
+    this.$nextTick(function () {
+      window.setInterval(() => {
+        this.countDown();
+      }, 1000);
+    })
   },
   beforeDestroy () {
     this.$bus.$off('product-after-priceupdate', this.onProductPriceUpdate)
