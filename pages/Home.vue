@@ -2,16 +2,7 @@
   <div id="home">
     <head-image />
     <featured-blocks />
-    <section class="pt-70">
-      <div class="container">
-        <h2 align="center">
-          Welcome to 21Marts
-        </h2>
-        <h4 align="center">
-          Lorem khaled ipsum is a major key to success. It’s on you how you want to live your life. Always remember in the jungle there’s a lot of they in.
-        </h4>
-      </div>
-    </section>
+    <welcome />
     <featured-categories />
     <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
       <featured-products :products="getEverythingNewCollection" />
@@ -21,6 +12,9 @@
     </lazy-hydrate>
     <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
       <featured-products :products="getEverythingNewCollection" />
+    </lazy-hydrate>
+    <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
+      <countdown-products :products="getEverythingNewCollection" />
     </lazy-hydrate>
     <featured-brands />
   </div>
@@ -38,6 +32,8 @@ import FeaturedCategories from 'theme/components/core/blocks/Featured/FeaturedCa
 import FeaturedBlocks from 'theme/components/core/blocks/Featured/FeaturedBlocks'
 import FeaturedBrands from 'theme/components/core/blocks/Featured/FeaturedBrands'
 import FeaturedProducts from 'theme/components/core/blocks/Featured/FeaturedProducts'
+import Welcome from 'theme/components/core/blocks/Featured/Welcome'
+import CountdownProducts from 'theme/components/core/blocks/Featured/CountdownProducts'
 // Theme local components
 import Onboard from 'theme/components/theme/blocks/Home/Onboard'
 import PromotedOffers from 'theme/components/theme/blocks/PromotedOffers/PromotedOffers'
@@ -64,7 +60,9 @@ export default {
     FeaturedCategories,
     FeaturedBlocks,
     FeaturedBrands,
-    FeaturedProducts
+    FeaturedProducts,
+    Welcome,
+    CountdownProducts
   },
   computed: {
     ...mapGetters('user', ['isLoggedIn']),

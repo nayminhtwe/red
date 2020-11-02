@@ -4,30 +4,18 @@
       <div class="container">
         <div class="row">
           <div class="col-6">
-            <div class="top-link top-link-left select-dropdown">
+            <div class="top-link top-link-left select-dropdown" @change="changeLanguage">
               <fieldset>
-                <select name="speed" class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all" style="width: 82px;padding: 10px 5px;">
-                  <option selected="selected">
-                    <span class="ui-selectmenu-text">English</span>
-                  </option>
-                  <option>
-                    <span class="ui-selectmenu-text">Frence</span>
-                  </option>
-                  <option>
-                    <span class="ui-selectmenu-text">German</span>
-                  </option>
-                </select>
-                <select name="speed" class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all" style="width: 82px;padding: 10px 5px;">
-                  <option selected="selected" class="ui-selectmenu-text">
-                    <span class="ui-selectmenu-text">USD</span>
-                  </option>
-                  <option class="ui-selectmenu-text">
-                    <span class="ui-selectmenu-text">EURO</span>
-                  </option>
-                  <option class="ui-selectmenu-text">
-                    <span class="ui-selectmenu-text">POUND</span>
-                  </option>
-                </select>
+                <button name="speed" class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all"
+                        style="width: 82px;padding: 10px 5px;" @click="changeLanguage('en-US')"
+                >
+                  English
+                </button>
+                <button name="speed" class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all"
+                        style="width: 82px;padding: 10px 5px;" @click="changeLanguage('mm-MM')"
+                >
+                  Myanmar
+                </button>
               </fieldset>
             </div>
           </div>
@@ -51,8 +39,8 @@
                     <span class="content-icon" />
                   </a>
                   <a href="#" title="Log out" @click.prevent="logout">Log out</a> or
-                  <router-link :to="localizedRoute('/my-account')" :title="$t('My orders')">
-                    My Account
+                  <router-link :to="localizedRoute('/my-account')" :title="$t('My Account')">
+                    {{ $t('My Account') }}
                   </router-link>
                 </li>
                 <li class="track-icon">
@@ -301,6 +289,7 @@ export default {
     }, 250)
   },
   mounted () {
+    // console.log(this.$i18n.locale);
     syncCartWhenLocalStorageChange.addEventListener()
     this.$once('hook:beforeDestroy', () => {
       syncCartWhenLocalStorageChange.removeEventListener()
@@ -336,6 +325,9 @@ export default {
       } else {
         this.$refs[cat_name].style.display = 'none';
       }
+    },
+    changeLanguage (lang) {
+      this.$i18n.locale = lang;
     }
   }
 }

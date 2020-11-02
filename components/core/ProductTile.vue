@@ -34,7 +34,12 @@
     </div>
     <div class="product-item-details">
       <div class="product-item-name" v-if="!onlyImage">
-        <a href="product-page.html">{{ product.name | htmlDecode }}</a>
+        <router-link
+          :to="productLink"
+          data-testid="productLink"
+        >
+          {{ product.name | htmlDecode }}
+        </router-link>
       </div>
       <div class="price-box" v-if="product.special_price && parseFloat(product.original_price_incl_tax) > 0 && !onlyImage">
         <span class="price">{{ product.price_incl_tax | price(storeView) }}</span><del class="price old-price">{{ product.original_price_incl_tax | price(storeView) }}</del>

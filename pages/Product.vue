@@ -49,7 +49,7 @@
                             <span class="info-deta">{{ $t('SKU: {sku}', { sku: getCurrentProduct.sku }) }}</span>
                           </div>
                         </div>
-                        <p v-html="getCurrentProduct.description" />
+                        <p v-html="getCurrentProduct.short_description" />
                         <div v-for="option in getProductOptions" :key="option.id">
                           <div class="product-size select-arrow input-box select-dropdown mb-20 mt-30">
                             <label>{{ option.label }}</label>
