@@ -3,9 +3,9 @@
     <section class="container px15 pb50 cl-primary">
       <div class="row between-xs">
         <div class="col-xs-12 col-md-6 pt50">
-          <h2 class="h3 m0 mb10 serif lh20 weight-700">
+          <!-- <h2 class="h3 m0 mb10 serif lh20 weight-700">
             {{ $t('Reviews') }}
-          </h2>
+          </h2> -->
           <reviews-list
             :per-page="4"
             :items="reviews"
@@ -243,3 +243,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  @import '~theme/css/main';
+  .brdr-top-1 {
+    border-top-style: none;
+  }
+  .pt50 {
+    padding-top: 10px;
+  }
+</style>

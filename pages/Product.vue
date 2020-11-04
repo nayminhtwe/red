@@ -170,6 +170,18 @@
                     </li>
                     <li>
                       <div class="items-Reviews" ref="reviews">
+                        <lazy-hydrate when-idle>
+                          <reviews
+                            :product-name="getCurrentProduct.name"
+                            :product-id="getCurrentProduct.id"
+                            v-show="isOnline"
+                            :product="getCurrentProduct"
+                          />
+                        </lazy-hydrate>
+                      </div>
+                    </li>
+                    <!-- <li>
+                      <div class="items-Reviews" ref="reviews">
                         <div class="comments-area">
                           <h4>Comments<span>(2)</span></h4>
                           <ul class="comment-list mt-30">
@@ -270,7 +282,7 @@
                           </form>
                         </div>
                       </div>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
               </div>
