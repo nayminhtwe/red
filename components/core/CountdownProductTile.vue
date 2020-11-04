@@ -35,7 +35,7 @@
           <div class="price-box" v-if="!product.special_price && parseFloat(product.price_incl_tax) > 0 && !onlyImage">
             <span class="price">{{ product.price_incl_tax | price(storeView) }}</span>
           </div>
-          <p v-html="product.short_description" />
+          <div v-html="product.short_description" />
         </div>
         <div class="product-detail-inner">
           <div class="detail-inner-left">

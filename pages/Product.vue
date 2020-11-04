@@ -30,9 +30,6 @@
                             <span style="width:53%" />
                           </div>
                         </div>
-                        <!-- <div class="price-box">
-                          <span class="price">$80.00</span> <del class="price old-price">$100.00</del>
-                        </div> -->
                         <div class="price-box" v-if="getCurrentProduct.special_price && parseFloat(getCurrentProduct.original_price_incl_tax) > 0 && !onlyImage">
                           <span class="price">{{ getCurrentProduct.price_incl_tax | price(storeView) }}</span><del class="price old-price">{{ getCurrentProduct.original_price_incl_tax | price(storeView) }}</del>
                         </div>
@@ -49,20 +46,22 @@
                             <span class="info-deta">{{ $t('SKU: {sku}', { sku: getCurrentProduct.sku }) }}</span>
                           </div>
                         </div>
-                        <p v-html="getCurrentProduct.short_description" />
-                        <div v-for="option in getProductOptions" :key="option.id">
-                          <div class="product-size select-arrow input-box select-dropdown mb-20 mt-30">
-                            <label>{{ option.label }}</label>
-                            <fieldset>
-                              <select v-model="selected[option.attribute_code]" @change="changeFilter(selected[option.attribute_code])" class="selectpicker form-control option-drop" id="select-by-size">
-                                <generic-selector
-                                  v-for="filter in getAvailableFilters[option.attribute_code]"
-                                  :key="filter.id"
-                                  :variant="filter"
-                                  :selected-filters="getSelectedFilters"
-                                />
-                              </select>
-                            </fieldset>
+                        <div v-html="getCurrentProduct.short_description" />
+                        <div v-if="getCurrentProduct.type_id =='configurable'">
+                          <div v-for="option in getProductOptions" :key="option.id">
+                            <div class="product-size select-arrow input-box select-dropdown mb-20 mt-30">
+                              <label>{{ option.label }}</label>
+                              <fieldset>
+                                <select v-model="selected[option.attribute_code]" @change="changeFilter(selected[option.attribute_code])" class="selectpicker form-control option-drop" id="select-by-size">
+                                  <generic-selector
+                                    v-for="filter in getAvailableFilters[option.attribute_code]"
+                                    :key="filter.id"
+                                    :variant="filter"
+                                    :selected-filters="getSelectedFilters"
+                                  />
+                                </select>
+                              </fieldset>
+                            </div>
                           </div>
                         </div>
                         <div class="mb-20">
@@ -84,7 +83,7 @@
                                 @input="inputQty"
                                 :readonly="readonly"
                               />
-                              <!-- <input type="text" class="input-text qty" title="Qty" value="1" maxlength="8" id="qty" name="qty"> -->
+
                               <button @click="getCurrentProduct.qty < maxQuantity ? getCurrentProduct.qty++ : maxQuantity" class="increase items" type="button">
                                 <i class="fa fa-plus" />
                               </button>
