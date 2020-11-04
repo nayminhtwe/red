@@ -72,7 +72,7 @@
                   <form>
                     <div class="search-box">
                       <input class="input-text" type="text" placeholder="Search entire store here..." v-model="keyword">
-                      <button class="search-btn" @click.prevent="search" />
+                      <button class="search-btn" @click.prevent="search" :disabled="keyword === ''" />
                     </div>
                   </form>
                 </div>
@@ -205,9 +205,9 @@
           <!-- <hamburger-icon /> -->
           <microcart-icon />
           <account-icon />
-          <li class="search">
+          <!-- <li class="search">
             <a class="popup-with-form" href="#search_popup"><span class="icon" /><span class="icon-text">Search</span></a>
-          </li>
+          </li> -->
           <li class="scroll scrollup">
             <a href="#"><span class="icon" /><span class="icon-text">Scroll-top</span></a>
           </li>
