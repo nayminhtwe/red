@@ -61,7 +61,7 @@
                   </li>
                   <li class="item">
                     <i class="fa fa-envelope" />
-                    <p> <a href="#">infoservices@21marts.com </a> </p>
+                    <p> <a href="#">infoservices@castlingmm.com </a> </p>
                   </li>
                   <li class="item">
                     <i class="fa fa-phone" />
