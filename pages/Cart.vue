@@ -16,8 +16,10 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody v-if="productsInCart.length">
-                  <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" component="cart" />
+                <tbody>
+                  <table-product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" component="cart" />
+                  <!-- <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" component="cart" /> -->
+
                 </tbody>
               </table>
             </div>
@@ -133,12 +135,14 @@ import ClearCartButton from 'theme/components/core/blocks/Microcart/ClearCartBut
 import ButtonFull from 'theme/components/theme/ButtonFull'
 import ButtonOutline from 'theme/components/theme/ButtonOutline'
 import Product from 'theme/components/core/blocks/Microcart/Product'
+import TableProduct from 'theme/components/core/blocks/Microcart/TableProduct'
 import { InstantCheckoutModule } from 'src/modules/instant-checkout'
 
 export default {
   name: 'Cart',
   components: {
-    Product,
+    // Product,
+    TableProduct,
     ClearCartButton,
     ButtonFull,
     ButtonOutline,

@@ -1,35 +1,53 @@
 <template>
-  <li>
-    <div class="media">
-      <a class="pull-left">
-        <img alt="Stylexpo" src="/assets/images/2.jpg" />
-      </a>
-      <div class="media-body">
-        <span>
-          <router-link
-            :to="productLink"
-            data-testid="productLink"
-            @click.native="$store.commit('ui/setMicrocart', false)"
-          >{{ product.name | htmlDecode }}</router-link>
-        </span>
-        <p class="cart-price">{{ product.price_incl_tax * product.qty | price(storeView) }}</p>
-        <div class="product-qty">
-          <label>Qty:</label>
-          <div class="custom-qty">
-            <product-quantity
-              :value="productQty"
-              :max-quantity="maxQuantity"
-              :loading="isStockInfoLoading"
-              :is-simple-or-configurable="isSimpleOrConfigurable"
-              @input="updateProductQty"
-              @error="handleQuantityError"
-            />
+  <tr>
+    <td>
+      <router-link :to="productLink">
+        <product-image :image="image" />
+      </router-link>
+    </td>
+    <td>
+      <router-link :to="productLink">{{ product.name | htmlDecode }}</router-link>
+    </td>
+    <td>
+      <ul>
+        <li>
+          <div
+            class="base-price price-box"
+            v-if="product.special_price && parseFloat(product.original_price_incl_tax) > 0 && !onlyImage"
+          >
+            <span class="price">{{ product.price_incl_tax | price(storeView) }}</span>
+            <del class="price old-price">{{ product.original_price_incl_tax | price(storeView) }}</del>
           </div>
-        </div>
+          <div
+            class="base-price price-box"
+            v-if="!product.special_price && parseFloat(product.price_incl_tax) > 0 && !onlyImage"
+          >
+            <span class="price">{{ product.price_incl_tax | price(storeView) }}</span>
+          </div>
+        </li>
+      </ul>
+    </td>
+    <td>
+      <div class="input-box select-dropdown">
+        <product-quantity
+          :value="productQty"
+          :max-quantity="maxQuantity"
+          :loading="isStockInfoLoading"
+          :is-simple-or-configurable="isSimpleOrConfigurable"
+          @input="updateProductQty"
+          @error="handleQuantityError"
+        />
       </div>
+    </td>
+    <td>
+      <div class="total-price price-box">
+        <span class="price">{{ product.price_incl_tax * product.qty | price(storeView) }}</span>
+      </div>
+    </td>
+    <td>
       <remove-button :component="component" @click="removeItem" />
-    </div>
-  </li>
+    </td>
+  </tr>
 </template>
 
 <script>
@@ -55,7 +73,7 @@ import ButtonFull from "theme/components/theme/ButtonFull";
 import EditMode from "./EditMode";
 
 export default {
-  name: "Product",
+  name: "TableProduct",
   data() {
     return {
       maxQuantity: 0,
