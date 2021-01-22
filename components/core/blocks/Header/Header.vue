@@ -6,16 +6,18 @@
           <div class="col-6">
             <div class="top-link top-link-left select-dropdown" @change="changeLanguage">
               <fieldset>
-                <button name="speed" class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all"
-                        style="width: 82px;padding: 10px 5px;" @click="changeLanguage('en-US')"
-                >
-                  English
-                </button>
-                <button name="speed" class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all"
-                        style="width: 82px;padding: 10px 5px;" @click="changeLanguage('mm-MM')"
-                >
-                  Myanmar
-                </button>
+                <button
+                  name="speed"
+                  class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all"
+                  style="width: 82px;padding: 10px 5px;"
+                  @click="changeLanguage('en-US')"
+                >English</button>
+                <button
+                  name="speed"
+                  class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all"
+                  style="width: 82px;padding: 10px 5px;"
+                  @click="changeLanguage('mm-MM')"
+                >Myanmar</button>
               </fieldset>
             </div>
           </div>
@@ -31,7 +33,7 @@
                 </li>
                 <!-- <li class="track-icon">
                   <a href="" title="Track your order"><span /> Track your order</a>
-                </li> -->
+                </li>-->
               </ul>
               <ul v-else>
                 <li class="login-icon content">
@@ -39,9 +41,10 @@
                     <span class="content-icon" />
                   </a>
                   <a href="#" title="Log out" @click.prevent="logout">Log out</a> or
-                  <router-link :to="localizedRoute('/my-account')" :title="$t('My Account')">
-                    {{ $t('My Account') }}
-                  </router-link>
+                  <router-link
+                    :to="localizedRoute('/my-account')"
+                    :title="$t('My Account')"
+                  >{{ $t('My Account') }}</router-link>
                 </li>
                 <li class="track-icon">
                   <router-link :to="localizedRoute('/my-account/orders')" :title="$t('My orders')">
@@ -56,7 +59,7 @@
     </div>
     <div class="header-middle">
       <div class="container">
-        <hr>
+        <hr />
         <div class="row">
           <div class="col-xl-3 col-md-3 col-xl-20per">
             <div class="header-middle-left">
@@ -71,8 +74,17 @@
                 <div class="header_search_toggle desktop-view">
                   <form>
                     <div class="search-box">
-                      <input class="input-text" type="text" placeholder="Search entire store here..." v-model="keyword">
-                      <button class="search-btn" @click.prevent="search" :disabled="keyword === ''" />
+                      <input
+                        class="input-text"
+                        type="text"
+                        placeholder="Search entire store here..."
+                        v-model="keyword"
+                      />
+                      <button
+                        class="search-btn"
+                        @click.prevent="search"
+                        :disabled="keyword === ''"
+                      />
                     </div>
                   </form>
                 </div>
@@ -86,52 +98,80 @@
                   <a href="#">
                     <span />
                   </a>
-                </li> -->
+                </li>-->
                 <li class="wishlist-icon">
                   <router-link :to="localizedRoute('/wishlist')">
                     <span />
                   </router-link>
                 </li>
                 <li class="cart-icon">
-                  <a> <span />
-                    <div class="my-cart"
-                         productsInCart
-                         v-for="(segment, index) in totals"
-                         :key="index" v-if="segment.code === 'grand_total'"
+                  <a>
+                    <span />
+                    <div
+                      class="my-cart"
+                      productsInCart
+                      v-for="(segment, index) in totals"
+                      :key="index"
+                      v-if="segment.code === 'grand_total'"
                     >
-                      <div v-if="productsInCart.length">{{ totalQuantity }} items<br>{{ segment.value | price(storeView) }}</div>
+                      {{ totalQuantity }} items
+                      <br />
+                      {{ segment.value | price(storeView) }}
+                      <!-- <div v-if="productsInCart.length">
+                        {{ totalQuantity }} items
+                        <br />
+                        {{ segment.value | price(storeView) }}
+                      </div>-->
                     </div>
                   </a>
                   <div class="cart-dropdown header-link-dropdown">
                     <ul class="cart-list link-dropdown-list">
-                      <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" component="header" />
+                      <product
+                        v-for="product in productsInCart"
+                        :key="product.server_item_id || product.id"
+                        :product="product"
+                        component="header"
+                      />
                     </ul>
-                    <div v-for="(segment, index) in totals" :key="index" v-if="segment.code === 'grand_total'">
-                      <p class="cart-sub-totle" v-if="productsInCart.length">
-                        <span class="pull-left">
-                          {{ segment.title }}
-                        </span>
+                    <div
+                      v-for="(segment, index) in totals"
+                      :key="index"
+                      v-if="segment.code === 'grand_total'"
+                    >
+                      <p class="cart-sub-totle">
+                        <span class="pull-left">{{ segment.title }}</span>
                         <span class="pull-right">
-                          <strong class="price-box">
-                            {{ segment.value | price(storeView) }}
-                          </strong>
+                          <strong class="price-box">{{ segment.value | price(storeView) }}</strong>
                         </span>
                       </p>
+                      <!-- <div v-if="productsInCart.length">
+                        <p class="cart-sub-totle">
+                          <span class="pull-left">{{ segment.title }}</span>
+                          <span class="pull-right">
+                            <strong class="price-box">{{ segment.value | price(storeView) }}</strong>
+                          </span>
+                        </p>
+                      </div>-->
                     </div>
                     <div class="clearfix" />
                     <div class="mt-20">
-                      <router-link :to="{ name: 'cart' }" class="btn-color btn">
-                        Cart
-                      </router-link>
-                      <router-link :to="{ name: 'checkout' }" class="btn-color btn right-side">
-                        Checkout
-                      </router-link>
+                      <router-link :to="{ name: 'cart' }" class="btn-color btn">Cart</router-link>
+                      <router-link
+                        :to="{ name: 'checkout' }"
+                        class="btn-color btn right-side"
+                      >Checkout</router-link>
                       <!-- <a href="checkout.html" class="btn-color btn right-side">Checkout</a> -->
                     </div>
                   </div>
                 </li>
                 <li class="side-toggle">
-                  <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button" @click="openCatDrop = !openCatDrop">
+                  <button
+                    data-target=".navbar-collapse"
+                    data-toggle="collapse"
+                    class="navbar-toggle"
+                    type="button"
+                    @click="openCatDrop = !openCatDrop"
+                  >
                     <i class="fa fa-bars" />
                   </button>
                 </li>
@@ -146,7 +186,9 @@
         <div class="row position-r">
           <div class="col-xl-2 col-lg-3 col-xl-20per position-s">
             <div class="sidebar-menu-dropdown home">
-              <a class="btn-sidebar-menu-dropdown" @click.prevent="openCatDrop = !openCatDrop"><span /> Categories </a>
+              <a class="btn-sidebar-menu-dropdown" @click.prevent="openCatDrop = !openCatDrop">
+                <span /> Categories
+              </a>
               <home-menu :show="openCatDrop" />
             </div>
           </div>
@@ -199,7 +241,7 @@
       </div>
     </div>
 
-    <div class="popup-links ">
+    <div class="popup-links">
       <div class="popup-links-inner">
         <ul>
           <!-- <hamburger-icon /> -->
@@ -207,9 +249,12 @@
           <account-icon />
           <!-- <li class="search">
             <a class="popup-with-form" href="#search_popup"><span class="icon" /><span class="icon-text">Search</span></a>
-          </li> -->
+          </li>-->
           <li class="scroll scrollup">
-            <a href="#"><span class="icon" /><span class="icon-text">Scroll-top</span></a>
+            <a href="#">
+              <span class="icon" />
+              <span class="icon-text">Scroll-top</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -218,21 +263,21 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
-import CurrentPage from 'theme/mixins/currentPage'
-import AccountIcon from 'theme/components/core/blocks/Header/AccountIcon'
-import CompareIcon from 'theme/components/core/blocks/Header/CompareIcon'
-import HamburgerIcon from 'theme/components/core/blocks/Header/HamburgerIcon'
-import HomeMenu from 'theme/components/core/blocks/HeaderMenu/HomeMenu'
-import Logo from 'theme/components/core/Logo'
-import MicrocartIcon from 'theme/components/core/blocks/Header/MicrocartIcon'
-import SearchIcon from 'theme/components/core/blocks/Header/SearchIcon'
-import WishlistIcon from 'theme/components/core/blocks/Header/WishlistIcon'
-import Product from 'theme/components/core/blocks/Microcart/Product'
-import { syncCartWhenLocalStorageChange } from '@vue-storefront/core/modules/cart/helpers'
+import { mapGetters, mapState } from "vuex";
+import CurrentPage from "theme/mixins/currentPage";
+import AccountIcon from "theme/components/core/blocks/Header/AccountIcon";
+import CompareIcon from "theme/components/core/blocks/Header/CompareIcon";
+import HamburgerIcon from "theme/components/core/blocks/Header/HamburgerIcon";
+import HomeMenu from "theme/components/core/blocks/HeaderMenu/HomeMenu";
+import Logo from "theme/components/core/Logo";
+import MicrocartIcon from "theme/components/core/blocks/Header/MicrocartIcon";
+import SearchIcon from "theme/components/core/blocks/Header/SearchIcon";
+import WishlistIcon from "theme/components/core/blocks/Header/WishlistIcon";
+import Product from "theme/components/core/blocks/Microcart/Product";
+import { syncCartWhenLocalStorageChange } from "@vue-storefront/core/modules/cart/helpers";
 
 export default {
-  name: 'Header',
+  name: "Header",
   components: {
     AccountIcon,
     CompareIcon,
@@ -245,7 +290,7 @@ export default {
     HomeMenu
   },
   mixins: [CurrentPage],
-  data () {
+  data() {
     return {
       navVisible: true,
       isScrolling: false,
@@ -253,8 +298,8 @@ export default {
       lastScrollTop: 0,
       navbarHeight: 64,
       openCatDrop: false,
-      keyword: ''
-    }
+      keyword: ""
+    };
   },
   computed: {
     ...mapState({
@@ -262,17 +307,17 @@ export default {
       currentUser: state => state.user.current
     }),
     ...mapGetters({
-      productsInCart: 'cart/getCartItems',
-      totals: 'cart/getTotals',
-      totalQuantity: 'cart/getItemsTotalQuantity'
+      productsInCart: "cart/getCartItems",
+      totals: "cart/getTotals",
+      totalQuantity: "cart/getItemsTotalQuantity"
     }),
-    isThankYouPage () {
+    isThankYouPage() {
       return this.$store.state.checkout.isThankYouPage
         ? this.$store.state.checkout.isThankYouPage
-        : false
+        : false;
     }
   },
-  beforeMount () {
+  beforeMount() {
     // window.addEventListener(
     //   'scroll',
     //   () => {
@@ -283,52 +328,55 @@ export default {
 
     setInterval(() => {
       if (this.isScrolling) {
-        this.hasScrolled()
-        this.isScrolling = false
+        this.hasScrolled();
+        this.isScrolling = false;
       }
-    }, 250)
+    }, 250);
   },
-  mounted () {
+  mounted() {
     // console.log(this.$i18n.locale);
-    syncCartWhenLocalStorageChange.addEventListener()
-    this.$once('hook:beforeDestroy', () => {
-      syncCartWhenLocalStorageChange.removeEventListener()
-    })
+    syncCartWhenLocalStorageChange.addEventListener();
+    this.$once("hook:beforeDestroy", () => {
+      syncCartWhenLocalStorageChange.removeEventListener();
+    });
   },
   methods: {
-    gotoAccount (params) {
-      this.$store.commit('ui/setAuthElem', params)
-      this.$bus.$emit('modal-toggle', 'modal-signup')
+    gotoAccount(params) {
+      this.$store.commit("ui/setAuthElem", params);
+      this.$bus.$emit("modal-toggle", "modal-signup");
     },
-    logout () {
-      this.$bus.$emit('user-before-logout')
-      this.$router.push(this.localizedRoute('/'))
+    logout() {
+      this.$bus.$emit("user-before-logout");
+      this.$router.push(this.localizedRoute("/"));
     },
-    Scrolled () {
-      this.scrollTop = window.scrollY
+    Scrolled() {
+      this.scrollTop = window.scrollY;
       if (
         this.scrollTop > this.lastScrollTop &&
         this.scrollTop > this.navbarHeight
       ) {
-        this.navVisible = false
+        this.navVisible = false;
       } else {
-        this.navVisible = true
+        this.navVisible = true;
       }
-      this.lastScrollTop = this.scrollTop
+      this.lastScrollTop = this.scrollTop;
     },
-    search () {
-      this.$router.push({ name: 'search', params: { keyword: this.keyword } });
+    search() {
+      this.$router.push({ name: "search", params: { keyword: this.keyword } });
     },
-    toggleMenu (cat_name) {
-      if (this.$refs[cat_name].style.display === 'none' || this.$refs[cat_name].style.display === '') {
-        this.$refs[cat_name].style.display = 'block';
+    toggleMenu(cat_name) {
+      if (
+        this.$refs[cat_name].style.display === "none" ||
+        this.$refs[cat_name].style.display === ""
+      ) {
+        this.$refs[cat_name].style.display = "block";
       } else {
-        this.$refs[cat_name].style.display = 'none';
+        this.$refs[cat_name].style.display = "none";
       }
     },
-    changeLanguage (lang) {
+    changeLanguage(lang) {
       this.$i18n.locale = lang;
     }
   }
-}
+};
 </script>
