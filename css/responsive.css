@@ -943,11 +943,11 @@ button:focus {
 }
 
 .navbar-brand > img {
-    height: 30px;
+    height: 40px;
 }
 
 .navbar-header .navbar-brand {
-    padding: 20px 0;
+    padding: 10px 0;
 }
 .navbar-nav > li > a {
 	padding: 8px 18px;

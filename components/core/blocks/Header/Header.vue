@@ -109,19 +109,24 @@
                     <span />
                     <div
                       class="my-cart"
-                      productsInCart
-                      v-for="(segment, index) in totals"
-                      :key="index"
-                      v-if="segment.code === 'grand_total'"
+                      v-if="productsInCart.length"
                     >
                       {{ totalQuantity }} items
                       <br />
-                      {{ segment.value | price(storeView) }}
+                      {{ grandTotal.value | price(storeView) }}
                       <!-- <div v-if="productsInCart.length">
                         {{ totalQuantity }} items
                         <br />
                         {{ segment.value | price(storeView) }}
                       </div>-->
+                    </div>
+                    <div
+                      class="my-cart"
+                      v-else
+                    >
+                      0 items
+                      <br />
+                      Ks 0
                     </div>
                   </a>
                   <div class="cart-dropdown header-link-dropdown">
@@ -133,25 +138,17 @@
                         component="header"
                       />
                     </ul>
-                    <div
-                      v-for="(segment, index) in totals"
-                      :key="index"
-                      v-if="segment.code === 'grand_total'"
-                    >
+                    <div v-if="productsInCart.length">
                       <p class="cart-sub-totle">
-                        <span class="pull-left">{{ segment.title }}</span>
+                        <span class="pull-left">{{ grandTotal.title }}</span>
                         <span class="pull-right">
-                          <strong class="price-box">{{ segment.value | price(storeView) }}</strong>
+                          <strong class="price-box">{{ grandTotal.value | price(storeView) }}</strong>
                         </span>
                       </p>
-                      <!-- <div v-if="productsInCart.length">
-                        <p class="cart-sub-totle">
-                          <span class="pull-left">{{ segment.title }}</span>
-                          <span class="pull-right">
-                            <strong class="price-box">{{ segment.value | price(storeView) }}</strong>
-                          </span>
-                        </p>
-                      </div>-->
+                    </div>
+                    <div v-else>
+                      <p class="cart-sub-totle">
+                      </p>
                     </div>
                     <div class="clearfix" />
                     <div class="mt-20">
@@ -315,6 +312,9 @@ export default {
       return this.$store.state.checkout.isThankYouPage
         ? this.$store.state.checkout.isThankYouPage
         : false;
+    },
+    grandTotal() {
+      return this.totals.filter(segment => segment.code == 'grand_total')[0];
     }
   },
   beforeMount() {
