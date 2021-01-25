@@ -48,6 +48,7 @@
 import { mapGetters } from 'vuex'
 import NoSSR from 'vue-no-ssr'
 import SidebarMenu from '@vue-storefront/core/compatibility/components/blocks/SidebarMenu/SidebarMenu'
+import config from 'config'
 
 export default {
   mixins: [SidebarMenu],
@@ -66,7 +67,8 @@ export default {
     }),
     visibleCategories () {
       return this.categories.filter(category => {
-        return category.product_count > 0 || category.children_count > 0
+        // return category.product_count > 0 || category.children_count > 0
+        return category.parent_id == config.entities.category.categoriesDynamicPrefetchLevel;
       })
     }
   }

@@ -84,7 +84,7 @@
         </div>
         <ul class="nav navbar-nav ">
           <li class="level"
-              v-for="category in visibleCategories" :key="category.slug"
+              v-for="category in categories" :key="category.slug"
               :class="category.children_count > 0 ? 'sub-megamenu': '' "
           >
             <span class="opener plus" v-if="category.children_count > 0" @click="toggleCategory(category.name)" />
