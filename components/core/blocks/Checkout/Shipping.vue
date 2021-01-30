@@ -148,7 +148,7 @@
             @change.native="$v.shipping.state.$touch(); changeCountry();"
           />
 
-          <!-- <base-input
+          <base-input
             class="col-xs-12 col-sm-6 mb10"
             type="text"
             name="zip-code"
@@ -166,7 +166,7 @@
                 text: $t('Name must have at least 3 letters.')
               }
             ]"
-          />-->
+          />
           <!-- <base-select
             class="col-xs-12 col-sm-6 mb10"
             v-if="shipping.state === 'YGN'"
@@ -195,7 +195,7 @@
             :options="AnyOptions"
             :selected="AnyOptions"
           />-->
-          <base-select
+          <!-- <base-select
             class="col-xs-12 col-sm-6 mb10"
             name="zip-code"
             :options="townshipOptions"
@@ -211,7 +211,7 @@
             autocomplete="postal-code"
             @blur="$v.shipping.zipCode.$touch()"
             @change.native="$v.shipping.zipCode.$touch(); changeCountry();"
-          />
+          /> -->
 
           <base-select
             class="col-xs-12 col-sm-6 mb10"
@@ -352,7 +352,7 @@ export default {
     };
   },
   mounted () {
-    this.shipping.state = 'YGN';
+    this.shipping.state = 'KUL';
   },
   computed: {
     countryOptions () {
@@ -364,8 +364,8 @@ export default {
       // })
       return [
         {
-          label: 'Myanmar',
-          value: 'MM'
+          label: 'Malaysia',
+          value: 'MY'
         }
       ];
     },
